@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="256" height="256" viewBox="0 0 256 256" xml:space="preserve" stroke="black" fill="black" stroke-width="10" stroke-linecap="round">
+<circle cx="128" cy="128" r="123" fill="none"/>
+<line x1="128" x2="170" y1="128" y2="60" />
+<line x1="128" x2="80" y1="128" y2="142" />
+<g>
+    <circle cx="128" cy="30" r="1" />
+    <circle cx="128" cy="226" r="1" />
+    <circle cx="30" cy="128" r="1" />
+    <circle cx="226" cy="128" r="1" />
+    <circle cx="57" cy="57" r="1" />
+    <circle cx="199" cy="57" r="1" />
+    <circle cx="57" cy="199" r="1" />
+    <circle cx="199" cy="199" r="1" />
+</g>
+</svg>
