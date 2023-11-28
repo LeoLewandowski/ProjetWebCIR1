@@ -18,7 +18,7 @@ Pages :
 - Accueil
 - Contact
 - Produits
-- Histoire de l'entreprise
+- Histoire de l'entreprise (mathis) 
 - Fabrication des produits
 
 Idées d'amélioration pour le semestre 2 :
