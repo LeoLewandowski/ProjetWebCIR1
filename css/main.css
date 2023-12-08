@@ -36,6 +36,10 @@ body {
     .img-theme {
         filter: invert();
     }
+
+    #login:hover > img {
+        filter: none;
+    }
 }
 
 /* ---------------------------- TITLES ----------------------------- */
@@ -97,6 +101,7 @@ section, main {
     align-items: center;
     position: relative;
     margin: 25px 0;
+    padding: 0 7.5%;
 }
 
 #logo-header {
@@ -122,6 +127,8 @@ nav {
     overflow-y: scroll;
     max-height: 0;
     margin-bottom: 0;
+    margin-right: 20px;
+    z-index: 10;
     transition: all .5s ease-in-out;
 }
 
@@ -133,13 +140,18 @@ nav:focus,
     max-height: var(--height);
 }
 
-nav a {
+a {
     color: var(--text-theme-color);
+    cursor: pointer;
+    transition: color .3s;
+    text-decoration: underline;
+}
+
+nav a {
     text-decoration: none;
     height: 50px;
-    line-height: 50px;
     vertical-align: middle;
-    transition: color .3s;
+    line-height: 50px;
 }
 
 #nav-button {
@@ -155,7 +167,30 @@ nav a {
     right: 50%;
     transform: translateX(50%);
     top: 25px;
+    z-index: 15;
     box-shadow: var(--theme-box-shadow);
+}
+
+#login {
+    position: absolute;
+    padding: 10px;
+    text-decoration: none;
+    border: 1px solid var(--text-theme-color);
+    box-shadow: 0 0 10px var(--text-theme-color);
+    border-radius: 50%;
+    transition: all .3s;
+    height: fit-content;
+    right: 20px;
+}
+
+#login:hover {
+    color: var(--secondary-theme-color);
+    background-color: var(--text-theme-color);
+}
+
+#login > img {
+    width: 25px;
+    height: 25px;
 }
 
 @media (min-width:992px) {
@@ -163,7 +198,7 @@ nav a {
         display: flex;
         position: relative;
         height: 100px;
-        width: 75%;
+        width: 60%;
         max-height: fit-content;
         justify-content: end;
         flex-direction: row;
@@ -208,12 +243,37 @@ a:hover, button:hover, input:hover {
     content: '';
     background: var(--src);
     background-size: cover;
-    background-position: 50% 50%;
+    background-position: center center;
     position: absolute;
     width: 100%;
     height: 100%;
     filter: brightness(40%);
     z-index: -10;
+}
+
+.parallax, .parallax::before {
+    background-attachment:fixed;
+}
+
+.quote {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: end;
+}
+
+.quote > q {
+    font-size: 2rem;
+}
+
+.quote > span {
+    font-size: 1rem;
+    margin: 6px;
+    color: gray;
+}
+
+.quote > span::before {
+    content: '— ';
 }
 
 .container-horizontal {
@@ -254,6 +314,16 @@ a:hover, button:hover, input:hover {
 .flex-list > * img {
     max-width: 100%;
     max-height: 100%;
+}
+
+.alternate-list {
+    margin: 35px 0;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    text-align: center;
 }
 
 .line {

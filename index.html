@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>Document</title>
     <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/index.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
+
 <body>
     <!-- Navigation Menu -->test
     <header>
@@ -17,29 +20,89 @@
             <a href="/actualites/">Nos évènements</a>
             <a href="/projets/">Nos projets</a>
             <a href="/team/">Notre équipe</a>
-            <a href="/login/">Se connecter</a>
-
         </nav>
+        <a id="login" class="center container-vertical" title="Se connecter"><img src="/images/login.svg"
+                class="img-theme"></a>
     </header>
     <!-- End Navigation Menu -->
 
     <!-- Banner -->
     <section class="banner parallax" style="--src:url(/images/mechanism.jpg)">
-        <h1>Bienvenue chez Watch & Co.</h1>
+        <h1>Bienvenue chez Octime</h1>
         <h3>Où vos montres deviennent réalité</h3>
     </section>
     <!-- End Banner -->
 
+    <!-- Clock Nav -->
+    <section id="clock-nav">
+        <div id="clock-links">
+            <a href="/">Accueil</a>
+            <a href="/histoire/">Histoire</a>
+            <a href="/produits/">Produits</a>
+            <a href="/contact/">Contact</a>
+            <a href="/concept/">Concept</a>
+            <a href="/login/">Connexion</a>
+            <a href="/team/">Équipe</a>
+            <a href="/evenements/">Évènements</a>
+        </div>
+        <svg class="img-theme" width="256" height="256" stroke="black" fill="black" stroke-width="10" stroke-linecap="round">
+            <circle cx="128.25" cy="128.25" r="123.25" fill="none" />
+            <line id="handle" x1="128" x2="128" y1="128" y2="50" />
+            <g stroke-width="5">
+                <line x1="128" x2="128" y1="30" y2="0"/>
+                <line x1="128" x2="128" y1="226" y2="256" />
+                <line x1="30" x2="0" y1="128" y2="128" />
+                <line x1="226" x2="256" y1="128" y2="128" />
+                <line x1="57" x2="43" y1="57" y2="43" />
+                <line x1="199" x2="213" y1="57" y2="43" />
+                <line x1="57" x2="43" y1="199" y2="213" />
+                <line x1="199" x2="213" y1="199" y2="213" />
+            </g>
+        </svg>
+    </section>
+    <!-- End Clock Nav -->
+
     <main>
-        <h2>Des montres uniques</h2>
+        <h2>Une qualité de produits incomparable</h2>
         <p>
-            Notre succès éclatant provient de notre produit phare, la montre octale
+            Nos produits sont fabriqués à la main, par des experts horlogers utilisant des techniques
+            de fabrications remontant à plusieurs siècles auparavant.
+            <br>
+            Nous utilisons seulement des matériaux de grande qualité,
+        </p>
+        <h2>Un design unique</h2>
+        <p>
+            Notre succès éclatant provient de notre produit phare, la <i>montre octale</i>.
+            <br>
+            Ce design innovant et performant, fruit de minutieuses recherches et de multiples théories
+            mathématiques, fonctionne par cycle de 8h au lieu de 12.
+            <br>
+            Cela permet une meilleure compréhension lors de la lecture du cadran, ainsi qu'une division
+            des heures plus aisée.
+            <br><br>
+            Plus d'informations sur <a>notre page dédiée</a>
+        </p>
+        <h2>Une idée audacieuse</h2>
+        <p>
+            AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
         </p>
     </main>
 
+    <h1>Quelques avis</h1>
     <!-- Feedback -->
-    <section>
-
+    <section id="quotes" class="alternate-list">
+        <div class="quote">
+            <q>A truly mind-blowing design</q>
+            <span>JFK</span>
+        </div>
+        <div class="quote">
+            <q>You can't watch me</q>
+            <span>John Cena</span>
+        </div>
+        <div class="quote">
+            <q>Miau</q>
+            <span>My cat</span>
+        </div>
     </section>
     <!-- End Feedback -->
 
@@ -49,4 +112,5 @@
     </footer>
     <!-- End Footer -->
 </body>
+
 </html>
