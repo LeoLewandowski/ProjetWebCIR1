@@ -1,0 +1,102 @@
+#quotes > * {
+    width: 100%
+}
+
+#quotes > :nth-child(2n) {
+    align-items: start;
+}
+
+#handle {
+    transform-origin: center;
+    rotate: 0deg;
+    transition: rotate ease-in .2s;
+}
+
+#clock-nav {
+    margin: 50px;
+}
+
+#clock-links {
+    position: absolute;
+    height: 100%;
+    font-size: large;
+    width: 100%;
+}
+
+#clock-links > * {
+    margin: 0;
+    position: absolute;
+    text-decoration: none;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+/* ---------------------------- NAVIGATION LINKS ---------------------------- */
+
+#clock-links :nth-child(1) {
+    top:-15px;
+}
+
+#clock-links :nth-child(2) {
+    top: 20px;
+    left: calc(50% + 130px);
+}
+
+#clock-links :nth-child(3) {
+    left: calc(50% + 175px);
+    top: 50%;
+}
+
+#clock-links :nth-child(4) {
+    top: calc(100% - 20px);
+    left: calc(50% + 130px);
+}
+
+#clock-links :nth-child(5) {
+    top:calc(100% + 15px);
+}
+
+#clock-links :nth-child(6) {
+    top: calc(100% - 20px);
+    left: calc(50% - 130px);
+}
+
+#clock-links :nth-child(7) {
+    left: calc(50% - 175px);
+    top: 50%;
+}
+
+#clock-links :nth-child(8) {
+    top: 20px;
+    left: calc(50% - 130px);
+}
+
+/* ---------------------------- LINK HOVER EFFECT ---------------------------- */
+
+#clock-nav:has(> #clock-links :nth-child(2):hover) #handle {
+    rotate: 45deg;
+}
+
+#clock-nav:has(> #clock-links :nth-child(3):hover) #handle {
+    rotate: 90deg;
+}
+
+#clock-nav:has(> #clock-links :nth-child(4):hover) #handle {
+    rotate: 135deg;
+}
+
+#clock-nav:has(> #clock-links :nth-child(5):hover) #handle {
+    rotate: 180deg;
+}
+
+#clock-nav:has(> #clock-links :nth-child(6):hover) #handle {
+    rotate: -135deg;
+}
+
+#clock-nav:has(> #clock-links :nth-child(7):hover) #handle {
+    rotate: -90deg;
+}
+
+#clock-nav:has(> #clock-links :nth-child(8):hover) #handle {
+    rotate: -45deg;
+}
