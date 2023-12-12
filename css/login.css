@@ -1,0 +1,417 @@
+/* ------------------------- GENERAL THEME ------------------------- */
+
+:root {
+    --main-theme-color: white;
+    --secondary-theme-color: rgb(250, 250, 250);
+    --text-theme-color: black;
+    --theme-box-shadow: 0 1px 8px 3px rgba(0, 0, 0, 0.0509803922);
+    --breakpoint-xs: 0;
+    --breakpoint-sm: 576px;
+    --breakpoint-md: 768px;
+    --breakpoint-lg: 992px;
+    --breakpoint-xl: 1200px;
+}
+
+* {
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: var(--text-theme-color);
+    transition: all .5s;
+}
+
+body {
+    background-color: var(--secondary-theme-color);
+    color: var(--text-theme-color);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --main-theme-color: black;
+        --secondary-theme-color: rgb(20, 20, 20);
+        --text-theme-color: white;
+        --theme-box-shadow: 0 1px 8px 3px rgba(255, 255, 255, 0.2);
+    }
+
+    .img-theme {
+        filter: invert();
+    }
+
+    #login:hover > img {
+        filter: none;
+    }
+}
+
+/* ---------------------------- TITLES ----------------------------- */
+
+h1,h2,h3,h4,h5,h6 {
+    text-align: center;
+    margin: .75rem;
+}
+
+h1 {
+    font-size: 3rem;
+}
+
+h2 {
+    font-size: 2rem;
+    text-decoration: underline;
+}
+
+h3 {
+    font-size: 1.5rem;
+}
+
+/* ------------------------- HEADER & NAV -------------------------- */
+
+header + * {
+    margin-top:75px;
+}
+
+header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    top: 0;
+    width: 100%;
+    height: 75px;
+    height: fit-content;
+    box-shadow: var(--theme-box-shadow);
+    position: fixed;
+    z-index: 1000;
+    background-color: var(--main-theme-color);
+}
+
+footer {
+    font-size: x-small;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    padding: 10px;
+    background-color: var(--main-theme-color);
+    box-shadow: var(--theme-box-shadow)
+}
+
+section, main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    margin: 25px 0;
+    padding: 0 7.5%;
+}
+
+#logo-header {
+    position: relative;
+    display: inline-block;
+    margin-left: 10%;
+}
+
+#logo-header > img {
+    height: 90px;
+}
+
+nav {
+    --height:200px;
+    text-transform:uppercase;
+    font-size: medium;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    background-color: inherit;
+    overflow-y: scroll;
+    max-height: 0;
+    margin-bottom: 0;
+    margin-right: 20px;
+    z-index: 10;
+    transition: all .5s ease-in-out;
+}
+
+nav:hover,
+nav:focus,
+#nav-button:hover + nav,
+#nav-button:focus + nav {
+    margin-bottom: 15px;
+    max-height: var(--height);
+}
+
+a {
+    color: var(--text-theme-color);
+    cursor: pointer;
+    transition: color .3s;
+    text-decoration: underline;
+}
+
+nav a {
+    text-decoration: none;
+    height: 50px;
+    vertical-align: middle;
+    line-height: 50px;
+}
+
+#nav-button {
+    font-family: sans-serif ;
+    font-size: large;
+    font-weight: bolder;
+    border-radius: 5px;
+    background-color: var(--secondary-theme-color);
+    border: none;
+    cursor: pointer;
+    padding: 5px 10px;
+    position: fixed;
+    right: 50%;
+    transform: translateX(50%);
+    top: 25px;
+    z-index: 15;
+    box-shadow: var(--theme-box-shadow);
+}
+
+#login {
+    position: absolute;
+    padding: 10px;
+    text-decoration: none;
+    border: 1px solid var(--text-theme-color);
+    box-shadow: 0 0 10px var(--text-theme-color);
+    border-radius: 50%;
+    transition: all .3s;
+    height: fit-content;
+    right: 20px;
+}
+
+#login:hover {
+    color: var(--secondary-theme-color);
+    background-color: var(--text-theme-color);
+}
+
+#login > img {
+    width: 25px;
+    height: 25px;
+}
+
+@media (min-width:992px) {
+    nav {
+        display: flex;
+        position: relative;
+        height: 100px;
+        width: 60%;
+        max-height: fit-content;
+        justify-content: end;
+        flex-direction: row;
+        transition: none;
+        margin-bottom: 0 !important;
+        background-color: transparent;
+        box-shadow: none;
+        overflow: hidden;
+    }
+
+    nav a {
+        margin: 0 10px;
+    }
+
+    #nav-button {
+        display: none;
+    }
+}
+
+
+a:hover, button:hover, input:hover {
+    color:orange;
+}
+
+/* --------------------- USEFUL CLASSES --------------------- */
+
+.banner {
+    --src:url('/images/mechanism.jpg');
+    position: relative;
+    background-color: transparent;
+    overflow: hidden;
+    justify-content: center;
+    color: white !important;
+    height: 65vh;
+}
+
+.banner * {
+    color: white !important;
+}
+
+.banner::before {
+    content: '';
+    background: var(--src);
+    background-size: cover;
+    background-position: center center;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    filter: brightness(40%);
+    z-index: -10;
+}
+
+.parallax, .parallax::before {
+    background-attachment:fixed;
+}
+
+.quote {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: end;
+}
+
+.quote > q {
+    font-size: 2rem;
+}
+
+.quote > span {
+    font-size: 1rem;
+    margin: 6px;
+    color: gray;
+}
+
+.quote > span::before {
+    content: '— ';
+}
+
+.container-horizontal {
+    display: flex;
+    flex-direction: row;
+}
+
+.container-vertical {
+    display: flex;
+    flex-direction: column;
+}
+
+.center {
+    justify-content: center;
+    align-items: center;
+}
+
+.wrap {
+    flex-wrap: wrap;
+}
+
+.img-round {
+    border-radius: 50%;
+}
+
+.flex-list {
+    --gap: 10px 50px;
+}
+
+.flex-list > * {
+    flex: 1 1 0px;
+    max-width: 150px;
+    min-width: 150px;
+    text-align: center;
+    margin: var(--gap);
+}
+
+.flex-list > * img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.alternate-list {
+    margin: 35px 0;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    text-align: center;
+}
+
+.line {
+	height: 2px;
+	width: 50px;
+	background: #436ba6;
+	display: block;
+    position: relative;
+	margin: 20px auto 20px;
+}
+
+.line::after {
+	content:"";
+	position: absolute;
+    top: -2px;
+	left: 50%;
+	width: 150px;
+	height: 2px;
+	border-bottom: 2px dashed #436ba6;
+	margin-left: -75px;
+}
+
+main{
+    margin-top: 75px;
+}
+.formLetter{/*disposition des elements dans le formulaire*/
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 5vh;
+}
+
+fieldset{
+    padding: 1%;
+    margin: 1%;
+    border: 2px solid #afcfd9 ;
+    border-radius: 4px;
+    padding: 1vw;
+}
+/*ici, on définit la taille des différents éléments du formulaire*/
+.formLetter #prenom,#nom,#courriel,#start,#start{
+    height: 2vw;
+}
+.formLetter #prenom,#nom{
+    width: 10vw;
+}
+.formLetter #courriel{
+    width: 15vw;
+}
+.formLetter #start{
+    width: 7vw;
+}
+.signupbtn {/*style du bouton*/
+    background-color:black;
+    color: white;
+    padding: 0.4vh;
+    cursor: pointer;
+    width: 30%;
+    border-radius: 5px;
+}
+.signupbtn:active {
+    opacity: 0.5;
+    color: white;
+}
+.formLetter > label{
+    position: relative;
+    left: 35%;
+}
+.background{
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+}
+
+.btn{ /*disposition des éléments dans la partie bouton (pour connexion.html)*/
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.btn > a{
+    color: black;
+    text-decoration: none;
+    padding: 0.5vw;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin: 0.5vw;
+}

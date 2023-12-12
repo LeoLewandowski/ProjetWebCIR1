@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/login.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <!-- Navigation Menu -->test
+    <header>
+        <a id="logo-header" href="#"><img src="/images/clock.svg"></a>
+        <button id="nav-button">Menu</button>
+        <nav>
+            <a href="/">Accueil</a>
+            <a href="/histoire/">Présentation</a>
+            <a href="/actualites/">Nos évènements</a>
+            <a href="/projets/">Nos projets</a>
+            <a href="/team/">Notre équipe</a>
+            <a href="/login/">Se connecter</a>
+
+        </nav>
+    </header>
+    <!-- End Navigation Menu -->
+    <main>
+        <form class="formLetter" method="post" action="#">
+            <fieldset >  <!-- la balise fieldset peut être utilisé pour regrouper un ensemble de champs -->
+                <legend>Creer Votre Compte</legend>
+                
+                <label>Genre:</label>
+                <input type="radio" name="genre" id="mme" required="required">  <!-- "name" doit avoir la même valeur pour UN ENSEMBLE d'input de type radio -->
+                <label for="mme">Madame</label>
+                <input type="radio" name="genre" id="mr" required="required"> <!-- la valeur de l'attribut "for" de la balise label et le "id" de la balise de l'input associé doit être la même -->
+                <label for="mr">Monsieur</label>
+                
+                <br><br> <!-- La balise br sert à effectuer un retour à la ligne-->
+                
+                <label for="nom">Nom :</label >
+                <input type="text" name="nom" id="nom" placeholder="Votre nom" required="required">
+                <br><br>
+                
+                <label for="prenom">Prénom :</label >
+                <input type="text" name="prenom" id="prenom" placeholder="Votre prénom" required="required">
+                <br><br>
+                
+                <label for="courriel">Email : </label >
+                <input type="email" name="courriel" id="courriel" placeholder="nom.prenom@student.junia.com" required="required">
+                <br><br>
+                <label for="mdp">Mot de passe </label>
+                <input type="password" id="mdp" name="mdp" placeholder="Votre mot de passe" required="required">
+                <br><br>
+                <label for="start">Date de naissance: </label>
+                <input type="date" id="start" name="trip-start" min="1910-01-01" max="2004-12-31" required="required">
+                <br><br>
+                <label class="point">J'accepte les conditions générales d'inscription : </label>
+                <input type="checkbox" name="..." required="required">
+                <br><br>
+                <div class="btn">
+                    <button type="submit" class="signupbtn">S'inscrire</button>
+                    <a href="/login/index.html">Connexion</a>
+                </div>
+            </fieldset>
+        </form>
+    </main>
+    <!-- Footer -->
+    <footer>
+        Projet Web - Décembre 2023
+    </footer>
+    <!-- End Footer -->
+</body>
+</html>
