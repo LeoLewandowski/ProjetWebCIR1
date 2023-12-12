@@ -18,6 +18,7 @@
 
 #clock-links {
     position: absolute;
+    z-index: 10;
     height: 100%;
     font-size: large;
     width: 100%;
