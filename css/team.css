@@ -3,8 +3,16 @@ img{
     border-radius: 50%;
     size-adjust: 50%;
 }
-#pfp{
+.pfp{
     display: inline-flex;
+    flex-direction: column;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    justify-content: center;
+    align-items: center;
+}
+
+.pfp>div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
