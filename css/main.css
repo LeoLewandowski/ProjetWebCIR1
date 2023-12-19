@@ -21,8 +21,11 @@
 }
 
 body {
+    position: relative;
     background-color: var(--secondary-theme-color);
     color: var(--text-theme-color);
+    min-height: 100vh;
+    display: block;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -55,7 +58,8 @@ h1 {
 
 h2 {
     font-size: 2rem;
-    text-decoration: underline;
+    margin: 2.75rem;
+    text-decoration: underline orange;
 }
 
 h3 {
@@ -65,7 +69,7 @@ h3 {
 /* ------------------------- HEADER & NAV -------------------------- */
 
 header + * {
-    margin-top:75px !important;
+    margin-top:100px !important;
 }
 
 header {
@@ -84,12 +88,15 @@ header {
 }
 
 footer {
+    bottom: 0px;
+    height: 40px;
+    width: 100%;
+    box-sizing:border-box;
     font-size: x-small;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-top: 20px;
     padding: 10px;
     background-color: var(--main-theme-color);
     box-shadow: var(--theme-box-shadow)
@@ -105,13 +112,16 @@ section, main {
 }
 
 #logo-header {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     position: relative;
     display: inline-block;
-    margin-left: 10%;
+    margin-left: 7%;
 }
 
 #logo-header > img {
-    height: 90px;
+    height: 7vh;
 }
 
 nav {
@@ -180,6 +190,7 @@ nav a {
     border-radius: 50%;
     transition: all .3s;
     height: fit-content;
+    top:25px;
     right: 20px;
 }
 
@@ -324,6 +335,10 @@ a:hover, button:hover, input:hover {
     align-items: start;
     justify-content: center;
     text-align: center;
+}
+
+.alternate-list image {
+    max-width: 100%;
 }
 
 .line {
