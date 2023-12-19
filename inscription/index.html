@@ -30,6 +30,8 @@
                 <label for="mme">Madame</label>
                 <input type="radio" name="genre" id="mr" required="required"> <!-- la valeur de l'attribut "for" de la balise label et le "id" de la balise de l'input associé doit être la même -->
                 <label for="mr">Monsieur</label>
+                <input type="radio" name="genre" id="autre" required="required">
+                <label for="autre">Non précisé</label>
                 
                 <br><br> <!-- La balise br sert à effectuer un retour à la ligne-->
                 
@@ -50,12 +52,12 @@
                 <label for="start">Date de naissance: </label>
                 <input type="date" id="start" name="trip-start" min="1910-01-01" max="2004-12-31" required="required">
                 <br><br>
-                <label class="point">J'accepte les conditions générales d'inscription : </label>
+                <label class="point">J'accepte les <a href="/conditions/">conditions générales</a> d'inscription : </label>
                 <input type="checkbox" name="..." required="required">
                 <br><br>
                 <div class="btn">
                     <button type="submit" class="signupbtn">S'inscrire</button>
-                    <a href="/login/index.html" class="Connexion">Connexion</a>
+                    <a href="/login/" class="Connexion">Connexion</a>
                 </div>
             </fieldset>
         </form>

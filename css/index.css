@@ -4,6 +4,16 @@
 
 #quotes > :nth-child(2n) {
     align-items: start;
+    text-align: start;
+}
+
+#quotes > :nth-child(2n + 1) {
+    align-items: end;
+    text-align: end;
+}
+
+#quotes > * > * {
+    max-width: 60%;
 }
 
 #handle {
