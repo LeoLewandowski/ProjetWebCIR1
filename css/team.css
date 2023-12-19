@@ -1,0 +1,10 @@
+main {margin-top: 100px;}
+img{
+    border-radius: 50%;
+    size-adjust: 50%;
+}
+#pfp{
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
