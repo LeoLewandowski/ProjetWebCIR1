@@ -2,4 +2,51 @@
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
    
     
+} 
+
+.histoire{ 
+    
+    margin: 0;
+	font-weight:bold;
+	text-align:center;
+    
+}
+
+.elt{
+    width: 50%; 
+    height: 400px; 
+   
+}
+
+.titre{
+    clear:both;
+}
+
+.p1{
+    border-style: solid;
+    float: left;
+   
+}
+
+.img1{
+    width: 49%; 
+    height: 400px; 
+    float:right;   
+    
+}
+
+.p2{
+    border-style: solid;
+    float: right;
+}
+
+.img2{
+    float:left;
+    width: 49%; 
+    height: 400px; 
+}
+
+
+footer{
+    clear:both;
 }
