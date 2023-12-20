@@ -1,9 +1,11 @@
-main {margin-top: 100px;}
-
+main {
+    margin-top: 100px;
+}
 
 .pfp .rond {
     width: 125px;
     display: flex;
+    position: relative;
     flex-direction: column;
     justify-content: center;
     height: 125px;
@@ -50,8 +52,15 @@ main {margin-top: 100px;}
     align-items: center;
 }
 
+@media (max-width: 768px) {
+    .pfp > div > img {
+        left: 50%;
+    }
 
-
-
-
-
+    .pfp > div:hover > .rond {
+        padding: 15px;
+        margin: 0;
+        width: 85vw;
+        height: 400px;
+    }
+}
