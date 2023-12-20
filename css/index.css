@@ -4,6 +4,16 @@
 
 #quotes > :nth-child(2n) {
     align-items: start;
+    text-align: start;
+}
+
+#quotes > :nth-child(2n + 1) {
+    align-items: end;
+    text-align: end;
+}
+
+#quotes > * > * {
+    max-width: 60%;
 }
 
 #handle {
@@ -12,8 +22,10 @@
     transition: rotate ease-in .2s;
 }
 
-#clock-nav {
+#nav {
     margin: 50px;
+    max-width: 100vw;
+    transform: scale(82%);
 }
 
 #clock-links {
@@ -30,6 +42,12 @@
     text-decoration: none;
     left: 50%;
     transform: translate(-50%,-50%);
+}
+
+@media (min-width:576px) {
+    #nav {
+        transform: scale(100%);
+    }
 }
 
 /* ---------------------------- NAVIGATION LINKS ---------------------------- */
@@ -74,30 +92,30 @@
 
 /* ---------------------------- LINK HOVER EFFECT ---------------------------- */
 
-#clock-nav:has(> #clock-links :nth-child(2):hover) #handle {
+#nav:has(> #clock-links :nth-child(2):hover, > #clock-links :nth-child(2):focus) #handle {
     rotate: 45deg;
 }
 
-#clock-nav:has(> #clock-links :nth-child(3):hover) #handle {
+#nav:has(> #clock-links :nth-child(3):hover, > #clock-links :nth-child(3):focus) #handle {
     rotate: 90deg;
 }
 
-#clock-nav:has(> #clock-links :nth-child(4):hover) #handle {
+#nav:has(> #clock-links :nth-child(4):hover, > #clock-links :nth-child(4):focus) #handle {
     rotate: 135deg;
 }
 
-#clock-nav:has(> #clock-links :nth-child(5):hover) #handle {
+#nav:has(> #clock-links :nth-child(5):hover, > #clock-links :nth-child(5):focus) #handle {
     rotate: 180deg;
 }
 
-#clock-nav:has(> #clock-links :nth-child(6):hover) #handle {
+#nav:has(> #clock-links :nth-child(6):hover, > #clock-links :nth-child(6):focus) #handle {
     rotate: -135deg;
 }
 
-#clock-nav:has(> #clock-links :nth-child(7):hover) #handle {
+#nav:has(> #clock-links :nth-child(7):hover, > #clock-links :nth-child(7):focus) #handle {
     rotate: -90deg;
 }
 
-#clock-nav:has(> #clock-links :nth-child(8):hover) #handle {
+#nav:has(> #clock-links :nth-child(8):hover, > #clock-links :nth-child(8):focus) #handle {
     rotate: -45deg;
 }
