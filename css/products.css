@@ -12,7 +12,6 @@ main {
     position: sticky;
     margin: 35px 0;
     padding: 10px;
-    width:1500px;
     max-height: calc(100vh - 150px);
     background-color: var(--main-theme-color);
     border-radius: 30px;
@@ -72,8 +71,16 @@ input[type="submit"] {
 
 
 @media (max-width:768px) {
-    .filters {
+    main {
         flex-direction: column;
-        width: fit-content;
+        align-items: center;
+    }
+
+    .filters {
+        position: initial;
+    }
+
+    .products {
+        justify-content: center;
     }
 }
