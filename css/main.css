@@ -33,6 +33,9 @@ body {
     padding-bottom: calc(var(--footer-height) + 10px);
 }
 
+
+
+
 @media (prefers-color-scheme: dark) {
     :root {
         --main-theme-color: black;
@@ -236,7 +239,7 @@ nav a:hover::after {
     height: 25px;
 }
 
-@media (min-width:992px) {
+@media (min-width:768px) {
         nav {
         display: flex;
         position: initial;
@@ -273,8 +276,43 @@ textarea {
     transition: none;
 }
 
-button, input, textarea {
+button, input, textarea, select {
     background-color: var(--tertiary-theme-color);
+}
+
+select {
+    border: 2px solid orange;
+    border-radius: 25px;
+    height: 40px;
+    width: 250px;
+    appearance: none;
+    padding: 10px;
+    background-size: contain, contain;
+    appearance: none;
+    -webkit-appearance:none;
+
+    background:
+    linear-gradient(45deg, transparent 50%, gray 50%),
+    linear-gradient(135deg, gray 50%, transparent 50%),
+    radial-gradient(#ddd 70%, transparent 72%);
+    background-color: var(--tertiary-theme-color);
+  background-position:
+    calc(100% - 20px) 50%,
+    calc(100% - 15px) 50%,
+    calc(100% - 10px) 50%,
+    center center;
+  background-size:
+    5px 5px,
+    5px 5px,
+    1.5em 1.5em, cover;
+  background-repeat: no-repeat;
+}
+
+select:focus {
+    background-image: linear-gradient(135deg, transparent 50%, gray 50%),
+    linear-gradient(45deg, gray 50%, transparent 50%),
+    radial-gradient(#ddd 70%, transparent 72%);
+    
 }
 
 button:focus, input:focus, textarea:focus {

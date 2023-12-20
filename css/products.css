@@ -1,0 +1,79 @@
+main {
+    flex-direction: row;
+    align-items: start;
+    justify-content: flex-start;
+}
+
+.filters {
+    display: flex;
+    flex-grow: 5;
+    top:135px;
+    flex-direction: column;
+    position: sticky;
+    margin: 35px 0;
+    padding: 10px;
+    width:1500px;
+    max-height: calc(100vh - 150px);
+    background-color: var(--main-theme-color);
+    border-radius: 30px;
+}
+
+.filters label {
+    margin: 0 10px;
+}
+
+.filters > div {
+    margin: 0 10px;
+}
+
+.filters > div > :not(label) {
+    border: 2px solid orange;
+    border-radius: 25px;
+    box-sizing: border-box;
+    width: 110px;
+    height: 40px;
+    margin:5px;
+    padding: 5px 10px;
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+.products {
+    flex-grow: 0;
+    display: flex;
+    align-items: start;
+    flex-flow: row wrap;
+    padding: 0 25px;
+}
+
+.products > div {
+    background-color: var(--tertiary-theme-color);
+    border-radius: 10px;
+    padding: 10px;
+    flex-basis: 200px;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.products > div img {
+    width: 100%;
+    border-radius: inherit;
+}
+
+input[type="submit"] {
+    border-radius: 5px;
+    border: 2px solid orange;
+    padding: 2px;
+    margin: 7px;
+}
+
+
+@media (max-width:768px) {
+    .filters {
+        flex-direction: column;
+        width: fit-content;
+    }
+}
