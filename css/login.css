@@ -12,11 +12,24 @@ main{
 fieldset{
     padding: 1%;
     margin: 1%;
-    border: 2px solid #afcfd9 ;
+    border: 2px solid orange ;
     border-radius: 4px;
     padding: 1vw;
 }
-/*ici, on définit la taille des différents éléments du formulaire*/
+input, textarea {
+    border: 1px solid var(--main-theme-color);
+    border-radius: 5px;
+    padding: 2px 5px;
+}
+button, input[type="submit"], .btn > a {
+    border-radius: 5px;
+    border: 2px solid orange;
+}
+
+/*ici, on définit la taille des différents éléments du formulaire, ainsi que du formulaire lui-même*/
+.formLetter {
+    width: max-content;
+}
 .formLetter #prenom,#nom,#courriel,#start,#start{
     height: 2vw;
 }
@@ -33,9 +46,9 @@ fieldset{
 .signupbtn {/*style du bouton*/
     background-color:black;
     color: white;
-    padding: 0.4vh;
+    padding: 0 2vh;
     cursor: pointer;
-    width: 30%;
+    width: max(30%, fit-content);
     border-radius: 5px;
     height: 5vh;
 }
@@ -64,25 +77,7 @@ fieldset{
     height: 3.5vh;
     color: black;
     text-decoration: none;
+    background-color: white;
     padding: 0.5vh;
-    border: 1px solid black;
     border-radius: 5px;
-}
-
-@media (prefers-color-scheme: dark) {
-    :root {
-        --main-theme-color: black;
-        --secondary-theme-color: rgb(20, 20, 20);
-        --text-theme-color: white;
-        --theme-box-shadow: 0 1px 8px 3px rgba(255, 255, 255, 0.2);
-    }
-    .btn{
-        color: white;
-    }
-    .Connexion{
-        background-color: white;
-    }
-    .inscription{
-        background-color: white;
-    }
 }
