@@ -64,6 +64,7 @@ h5,
 h6 {
     text-align: center;
     margin: 1.25rem;
+    text-indent: 0;
 }
 
 h1 {
@@ -236,15 +237,15 @@ nav a:hover::after {
     transform: translateY(40%);
 }
 
-#nav-button:hover #nav-btn-bar1 {
+#nav-button:hover #nav-btn-bar1, #nav-button:focus #nav-btn-bar1{
     transform: rotate(45deg);
 }
 
-#nav-button:hover #nav-btn-bar2 {
+#nav-button:hover #nav-btn-bar2, #nav-button:focus #nav-btn-bar2 {
     transform: scaleX(0.1);
 }
 
-#nav-button:hover #nav-btn-bar3 {
+#nav-button:hover #nav-btn-bar3, #nav-button:focus #nav-btn-bar3 {
     transform: rotate(-45deg);
 }
 
@@ -419,6 +420,10 @@ textarea:focus {
     font-size: 2rem;
 }
 
+.quote > q::before, .quote > q::after {
+    color: orange;
+}
+
 .quote>span {
     position: relative;
     font-size: 1rem;
@@ -493,26 +498,6 @@ textarea:focus {
 
 .alternate-list image {
     max-width: 100%;
-}
-
-.line {
-    height: 2px;
-    width: 50px;
-    background: #436ba6;
-    display: block;
-    position: relative;
-    margin: 20px auto 20px;
-}
-
-.line::after {
-    content: "";
-    position: absolute;
-    top: -2px;
-    left: 50%;
-    width: 150px;
-    height: 2px;
-    border-bottom: 2px dashed #436ba6;
-    margin-left: -75px;
 }
 
 /* -------------------------- ANIMATIONS -------------------------- */
