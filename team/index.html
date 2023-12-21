@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>Equipe</title>
     <link rel="stylesheet" href="/css/main.css">
@@ -7,48 +8,80 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
+
 <body>
-    <!-- Navigation Menu -->test
+    <!-- Navigation Menu -->
     <header>
-        <a id="logo-header" href="#"><img src="/images/clock.svg"></a>
-        <button id="nav-button">Menu</button>
-        <nav>
-            <a href="/">Accueil</a>
+        <a id="logo-header" href="/">
+            <picture class="img-theme">
+                <source srcset="/images/logo.svg" media="(min-width:992px)">
+                <img src="/images/logo_short.svg">
+            </picture>
+        </a>
+        <button id="nav-button">
+            <svg class="img-theme" width="50" height="50">
+                <line x1="0" y1="50%" x2="100%" y2="50%" class="nav-btn-bar" id="nav-btn-bar1" />
+                <line x1="0" y1="50%" x2="100%" y2="50%" class="nav-btn-bar" id="nav-btn-bar2" />
+                <line x1="0" y1="50%" x2="100%" y2="50%" class="nav-btn-bar" id="nav-btn-bar3" />
+            </svg>
+        </button>
+        <nav id="nav">
             <a href="/histoire/">Présentation</a>
-            <a href="/actualites/">Nos évènements</a>
-            <a href="/projets/">Nos projets</a>
-            <a href="/team/">Notre équipe</a>
+            <a href="/concept/">Concept</a>
+            <a href="/produits/">Produits</a>
+            <a href="/team/" style="color: orange;">Notre équipe</a>
+            <a href="/contact/">Contact</a>
         </nav>
+        <a id="login" class="center container-vertical" title="Se connecter" href="/login/index.html"><img
+                src="/images/login.svg" class="img-theme"></a>
     </header>
-    <!-- End Navigation Menu --> 
+    <!-- End Navigation Menu -->
     <main>
         <h1> Notre équipe </h1>
         <div class="pfp">
             <div>
-                <img src="/images/pfp_leo.gif" width="128">
+                <span class="rond">Blablablabl ablablab lablablabl ablablablablabla blablablab lablablablablabl
+                    ablablabl ablabla blabla</span>
+                <img src="/images/pfp_leo.gif">
                 <h5> Lewandowski Léo </h5>
             </div>
             <div>
-                <img src="/images/pfp_mathis.png" width="128">
+                <span class="rond">Qqch d'écrit ici</span>
+                <img src="/images/pfp_mathis.png">
                 <h5>Van Uytvanck Mathis</h5>
             </div>
             <div>
+                <span class="rond">
+                    Normalement c'est
+                    <br>
+                    multiline
+                </span>
                 <img src="/images/pfp_simon.gif">
                 <h5>Leroy Simon</h5>
             </div>
             <div>
-                <img src="/images/pfp_adele.png" width="128">
+                <span class="rond">
+                    On pourra changer le style si vous préférez
+                </span>
+                <img src="/images/pfp_adele.png">
                 <h5>Lebrun Adèle</h5>
             </div>
             <div>
-                <img src="/images/pfp_sasha.png" width="128">
+                <span class="rond">
+                    Mais au moins l'anim est faite
+                </span>
+                <img src="/images/pfp_sasha.png">
                 <h5> Le Roux Zielinski Sasha </h5>
             </div>
         </div>
 
-    </main>   
-   <!-- Footer -->
+    </main>
+    <!-- Footer -->
     <footer>
         Projet Web - Décembre 2023
+        <a href="/conditions/">Conditions d'utilisation</a>
     </footer>
-<!-- End Footer -->
+    <!-- End Footer -->
+</body>
+
+</html>

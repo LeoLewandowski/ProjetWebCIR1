@@ -1,8 +1,42 @@
-main {margin-top: 100px;}
-img{
-    border-radius: 50%;
-    size-adjust: 50%;
+main {
+    margin-top: 100px;
 }
+
+.pfp .rond {
+    width: 125px;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    justify-content: center;
+    height: 125px;
+    margin: 0 60px;
+    box-sizing: border-box;
+    overflow: hidden;
+    border: solid 2px orange;
+    border-radius: 128px;
+    background-color: var(--tertiary-theme-color);
+}
+
+.pfp > div:hover > .rond {
+    padding-right: 20px;
+    padding-left: 142px;
+    width: 500px;
+}
+
+.pfp h5 {
+    box-sizing: content-box;
+    width: 200px;
+}
+
+.pfp img {
+    border-radius: 128px;
+    position: absolute;
+    top:-1px;
+    left: 122.5px;
+    translate: -50% 0;
+    width: 128px;
+}
+
 .pfp{
     display: inline-flex;
     flex-direction: column;
@@ -12,7 +46,21 @@ img{
 }
 
 .pfp > div {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+@media (max-width: 768px) {
+    .pfp > div > img {
+        left: 50%;
+    }
+
+    .pfp > div:hover > .rond {
+        padding: 15px;
+        margin: 0;
+        width: 85vw;
+        height: 400px;
+    }
 }

@@ -9,18 +9,30 @@
     
 </head>
 <body>
-    <!-- Navigation Menu -->test
+    <!-- Navigation Menu -->
     <header>
-        <a id="logo-header" href="#"><img src="/images/clock.svg"></a>
-        <button id="nav-button">Menu</button>
-        <nav>
-            <a href="/">Accueil</a>
+        <a id="logo-header" href="/">
+            <picture class="img-theme">
+                <source srcset="/images/logo.svg" media="(min-width:992px)">
+                <img src="/images/logo_short.svg">
+            </picture>
+        </a>
+        <button id="nav-button">
+            <svg class="img-theme" width="50" height="50">
+                <line x1="0" y1="50%" x2="100%" y2="50%" class="nav-btn-bar" id="nav-btn-bar1" />
+                <line x1="0" y1="50%" x2="100%" y2="50%" class="nav-btn-bar" id="nav-btn-bar2" />
+                <line x1="0" y1="50%" x2="100%" y2="50%" class="nav-btn-bar" id="nav-btn-bar3" />
+            </svg>
+        </button>
+        <nav id="nav">
             <a href="/histoire/">Présentation</a>
-            <a href="/actualites/">Nos évènements</a>
-            <a href="/projets/">Nos projets</a>
+            <a href="/concept/">Concept</a>
+            <a href="/produits/">Produits</a>
             <a href="/team/">Notre équipe</a>
-
+            <a href="/contact/">Contact</a>
         </nav>
+        <a id="login" class="center container-vertical" title="Se connecter" href="/login/index.html"><img src="/images/login.svg"
+                class="img-theme"></a>
     </header>
     <!-- End Navigation Menu -->
     <main>
@@ -35,7 +47,7 @@
                 <br><br>
                 <div class="btn">
                     <button type="submit" class="signupbtn">Connexion</button>
-                    <a href="/inscription/inscription.html" class="Connexion">S'inscrire</a>
+                    <a href="/inscription/" class="Connexion">S'inscrire</a>
                 </div>
             </fieldset>
         </form>
@@ -43,6 +55,7 @@
     <!-- Footer -->
     <footer>
         Projet Web - Décembre 2023
+        <a href="/conditions/">Conditions d'utilisation</a>
     </footer>
     <!-- End Footer -->
 </body>

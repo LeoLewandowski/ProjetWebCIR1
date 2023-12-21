@@ -3,6 +3,7 @@
 :root {
     --main-theme-color: white;
     --secondary-theme-color: rgb(250, 250, 250);
+    --tertiary-theme-color: rgb(215, 215, 215);
     --text-theme-color: black;
     --theme-box-shadow: 0 1px 8px 3px rgba(0, 0, 0, 0.0509803922);
     --breakpoint-xs: 0;
@@ -10,28 +11,36 @@
     --breakpoint-md: 768px;
     --breakpoint-lg: 992px;
     --breakpoint-xl: 1200px;
+    --footer-height: 50px;
 }
 
 * {
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: 'Franklin Gothic', Arial, sans-serif;
     margin: 0;
     padding: 0;
     color: var(--text-theme-color);
     transition: all .5s;
+    scroll-behavior: smooth;
 }
 
 body {
     position: relative;
     background-color: var(--secondary-theme-color);
     color: var(--text-theme-color);
-    min-height: 100vh;
     display: block;
+    min-height: 100vh;
+    box-sizing: border-box;
+    padding-bottom: calc(var(--footer-height) + 10px);
 }
+
+
+
 
 @media (prefers-color-scheme: dark) {
     :root {
         --main-theme-color: black;
         --secondary-theme-color: rgb(20, 20, 20);
+        --tertiary-theme-color: rgb(60, 60, 60);
         --text-theme-color: white;
         --theme-box-shadow: 0 1px 8px 3px rgba(255, 255, 255, 0.2);
     }
@@ -40,20 +49,26 @@ body {
         filter: invert();
     }
 
-    #login:hover > img {
+    #login:hover>img {
         filter: none;
     }
 }
 
 /* ---------------------------- TITLES ----------------------------- */
 
-h1,h2,h3,h4,h5,h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     text-align: center;
     margin: 1.25rem;
 }
 
 h1 {
     font-size: 3rem;
+    font-variant: small-caps;
 }
 
 h2 {
@@ -66,10 +81,17 @@ h3 {
     font-size: 1.5rem;
 }
 
+p {
+    font-size: 1.5em;
+    font-weight: 300;
+}
+
+
+
 /* ------------------------- HEADER & NAV -------------------------- */
 
-header + * {
-    margin-top:100px !important;
+header+* {
+    margin-top: 0 !important;
 }
 
 header {
@@ -79,19 +101,20 @@ header {
     flex-wrap: wrap;
     top: 0;
     width: 100%;
-    height: 75px;
-    height: fit-content;
+    height: 100px;
     box-shadow: var(--theme-box-shadow);
-    position: fixed;
+    position: sticky;
     z-index: 1000;
     background-color: var(--main-theme-color);
 }
 
 footer {
+    position: absolute;
+    bottom: 0;
     bottom: 0px;
-    height: 40px;
     width: 100%;
-    box-sizing:border-box;
+    height: var(--footer-height);
+    box-sizing: border-box;
     font-size: x-small;
     display: flex;
     flex-direction: column;
@@ -102,7 +125,8 @@ footer {
     box-shadow: var(--theme-box-shadow)
 }
 
-section, main {
+section,
+main {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -112,40 +136,39 @@ section, main {
 }
 
 #logo-header {
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
     position: relative;
     display: inline-block;
-    margin-left: 7%;
+    margin: 10px;
+    margin-left: 5%;
 }
 
-#logo-header > img {
+#logo-header img {
     height: 7vh;
 }
 
 nav {
-    --height:200px;
-    text-transform:uppercase;
+    position: absolute;
+    --height: 200px;
+    text-transform: uppercase;
     font-size: medium;
     font-weight: bold;
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100%;
+    left: 0;
+    top: 99%;
+    right: 0;
     background-color: inherit;
     overflow-y: scroll;
     max-height: 0;
-    margin-bottom: 0;
-    margin-right: 20px;
     z-index: 10;
     transition: all .5s ease-in-out;
 }
 
 nav:hover,
 nav:focus,
-#nav-button:hover + nav,
-#nav-button:focus + nav {
+#nav-button:hover+nav,
+#nav-button:focus+nav {
     margin-bottom: 15px;
     max-height: var(--height);
 }
@@ -158,27 +181,71 @@ a {
 }
 
 nav a {
+    position: relative;
     text-decoration: none;
     height: 50px;
     vertical-align: middle;
     line-height: 50px;
 }
 
+nav a::after {
+    position: absolute;
+    content: '';
+    background-color: orange;
+    height: 2px;
+    bottom: 9px;
+    left: 55%;
+    right: 55%;
+    transition: all .6s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+nav a:hover::after {
+    left: 5%;
+    right: 5%;
+}
+
 #nav-button {
-    font-family: sans-serif ;
+    position: absolute;
+    font-family: sans-serif;
     font-size: large;
     font-weight: bolder;
+    background-color: transparent;
     border-radius: 5px;
-    background-color: var(--secondary-theme-color);
     border: none;
     cursor: pointer;
     padding: 5px 10px;
-    position: fixed;
     right: 50%;
-    transform: translateX(50%);
-    top: 25px;
+    top: 50%;
+    transform: translate(50%, -50%);
     z-index: 15;
-    box-shadow: var(--theme-box-shadow);
+}
+
+.nav-btn-bar {
+    transition-property: transform;
+    transition-duration: 0.3s;
+    transform-origin: center;
+    stroke: black;
+    stroke-width: 10%;
+}
+
+#nav-btn-bar1 {
+    transform: translateY(-40%);
+}
+
+#nav-btn-bar3 {
+    transform: translateY(40%);
+}
+
+#nav-button:hover #nav-btn-bar1 {
+    transform: rotate(45deg);
+}
+
+#nav-button:hover #nav-btn-bar2 {
+    transform: scaleX(0.1);
+}
+
+#nav-button:hover #nav-btn-bar3 {
+    transform: rotate(-45deg);
 }
 
 #login {
@@ -190,7 +257,8 @@ nav a {
     border-radius: 50%;
     transition: all .3s;
     height: fit-content;
-    top:25px;
+    top: 50%;
+    transform: translateY(-50%);
     right: 20px;
 }
 
@@ -199,17 +267,16 @@ nav a {
     background-color: var(--text-theme-color);
 }
 
-#login > img {
+#login>img {
     width: 25px;
     height: 25px;
 }
 
-@media (min-width:992px) {
+@media (min-width:768px) {
     nav {
         display: flex;
-        position: relative;
+        position: initial;
         height: 100px;
-        width: 60%;
         max-height: fit-content;
         justify-content: end;
         flex-direction: row;
@@ -227,27 +294,89 @@ nav a {
     #nav-button {
         display: none;
     }
+
+    #logo-header {
+        margin-left: 7%;
+    }
 }
 
+a:hover,
+button:hover,
+input:hover {
+    color: orange;
+}
 
-a:hover, button:hover, input:hover {
-    color:orange;
+textarea {
+    transition: none;
+}
+
+button,
+input,
+textarea,
+select {
+    background-color: var(--tertiary-theme-color);
+}
+
+select {
+    border: 2px solid orange;
+    border-radius: 25px;
+    height: 40px;
+    width: 250px;
+    appearance: none;
+    padding: 10px;
+    background-size: contain, contain;
+    appearance: none;
+    -webkit-appearance: none;
+
+    background:
+        linear-gradient(45deg, transparent 50%, gray 50%),
+        linear-gradient(135deg, gray 50%, transparent 50%),
+        radial-gradient(#ddd 70%, transparent 72%);
+    background-color: var(--tertiary-theme-color);
+    background-position:
+        calc(100% - 20px) 50%,
+        calc(100% - 15px) 50%,
+        calc(100% - 10px) 50%,
+        center center;
+    background-size:
+        5px 5px,
+        5px 5px,
+        1.5em 1.5em, cover;
+    background-repeat: no-repeat;
+}
+
+select:focus {
+    background-image: linear-gradient(135deg, transparent 50%, gray 50%),
+        linear-gradient(45deg, gray 50%, transparent 50%),
+        radial-gradient(#ddd 70%, transparent 72%);
+
+}
+
+button:focus,
+input:focus,
+textarea:focus {
+    color: orange;
+    background-color: var(--main-theme-color);
 }
 
 /* --------------------- USEFUL CLASSES --------------------- */
 
 .banner {
-    --src:url('/images/mechanism.jpg');
+    --src: url('/images/mechanism.jpg');
     position: relative;
     background-color: transparent;
     overflow: hidden;
     justify-content: center;
     color: white !important;
-    height: 65vh;
+    height: 100vh;
+    margin: 0;
 }
 
 .banner * {
     color: white !important;
+    max-width: 90vw;
+    opacity: 0;
+    animation: fadein forwards 2s .5s;
 }
 
 .banner::before {
@@ -262,8 +391,21 @@ a:hover, button:hover, input:hover {
     z-index: -10;
 }
 
-.parallax, .parallax::before {
-    background-attachment:fixed;
+.banner a {
+    position: absolute;
+    display: block;
+    background: url(/images/arrow.svg) no-repeat;
+    background-size: contain;
+    background-position: center center;
+    width: 100px;
+    height: 50px;
+    animation-delay: 2s;
+    top: 75%;
+}
+
+.parallax,
+.parallax::before {
+    background-attachment: fixed;
 }
 
 .quote {
@@ -273,17 +415,29 @@ a:hover, button:hover, input:hover {
     align-items: end;
 }
 
-.quote > q {
+.quote>q {
     font-size: 2rem;
 }
 
-.quote > span {
+.quote>span {
+    position: relative;
     font-size: 1rem;
     margin: 6px;
+    margin-top: 15px;
     color: gray;
 }
 
-.quote > span::before {
+.quote span::after {
+    content: '';
+    position: absolute;
+    height: 2px;
+    left: 5px;
+    top: -8px;
+    right: 5px;
+    background-color: orange;
+}
+
+.quote>span::before {
     content: '— ';
 }
 
@@ -314,7 +468,7 @@ a:hover, button:hover, input:hover {
     --gap: 10px 50px;
 }
 
-.flex-list > * {
+.flex-list>* {
     flex: 1 1 0px;
     max-width: 150px;
     min-width: 150px;
@@ -322,7 +476,7 @@ a:hover, button:hover, input:hover {
     margin: var(--gap);
 }
 
-.flex-list > * img {
+.flex-list>* img {
     max-width: 100%;
     max-height: 100%;
 }
@@ -342,21 +496,35 @@ a:hover, button:hover, input:hover {
 }
 
 .line {
-	height: 2px;
-	width: 50px;
-	background: #436ba6;
-	display: block;
+    height: 2px;
+    width: 50px;
+    background: #436ba6;
+    display: block;
     position: relative;
-	margin: 20px auto 20px;
+    margin: 20px auto 20px;
 }
 
 .line::after {
-	content:"";
-	position: absolute;
+    content: "";
+    position: absolute;
     top: -2px;
-	left: 50%;
-	width: 150px;
-	height: 2px;
-	border-bottom: 2px dashed #436ba6;
-	margin-left: -75px;
+    left: 50%;
+    width: 150px;
+    height: 2px;
+    border-bottom: 2px dashed #436ba6;
+    margin-left: -75px;
+}
+
+/* -------------------------- ANIMATIONS -------------------------- */
+
+@keyframes fadein {
+    0% {
+        translate: 0 50px;
+        opacity: 0;
+    }
+
+    100% {
+        translate: 0 0;
+        opacity: 1;
+    }
 }
