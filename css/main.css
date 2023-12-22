@@ -1,19 +1,39 @@
+/*
+    Ceci est la page principale de CSS, qui est incluse dans toutes les pages HTML
+    Elle contient notamment du style général, du style pour des classes d'aide (.img-theme, .img-round etc.)
+    ainsi que la plupart du code responsive de thème
+    Elle gère aussi le changement de couleurs entre thème clair et thème foncé
+
+    La disposition par défaut est celle pour mobile, celle pour ordinateur est gérée par une media-query
+*/
+
+
 /* ------------------------- GENERAL THEME ------------------------- */
 
 :root {
+    /* Taille du footer, utilisée sur body et footer donc nécessite une variable */
+    --footer-height: 50px;
+
+    /* Variables de couleur, liées au thème du site. Par défaut -> thème clair */
     --main-theme-color: white;
     --secondary-theme-color: rgb(250, 250, 250);
     --tertiary-theme-color: rgb(215, 215, 215);
     --text-theme-color: black;
     --theme-box-shadow: 0 1px 8px 3px rgba(0, 0, 0, 0.0509803922);
+    --theme-accent-color: orange;
+
+    /* Variables inutilisés, servent en tant que reminder des valeurs à utiliser en media-query*/
     --breakpoint-xs: 0;
     --breakpoint-sm: 576px;
     --breakpoint-md: 768px;
     --breakpoint-lg: 992px;
     --breakpoint-xl: 1200px;
-    --footer-height: 50px;
 }
 
+/* 
+    Applique un thème par défaut à tous les éléments, notamment une valeur de transition, un scroll-behavior,
+    une police de caractères ainsi que la couleur de texte associée au thème
+ */
 * {
     font-family: 'Franklin Gothic', Arial, sans-serif;
     margin: 0;
@@ -23,58 +43,49 @@
     scroll-behavior: smooth;
 }
 
+
 body {
+    display: block;
+
+    /* La taille des bordures et du padding est inclue dans les propriétés width et height */
+    box-sizing: border-box;
+
+    /* Doit faire au minimum la taille du viewport. Util pour les pages comme "contact" qui ne remplissent pas
+    un viewport entier */
+    min-height: 100vh;
+
+    /* Position relative pour agir en tant qu'ancre pour les éléments enfants */
     position: relative;
+
+    /* Couleur */
     background-color: var(--secondary-theme-color);
     color: var(--text-theme-color);
-    display: block;
-    min-height: 100vh;
-    box-sizing: border-box;
+
+    /* Sert à l'affichage du footer, pour qu'aucun élément n'apparaisse à la place du footer */
     padding-bottom: calc(var(--footer-height) + 10px);
 }
 
+/* ---------------------------- TITLES & PARAGRAPHS -----------------------------
+    Thème des titres en général
+*/
 
-
-
-@media (prefers-color-scheme: dark) {
-    :root {
-        --main-theme-color: black;
-        --secondary-theme-color: rgb(20, 20, 20);
-        --tertiary-theme-color: rgb(60, 60, 60);
-        --text-theme-color: white;
-        --theme-box-shadow: 0 1px 8px 3px rgba(255, 255, 255, 0.2);
-    }
-
-    .img-theme {
-        filter: invert();
-    }
-
-    #login:hover>img {
-        filter: none;
-    }
-}
-
-/* ---------------------------- TITLES ----------------------------- */
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+h1, h2, h3, h4, h5, h6 {
     text-align: center;
     margin: 1.25rem;
+    text-indent: 0;
 }
 
+/* Grand titre, en petites majuscules */
 h1 {
     font-size: 3rem;
     font-variant: small-caps;
 }
 
+/* Titres de section, soulignés avec la couleur d'accent */
 h2 {
     font-size: 2rem;
     margin: 2.75rem;
-    text-decoration: underline orange;
+    text-decoration: underline var(--theme-accent-color);
 }
 
 h3 {
@@ -86,45 +97,57 @@ p {
     font-weight: 300;
 }
 
-
-
 /* ------------------------- HEADER & NAV -------------------------- */
 
-header+* {
+/* Evite d'avoir un grand espace vide après le header */
+header + * {
     margin-top: 0 !important;
 }
 
 header {
+    width: 100%;
+    height: 100px;
+
+    /* Affichage du logo et du nav */
     display: flex;
     flex-direction: row;
     align-items: center;
-    flex-wrap: wrap;
-    top: 0;
-    width: 100%;
-    height: 100px;
-    box-shadow: var(--theme-box-shadow);
-    position: sticky;
-    z-index: 1000;
+
+    /* Couleurs */
     background-color: var(--main-theme-color);
+    box-shadow: var(--theme-box-shadow);
+
+    /* Permet de l'accrocher au haut de la page quand on le dépasse en scrollant */
+    position: sticky;
+    top: 0;
+    
+    /* Affichage au-dessus de tous les autres éléments */
+    z-index: 1000;
 }
 
 footer {
+    /* Affichage en bas de l'écran, sur toute la largeur */
     position: absolute;
     bottom: 0;
     bottom: 0px;
     width: 100%;
     height: var(--footer-height);
     box-sizing: border-box;
+
+    /* Affichage des enfants et du texte */
     font-size: x-small;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     padding: 10px;
+
+    /* Couleur */
     background-color: var(--main-theme-color);
     box-shadow: var(--theme-box-shadow)
 }
 
+/* Affichage général des sections et du main */
 section,
 main {
     display: flex;
@@ -135,8 +158,8 @@ main {
     padding: 0 7.5%;
 }
 
+/* Logo Octime */
 #logo-header {
-    position: relative;
     display: inline-block;
     margin: 10px;
     margin-left: 5%;
@@ -146,38 +169,51 @@ main {
     height: 7vh;
 }
 
+/* --------------------------- NAVIGATION --------------------------- */
+
 nav {
-    position: absolute;
+    /* Propriété pour l'affichage mobile */
     --height: 200px;
+    overflow-y: scroll;
+
+    /* Positionné en-dessous du header, sur toute la largeur */
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 99%; /* A 100%, un léger espace apparaît entre header et nav, on laisse donc 99% */
+
+    /* Texte */
     text-transform: uppercase;
     font-size: medium;
     font-weight: bold;
+
+    /* Affichage des liens */
     display: flex;
     flex-direction: column;
     align-items: center;
-    left: 0;
-    top: 99%;
-    right: 0;
-    background-color: inherit;
-    overflow-y: scroll;
-    max-height: 0;
+
+    /* Misc */
     z-index: 10;
+    background-color: inherit;
+
+    /* Animation : hauteur de 0 quand le nav est fermé, transition smooth et linéaire */
+    max-height: 0;
     transition: all .5s ease-in-out;
 }
 
+/*
+    Etant donné que le JS était interdit, même en inline, nous avons dû jouer un peu avec les sélecteurs pour
+    faire le menu déroulant.
+    Quand le menu ou le bouton d'affichage sont soit en hover soit en focus, le menou s'ouvre.
+    Seul hic : on ne peut pas re-cliquer sur le bouton pour refermer le menu, il faut cliquer autre part sur la
+    page
+*/
 nav:hover,
 nav:focus,
 #nav-button:hover+nav,
 #nav-button:focus+nav {
     margin-bottom: 15px;
     max-height: var(--height);
-}
-
-a {
-    color: var(--text-theme-color);
-    cursor: pointer;
-    transition: color .3s;
-    text-decoration: underline;
 }
 
 nav a {
@@ -188,38 +224,41 @@ nav a {
     line-height: 50px;
 }
 
+/* Crée la ligne sous les liens du nav */
 nav a::after {
     position: absolute;
     content: '';
-    background-color: orange;
+    background-color: var(--theme-accent-color);
     height: 2px;
     bottom: 9px;
+    /* Left > 50% & right > 50% --> largeur négative donc pas d'affichage */
     left: 55%;
     right: 55%;
+    /* Jolie courbe de transition */
     transition: all .6s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
-nav a:hover::after {
+/* Affiche la ligne sous le lien */
+nav a:hover::after, nav a:focus::after {
     left: 5%;
     right: 5%;
 }
 
 #nav-button {
     position: absolute;
-    font-family: sans-serif;
-    font-size: large;
-    font-weight: bolder;
     background-color: transparent;
-    border-radius: 5px;
     border: none;
     cursor: pointer;
     padding: 5px 10px;
+    z-index: 15;
+    
+    /* Centre le bouton verticalement et horizontalement */
     right: 50%;
     top: 50%;
     transform: translate(50%, -50%);
-    z-index: 15;
 }
 
+/* Barre du bouton de nav, élément SVG */
 .nav-btn-bar {
     transition-property: transform;
     transition-duration: 0.3s;
@@ -227,6 +266,11 @@ nav a:hover::after {
     stroke: black;
     stroke-width: 10%;
 }
+
+/*
+    Bouton "au repos" (affichage 3 barres)
+    Décale une barre vers le haut, une autre vers le bas et une qui reste au milieu
+*/
 
 #nav-btn-bar1 {
     transform: translateY(-40%);
@@ -236,76 +280,109 @@ nav a:hover::after {
     transform: translateY(40%);
 }
 
-#nav-button:hover #nav-btn-bar1 {
+/*
+    Bouton "activé" (affichage croix)
+    Remet les barres décalées au milieu, puis les fait tourner sur elle-mêmes à partir de leur centre
+    Réduit la largeur de la barre centrale, ce qui la fait disparaître
+*/
+
+#nav-button:hover #nav-btn-bar1, #nav-button:focus #nav-btn-bar1{
     transform: rotate(45deg);
 }
 
-#nav-button:hover #nav-btn-bar2 {
+#nav-button:hover #nav-btn-bar2, #nav-button:focus #nav-btn-bar2 {
     transform: scaleX(0.1);
 }
 
-#nav-button:hover #nav-btn-bar3 {
+#nav-button:hover #nav-btn-bar3, #nav-button:focus #nav-btn-bar3 {
     transform: rotate(-45deg);
 }
 
+
 #login {
+    /* Positionnement à droite et centré verticalement */
     position: absolute;
-    padding: 10px;
-    text-decoration: none;
-    border: 1px solid var(--text-theme-color);
-    box-shadow: 0 0 10px var(--text-theme-color);
-    border-radius: 50%;
-    transition: all .3s;
-    height: fit-content;
     top: 50%;
     transform: translateY(-50%);
     right: 20px;
+
+    /* Décale l'image à l'intérieur */
+    padding: 10px;
+
+    border-radius: 50%;
+    transition: all .3s;
+    height: fit-content;
+
+    /* Couleur */
+    border: 1px solid var(--text-theme-color);
+    box-shadow: 0 0 10px var(--text-theme-color);
 }
 
+/* Définit la taille de l'image */
+#login > img {
+    width: 25px;
+    height: 25px;
+}
+
+/* Couleurs inversées lors du survol */
 #login:hover {
     color: var(--secondary-theme-color);
     background-color: var(--text-theme-color);
 }
 
-#login>img {
-    width: 25px;
-    height: 25px;
+#login:hover > img {
+    filter: invert();
 }
 
-@media (min-width:768px) {
-    nav {
-        display: flex;
-        position: initial;
-        height: 100px;
-        max-height: fit-content;
-        justify-content: end;
-        flex-direction: row;
-        transition: none;
-        margin-bottom: 0 !important;
-        background-color: transparent;
-        box-shadow: none;
-        overflow: hidden;
-    }
+/* Lien de retour en haut de la page */
+#up {
+    /* Positionnement en bas à droite, mais assez haut pour ne pas empiéter sur le footer en bas de la page */
+    position: fixed;
+    bottom: calc(var(--footer-height) + 10px);
+    right: 20px;
+    
+    /* Aligne au centre l'image à l'intérieur */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    nav a {
-        margin: 0 10px;
-    }
+    /* Taille relative à l'écran pour éviter de prendre trop de place */
+    width: 7.5vh;
+    height: 7.5vh;
 
-    #nav-button {
-        display: none;
-    }
-
-    #logo-header {
-        margin-left: 7%;
-    }
+    /* Misc */
+    border-radius: 5vh;
+    background-color: var(--main-theme-color);
+    box-shadow: var(--theme-box-shadow);
+    z-index: 15;
 }
 
+/* Image inversée de base, et tournée car la flèche est pointée vers le bas de base */
+#up > img {
+    filter: invert();
+    width: 55%;
+    rotate: 180deg;
+}
+
+/* ----------------------------- LINKS & INPUTS ----------------------------- */
+
+a {
+    color: var(--text-theme-color);
+    transition: color .3s;
+    text-decoration: underline;
+
+    /* Affichage du curseur avec un doigt pointé */
+    cursor: pointer;
+}
+
+/* Au survol, la couleur de texte devient la couleur d'accent */
 a:hover,
 button:hover,
 input:hover {
-    color: orange;
+    color: var(--theme-accent-color);
 }
 
+/* Enlève les transitions du textarea, surtout pour le resize */
 textarea {
     transition: none;
 }
@@ -317,22 +394,34 @@ select {
     background-color: var(--tertiary-theme-color);
 }
 
+button:focus,
+input:focus,
+textarea:focus {
+    color: var(--theme-accent-color);
+    background-color: var(--main-theme-color);
+}
+
 select {
-    border: 2px solid orange;
+    border: 2px solid var(--theme-accent-color);
     border-radius: 25px;
     height: 40px;
     width: 250px;
     appearance: none;
     padding: 10px;
-    background-size: contain, contain;
+    
+    /* Supprime la flèche classique des selects */
     appearance: none;
     -webkit-appearance: none;
 
+    /*
+        Flèche sur la droite. Faite avec seulement la propriété background.
+        Nous avions tenté avec un élément after, mais il est impossible d'en faire apparaître un dans
+        un élément select ou input, car ils ne s'affichent que dans des éléments containers
+    */
     background:
         linear-gradient(45deg, transparent 50%, gray 50%),
         linear-gradient(135deg, gray 50%, transparent 50%),
         radial-gradient(#ddd 70%, transparent 72%);
-    background-color: var(--tertiary-theme-color);
     background-position:
         calc(100% - 20px) 50%,
         calc(100% - 15px) 50%,
@@ -343,8 +432,12 @@ select {
         5px 5px,
         1.5em 1.5em, cover;
     background-repeat: no-repeat;
+
+    /* Couleur de fond globale + pour les choix du select */
+    background-color: var(--tertiary-theme-color);
 }
 
+/* Quand le select est en focus (ouvert) la flèche pointe vers le haut */
 select:focus {
     background-image: linear-gradient(135deg, transparent 50%, gray 50%),
         linear-gradient(45deg, gray 50%, transparent 50%),
@@ -352,16 +445,15 @@ select:focus {
 
 }
 
-button:focus,
-input:focus,
-textarea:focus {
-    color: orange;
-    background-color: var(--main-theme-color);
-}
-
 /* --------------------- USEFUL CLASSES --------------------- */
 
+/* Classe bannière : Ce qui est affiché dans les pages accueil, produit, histoire et concept */
 .banner {
+    /*
+        Variable de source, précisée en CSS inline dans le document html.
+        Inutile pour le moment, car le fond utilisé est toujours le même, mais pourrait
+        être utile pour le semestre 2, donc gardée
+    */
     --src: url('/images/mechanism.jpg');
     position: relative;
     background-color: transparent;
@@ -375,51 +467,89 @@ textarea:focus {
 .banner * {
     color: white !important;
     max-width: 90vw;
+
+    /*
+        On applique l'animation à tous les enfants de la bannière, et on les rend invisibles au départ
+        Délai de départ : 2s, durée : 1/2s, et on applique le style de l'animation à la fin
+    */
     opacity: 0;
     animation: fadein forwards 2s .5s;
 }
 
 .banner::before {
     content: '';
-    background: var(--src);
-    background-size: cover;
-    background-position: center center;
+
+    /* Positionnement sur toute la largeur et la hauteur du parent */
     position: absolute;
     width: 100%;
     height: 100%;
+
+    /* On affiche l'image en fond, de façon à ce qu'elle couvre entièrement l'élément et qu'elle soit centrée */
+    background: var(--src);
+    background-size: cover;
+    background-position: center center;
+
+    /* On baisse la luminosité de l'image, pour que le texte positionné soit bien visible */
     filter: brightness(40%);
+
+    /* Affichage derrière tous les autres éléments, notamment le parent */
     z-index: -10;
 }
 
+/* Lien vers le nav */
 .banner a {
+    /* Positionnement et affichage */
     position: absolute;
     display: block;
+    width: 100px;
+    height: 50px;
+    top: 75%;
+
+    /* Affichage de la flèche en fond */
     background: url(/images/arrow.svg) no-repeat;
     background-size: contain;
     background-position: center center;
-    width: 100px;
-    height: 50px;
+
+    /* Délai avant le début de l'animation */
     animation-delay: 2s;
-    top: 75%;
 }
 
+/* Affiche le fond en position fixe par rapport au Viewport */
 .parallax,
 .parallax::before {
     background-attachment: fixed;
 }
 
+
+
+
+/*
+    Classe pour les citations
+    Template :
+    <div class="quote">
+        <q>Texte</q>
+        <span>Auteur</span>
+    </div>
+*/
 .quote {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    /* Alignement des éléments à droite plutôt qu'à gauche */
     align-items: end;
 }
 
-.quote>q {
+.quote > q {
     font-size: 2rem;
 }
 
-.quote>span {
+/* Affiche les guillemets de la citation avec la couleur d'accent */
+.quote > q::before, .quote > q::after {
+    color: var(--theme-accent-color);
+}
+
+.quote > span {
+    /* Position relative pour l'affichage de la ligne au-dessus */
     position: relative;
     font-size: 1rem;
     margin: 6px;
@@ -427,19 +557,23 @@ textarea:focus {
     color: gray;
 }
 
+/* Affichage d'une ligne entre la citation et son auteur */
 .quote span::after {
     content: '';
     position: absolute;
     height: 2px;
-    left: 5px;
     top: -8px;
+    left: 5px;
     right: 5px;
-    background-color: orange;
+    background-color: var(--theme-accent-color);
 }
 
-.quote>span::before {
+/* Ajout automatique d'un '- ' avant l'auteur d'une citation */
+.quote > span::before {
     content: '— ';
 }
+
+/* Classes générales pour la disposition flex. Peu utilisées */
 
 .container-horizontal {
     display: flex;
@@ -460,59 +594,9 @@ textarea:focus {
     flex-wrap: wrap;
 }
 
+/* Classe pour rendre les images rondes */
 .img-round {
     border-radius: 50%;
-}
-
-.flex-list {
-    --gap: 10px 50px;
-}
-
-.flex-list>* {
-    flex: 1 1 0px;
-    max-width: 150px;
-    min-width: 150px;
-    text-align: center;
-    margin: var(--gap);
-}
-
-.flex-list>* img {
-    max-width: 100%;
-    max-height: 100%;
-}
-
-.alternate-list {
-    margin: 35px 0;
-    display: flex;
-    position: relative;
-    flex-direction: column;
-    align-items: start;
-    justify-content: center;
-    text-align: center;
-}
-
-.alternate-list image {
-    max-width: 100%;
-}
-
-.line {
-    height: 2px;
-    width: 50px;
-    background: #436ba6;
-    display: block;
-    position: relative;
-    margin: 20px auto 20px;
-}
-
-.line::after {
-    content: "";
-    position: absolute;
-    top: -2px;
-    left: 50%;
-    width: 150px;
-    height: 2px;
-    border-bottom: 2px dashed #436ba6;
-    margin-left: -75px;
 }
 
 /* -------------------------- ANIMATIONS -------------------------- */
@@ -526,5 +610,69 @@ textarea:focus {
     100% {
         translate: 0 0;
         opacity: 1;
+    }
+}
+
+/* ------------------------------ RESPONSIVE ------------------------------ */
+
+/* 
+    Si l'utilisateur préfère un thème sombre, on change les variables associées au thème
+*/
+@media (prefers-color-scheme: dark) {
+    :root {
+        --main-theme-color: black;
+        --secondary-theme-color: rgb(20, 20, 20);
+        --tertiary-theme-color: rgb(60, 60, 60);
+        --text-theme-color: white;
+        --theme-box-shadow: 0 1px 8px 3px rgba(255, 255, 255, 0.2);
+    }
+
+    /* On inverse la couleur des images dépenantes du thème (icônes svg etc.) */
+    .img-theme {
+        filter: invert();
+    }
+
+    #login:hover>img, #up > img {
+        filter: none;
+    }
+}
+
+
+/* 
+    Disposition ordinateur
+*/
+@media (min-width:768px) {
+    /*
+        L'affichage du nav change complètement, il est maintenant inclus dans le header et affiche
+        ses enfants en ligne.
+        Il est désormais affiché en toutes circonstances
+    */ 
+    nav {
+        display: flex;
+        position: initial;
+        height: 100px;
+        max-height: fit-content;
+        justify-content: end;
+        flex-direction: row;
+        transition: none;
+        margin-bottom: 0 !important;
+        background-color: transparent;
+        box-shadow: none;
+        overflow: hidden;
+    }
+
+    /* Marge horizontale pour séparer les liens du nave entre eux */
+    nav a {
+        margin: 0 10px;
+    }
+
+    /* Le bouton n'a plus d'utilité alors il est caché */
+    #nav-button {
+        display: none;
+    }
+
+    /* On insère un espace entre le logo et le bord gauche du header */
+    #logo-header {
+        margin-left: 7%;
     }
 }

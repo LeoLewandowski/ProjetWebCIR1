@@ -1,0 +1,166 @@
+/* Style de texte global de la page */
+.concept {
+    font-weight:normal;
+    text-align: justify;
+    text-indent: 10%;
+}
+
+/* Element vide, permet juste d'empêcher le footer d'apparaître au milieu des éléments float */
+.placeholder{
+    clear: both;
+    display: block;
+}
+
+/* Style de paragraphe */
+p {
+    width: 40%;
+    box-sizing: border-box;
+    margin: 0 40px 30px;
+    height: auto;
+}
+
+/* Style d'image */
+.concept img {
+    max-width: 45%;
+    height: auto;
+}
+
+/* Le titre s'affiche sans élément float à côté de lui */
+h2 {
+    clear: both;
+}
+
+/* Alternance de l'alignement avec float */
+.p1 {
+    float: left;
+}
+
+.p2 {
+    float: right;
+}
+
+.img1 {
+    margin-right: 40px;
+    float: right;
+}
+
+.img2 {
+    float: left;
+    margin-left:40px;
+}
+
+/* ------------------- CLOCK DISPLAY ----------------------- */
+
+/* Element principal de l'horloge */
+.clock {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    border: 5px solid var(--text-theme-color);
+    border-radius: 50%;
+    margin: 50px auto;
+}
+
+/* Style des aiguilles et des lignes */
+.hand,
+.line {
+    position: absolute;
+    bottom: 50%;
+    left: 50%;
+    width: 1px;
+    background: var(--text-theme-color);
+    transform-origin: bottom;
+    margin:-.5px;
+    transform: translate(-50%, -50%);
+}
+
+.hour {
+    height: 50px;
+}
+
+.minute {
+    height: 70px;
+}
+
+.second {
+    height: 90px;
+    background: red;
+}
+
+/*
+    Encore une fois le JS étant interdit, nous avons simplifié la disposition des nombres avec des caculs via CSS
+    ainsi que du CSS inline dans le document HTML (variable --angle)
+*/
+.number {
+    --angle: 45deg;
+    display: block;
+    position: absolute;
+    width: fit-content;
+    left: calc(50% + (50% + 15px) * cos(var(--angle)));
+    top: calc(50% + (50% + 15px) * sin(var(--angle)));
+    transform: translate(-50%, -50%);
+}
+
+/* Ligne indiquant les minutes et trinutes */
+.line {
+    background: linear-gradient(var(--text-theme-color) 30%, transparent 30%);
+    left: 50%;
+    bottom: 50%;
+    height: 65px;
+    rotate: var(--angle);
+}
+
+/* Ligne indiquant les heures, soit 1 toutes les 5 lignes */
+.line.big {
+    background: linear-gradient(var(--text-theme-color) 45%, transparent 45%);
+    margin: 0 -1px;
+    width: 2px;
+}
+
+/* Affichage du conteneur des horloges */
+#time {
+    flex-direction: row;
+    justify-content: center;
+}
+
+#time > div {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* ----------------------- RESPONSIVE -----------------------
+    Version mobile */
+
+@media (max-width:920px) {
+    .concept {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    p {
+        width: 80%;
+        clear: both;
+        height: auto;
+        margin-left:0;
+        margin-right: 0;
+    }
+
+    .concept img {
+        width: 80%;
+        margin: 0;
+    }
+
+    #time {
+        width: 80vw;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #time > div {
+        width: 100%;
+    }
+}
