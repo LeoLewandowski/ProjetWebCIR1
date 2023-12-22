@@ -12,18 +12,18 @@ main{
 fieldset{
     padding: 1%;
     margin: 1%;
-    border: 2px solid orange ;
+    border: 2px solid var(--theme-accent-color) ;
     border-radius: 4px;
     padding: 1vw;
 }
-input, textarea {
+input, textarea, .btn > a {
     border: 1px solid var(--main-theme-color);
     border-radius: 5px;
     padding: 2px 5px;
 }
 button, input[type="submit"], .btn > a {
     border-radius: 5px;
-    border: 2px solid orange;
+    border: 2px solid var(--theme-accent-color);
 }
 
 /*ici, on définit la taille des différents éléments du formulaire, ainsi que du formulaire lui-même*/

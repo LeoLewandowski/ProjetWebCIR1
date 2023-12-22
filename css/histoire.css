@@ -1,66 +1,58 @@
-footer {
-    clear: both;
-}
-
+/* Style de texte global de la page */
 .histoire {
     font-weight:normal;
     text-align: justify;
     text-indent: 10%;
 }
 
+/* Element vide, permet juste d'empêcher le footer d'apparaître au milieu des éléments float */
 .placeholder{
     clear: both;
     display: block;
 }
 
-.elt {
-    display: flex;
-    align-items: center;
+/* Style de paragraphe */
+p {
     width: 40%;
     box-sizing: border-box;
-    margin: 40px;
-
+    margin: 0 40px 30px;
     height: auto;
-
 }
 
-.titre {
+/* Style d'image */
+.histoire img {
+    max-width: 45%;
+    height: auto;
+}
+
+/* Le titre s'affiche sans élément float à côté de lui */
+h2 {
     clear: both;
-    padding-top: 30px;
 }
 
+/* Alternance de l'alignement avec float */
 .p1 {
-
     float: left;
-
-}
-
-.img1 {
-    max-width: 49%;
-    height: auto;
-    margin-right: 40px;
-    float: right;
-
 }
 
 .p2 {
+    float: right;
+}
 
+.img1 {
+    margin-right: 40px;
     float: right;
 }
 
 .img2 {
     float: left;
-    max-width: 49%;
-    height: auto;
     margin-left:40px;
 }
 
+/* ----------------------- RESPONSIVE -----------------------
+    Version mobile */
 
 @media (max-width:920px) {
-    h2 {
-        font-size: 1.5rem;
-        text-decoration: underline;
-    }
 
     .histoire {
         text-align: center;
@@ -69,31 +61,16 @@ footer {
         align-items: center;
     }
 
-
-    .elt {
-        display: flex;
-        width: 50%;
-        height: 200px;
-        align-items: center;
-    }
-
-    .titre {
-        clear: both;
-    }
-
-
-    .img1,
-    .img2 {
-        width: 60%;
-    }
-
-    .p1,
-    .p2 {
-        width: 60%;
+    p {
+        width: 80%;
         clear: both;
         height: auto;
+        margin-left:0;
+        margin-right: 0;
     }
 
-
-
+    .histoire img {
+        width: 80%;
+        margin: 0;
+    }
 }
