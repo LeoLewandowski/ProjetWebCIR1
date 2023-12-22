@@ -17,6 +17,7 @@
     <!-- Navigation Menu -->
     <header>
         <a id="logo-header" href="/">
+            <!-- Le logo change en fonction de la taille de l'écran -->
             <picture class="img-theme">
                 <source srcset="/images/logo.svg" media="(min-width:992px)">
                 <img src="/images/logo_short.svg">
@@ -31,7 +32,7 @@
         </button>
         <nav id="nav">
             <a href="/histoire/">Présentation</a>
-            <a href="/concept/" style="color: orange;">Concept</a>
+            <a href="/concept/" style="color: var(--theme-accent-color);">Concept</a>
             <a href="/produits/">Produits</a>
             <a href="/team/">Notre équipe</a>
             <a href="/contact/">Contact</a>
@@ -223,6 +224,10 @@
             </div>
         </div>
     </section>
+
+    <!-- Lien pour remonter en haut de la page-->
+    <a id="up" href="#"><img src="/images/arrow.svg"></a>
+
     <!-- Footer -->
     <footer>
         Projet Web - Décembre 2023
