@@ -1,7 +1,5 @@
-main {
-    margin-top: 100px;
-}
-
+/* Les ronds sont affichés dans le flow normal, et ont une largeur == hauteur.
+Alignement du texte verticalement et horizontalement  */
 .pfp .rond {
     width: 125px;
     display: flex;
@@ -12,22 +10,26 @@ main {
     margin: 0 60px;
     box-sizing: border-box;
     overflow: hidden;
-    border: solid 2px orange;
+    border: solid 2px var(--theme-accent-color);
     border-radius: 128px;
     background-color: var(--tertiary-theme-color);
 }
 
+/* Lors du survol de l'un des divs, le rond s'étend et devient un rectangle aux bords arrondis */
 .pfp > div:hover > .rond {
     padding-right: 20px;
     padding-left: 142px;
-    width: 500px;
+    width: 600px;
 }
 
 .pfp h5 {
     box-sizing: content-box;
+    /* On définit la largeur de h5 pour une largeur minimum fixe de pfp > div, ce qui permet de placer
+    l'image dedans */
     width: 200px;
 }
 
+/* L'image est positionnée à gauche pour l'animation, et vient recouvrir le rond dans l'état normal */
 .pfp img {
     border-radius: 128px;
     position: absolute;
@@ -52,15 +54,27 @@ main {
     align-items: center;
 }
 
+/* Affichage mobile */
 @media (max-width: 768px) {
+    /* On affiche désormais l'image en haut au centre du parent */
     .pfp > div > img {
         left: 50%;
     }
 
+    .pfp > div > .rond {
+        text-align: center;
+        height: auto;
+        min-height: 125px;
+        max-height: 125px;
+    }
+
+    /* Les ronds ont moins de place pour s'étendre horizontalement, on les étire donc verticalement aussi,
+        et on limite leur extension horizontale */
     .pfp > div:hover > .rond {
-        padding: 15px;
+        padding: 15px 35px;
+        padding-top: 140px;
         margin: 0;
         width: 85vw;
-        height: 400px;
+        max-height: 500px;
     }
 }
