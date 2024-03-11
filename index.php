@@ -2,12 +2,10 @@
 <html lang="en">
 
 <head>
-    <title>Document</title>
-    <link rel="stylesheet" href="/css/main.css">
-    <link rel="stylesheet" href="/css/index.css">
-    <link rel="icon" href="/images/clock.svg">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <?php
+    require_once('./util/common.php');
+    getPageHead('OcTime', 'index');
+    ?>
 </head>
 
 <body>
@@ -132,15 +130,10 @@
     </section>
     <!-- End Feedback -->
 
-    <!-- Lien pour remonter en haut de la page-->
-    <a id="up" href="#"><img src="/images/arrow.svg"></a>
-
-    <!-- Footer -->
-    <footer>
-        Projet Web - Décembre 2023
-        <a href="/conditions/">Conditions d'utilisation</a>
-    </footer>
-    <!-- End Footer -->
+    <?php
+    getPageTopButton();
+    getPageFooter();
+    ?>
 </body>
 
 </html>

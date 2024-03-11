@@ -2,12 +2,10 @@
 <html lang="en">
 
 <head>
-    <title>Document</title>
-    <link rel="stylesheet" href="/css/main.css">
-    <link rel="stylesheet" href="/css/histoire.css">
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <?php
+    require_once('../util/common.php');
+    getPageHead('Histoire', 'histoire');
+    ?>
 </head>
 
 <body>
@@ -16,32 +14,11 @@
         <h1>Une histoire pas comme les autres</h1>
         <a href="#nav"></a>
     </section>
-    <!-- Navigation Menu -->
-    <header>
-        <a id="logo-header" href="/">
-            <picture class="img-theme">
-                <source srcset="/images/logo.svg" media="(min-width:992px)">
-                <img src="/images/logo_short.svg">
-            </picture>
-        </a>
-        <button id="nav-button">
-            <svg class="img-theme" width="50" height="50">
-                <line x1="0" y1="50%" x2="100%" y2="50%" class="nav-btn-bar" id="nav-btn-bar1" />
-                <line x1="0" y1="50%" x2="100%" y2="50%" class="nav-btn-bar" id="nav-btn-bar2" />
-                <line x1="0" y1="50%" x2="100%" y2="50%" class="nav-btn-bar" id="nav-btn-bar3" />
-            </svg>
-        </button>
-        <nav id="nav">
-            <a href="/histoire/" style="color: orange;">Présentation</a>
-            <a href="/concept/">Concept</a>
-            <a href="/produits/">Produits</a>
-            <a href="/team/">Notre équipe</a>
-            <a href="/contact/">Contact</a>
-        </nav>
-        <a id="login" class="center container-vertical" title="Se connecter" href="/login/index.html"><img src="/images/login.svg"
-                class="img-theme"></a>
-    </header>
-    <!-- End Navigation Menu -->
+
+    <?php
+    getPageHeader('histoire');
+    ?>
+
     <div class="histoire">
         <h2>Le commencement d'un grand projet</h2>
         <p class="p1">
@@ -57,7 +34,7 @@
             extra-terrestres authentiques.
         </p>
 
-        <img src="/images/montre_3.png" class=" img1">
+        <img src="/images/watches/montre_3.png" class=" img1">
 
 
 
@@ -72,7 +49,7 @@
             Chaque pièce était ainsi imprégnée symboliquement d'une part de l'univers.
         </p>
 
-        <img class="image img2" src="../images/montre_2.png">
+        <img class="image img2" src="../images/watches/montre_2.png">
 
         <h2>Lancement spectaculaire de la première collection</h2>
         <p class="p1">
@@ -99,7 +76,7 @@
             pour donner naissance à de nouvelles idées et concepts
             révolutionnaires.
         </p>
-        <img class="image img1" src="../images/montre_5.png">
+        <img class="image img1" src="../images/watches/montre_5.png">
 
         <h2>Une entreprise active dans la transmission des sciences</h2>
         <p class="p2">
@@ -115,20 +92,15 @@
             pour l'exploration spatiale dans chaque montre qu'elle crée.
 
         </p>
-        <img class="image img2" src="../images/montre_4.png">
+        <img class="image img2" src="../images/watches/montre_4.png">
         <span class="placeholder"></span>
     </div>
     <!-- End Histoire -->
 
-    <!-- Lien pour remonter en haut de la page-->
-    <a id="up" href="#"><img class="img-theme" src="/images/arrow.svg"></a>
-
-    <!-- Footer -->
-    <footer>
-        Projet Web - Décembre 2023
-        <a href="/conditions/">Conditions d'utilisation</a>
-    </footer>
-    <!-- End Footer -->
+    <?php
+    getPageTopButton();
+    getPageFooter();
+    ?>
 </body>
 
 </html>

@@ -1,39 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Inscription</title>
-    <link rel="stylesheet" href="/css/main.css">
-    <link rel="stylesheet" href="/css/login.css">
-    <meta charset="UTF-8">  
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <?php
+    require_once('../util/common.php');
+    require_once('../util/config.php');
+    getPageHead('Inscription', 'login');
+    ?>
 </head>
 <body>
-    <!-- Navigation Menu -->
-    <header>
-        <a id="logo-header" href="/">
-            <picture class="img-theme">
-                <source srcset="/images/logo.svg" media="(min-width:992px)">
-                <img src="/images/logo_short.svg">
-            </picture>
-        </a>
-        <button id="nav-button">
-            <svg class="img-theme" width="50" height="50">
-                <line x1="0" y1="50%" x2="100%" y2="50%" class="nav-btn-bar" id="nav-btn-bar1" />
-                <line x1="0" y1="50%" x2="100%" y2="50%" class="nav-btn-bar" id="nav-btn-bar2" />
-                <line x1="0" y1="50%" x2="100%" y2="50%" class="nav-btn-bar" id="nav-btn-bar3" />
-            </svg>
-        </button>
-        <nav id="nav">
-            <a href="/histoire/">Présentation</a>
-            <a href="/concept/">Concept</a>
-            <a href="/produits/">Produits</a>
-            <a href="/team/">Notre équipe</a>
-            <a href="/contact/">Contact</a>
-        </nav>
-        <a id="login" class="center container-vertical" title="Se connecter" href="/login/index.html"><img src="/images/login.svg"
-                class="img-theme"></a>
-    </header>
-    <!-- End Navigation Menu -->
+    <?php
+    getPageHeader();
+    ?>
     <main>
         <form class="formLetter" method="post" action="#">
             <fieldset >  <!-- la balise fieldset peut être utilisé pour regrouper un ensemble de champs -->
@@ -63,23 +40,21 @@
                 <input type="password" id="mdp" name="mdp" placeholder="Votre mot de passe" required="required">
                 <br><br>
                 <label for="start">Date de naissance: </label>
-                <input type="date" id="start" name="trip-start" min="1910-01-01" max="2004-12-31" required="required">
+                <input type="date" id="start" name="birthdate" min="1910-01-01" max="2004-12-31" required="required">
                 <br><br>
                 <label class="point">J'accepte les <a href="/conditions/">conditions générales</a> d'inscription : </label>
                 <input type="checkbox" name="..." required="required">
                 <br><br>
                 <div class="btn">
                     <button type="submit" class="signupbtn">S'inscrire</button>
-                    <a href="/login/" class="Connexion">Connexion</a>
+                    <a href="/login" class="Connexion">Connexion</a>
                 </div>
             </fieldset>
         </form>
     </main>
-    <!-- Footer -->
-    <footer>
-        Projet Web - Décembre 2023
-        <a href="/conditions/">Conditions d'utilisation</a>
-    </footer>
-    <!-- End Footer -->
+    
+    <?php
+    getPageFooter();
+    ?>
 </body>
 </html>
