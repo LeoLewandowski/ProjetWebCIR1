@@ -42,12 +42,14 @@
         </form>
         <section class="products">
             <?php
+            $i = 0;
             foreach(scandir("../images/watch/") as $watch) {
                 if(is_dir($watch)) continue;
+                $i++;
                 echo
-               "<a href='/watch?id'>
+               "<a href='/watch?id=$i'>
                     <img src=\"/images/watch/$watch\">
-                    <p>Description</p>
+                    <p>Montre $i</p>
                 </a>";
             }
             ?>

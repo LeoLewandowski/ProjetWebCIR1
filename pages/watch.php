@@ -14,9 +14,9 @@
     ?>
 
     <main>
-        <h2>Montre</h2>
         <?php
-        var_dump($_GET['id']);
+        $ID = $_GET['id'];
+        echo "<h2>Montre n°$ID</h2>";
         ?>
     </main>
 
