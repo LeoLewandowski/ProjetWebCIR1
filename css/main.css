@@ -69,7 +69,12 @@ body {
     Thème des titres en général
 */
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     text-align: center;
     margin: 1.25rem;
     text-indent: 0;
@@ -100,7 +105,7 @@ p {
 /* ------------------------- HEADER & NAV -------------------------- */
 
 /* Evite d'avoir un grand espace vide après le header */
-header + * {
+header+* {
     margin-top: 0 !important;
 }
 
@@ -120,7 +125,7 @@ header {
     /* Permet de l'accrocher au haut de la page quand on le dépasse en scrollant */
     position: sticky;
     top: 0;
-    
+
     /* Affichage au-dessus de tous les autres éléments */
     z-index: 1000;
 }
@@ -180,7 +185,8 @@ nav {
     position: absolute;
     left: 0;
     right: 0;
-    top: 99%; /* A 100%, un léger espace apparaît entre header et nav, on laisse donc 99% */
+    top: 99%;
+    /* A 100%, un léger espace apparaît entre header et nav, on laisse donc 99% */
 
     /* Texte */
     text-transform: uppercase;
@@ -239,7 +245,8 @@ nav a::after {
 }
 
 /* Affiche la ligne sous le lien */
-nav a:hover::after, nav a:focus::after {
+nav a:hover::after,
+nav a:focus::after {
     left: 5%;
     right: 5%;
 }
@@ -251,7 +258,7 @@ nav a:hover::after, nav a:focus::after {
     cursor: pointer;
     padding: 5px 10px;
     z-index: 15;
-    
+
     /* Centre le bouton verticalement et horizontalement */
     right: 50%;
     top: 50%;
@@ -286,15 +293,18 @@ nav a:hover::after, nav a:focus::after {
     Réduit la largeur de la barre centrale, ce qui la fait disparaître
 */
 
-#nav-button:hover #nav-btn-bar1, #nav-button:focus #nav-btn-bar1{
+#nav-button:hover #nav-btn-bar1,
+#nav-button:focus #nav-btn-bar1 {
     transform: rotate(45deg);
 }
 
-#nav-button:hover #nav-btn-bar2, #nav-button:focus #nav-btn-bar2 {
+#nav-button:hover #nav-btn-bar2,
+#nav-button:focus #nav-btn-bar2 {
     transform: scaleX(0.1);
 }
 
-#nav-button:hover #nav-btn-bar3, #nav-button:focus #nav-btn-bar3 {
+#nav-button:hover #nav-btn-bar3,
+#nav-button:focus #nav-btn-bar3 {
     transform: rotate(-45deg);
 }
 
@@ -319,7 +329,7 @@ nav a:hover::after, nav a:focus::after {
 }
 
 /* Définit la taille de l'image */
-#login > img {
+#login>img {
     width: 25px;
     height: 25px;
 }
@@ -330,7 +340,7 @@ nav a:hover::after, nav a:focus::after {
     background-color: var(--text-theme-color);
 }
 
-#login:hover > img {
+#login:hover>img {
     filter: invert();
 }
 
@@ -340,7 +350,7 @@ nav a:hover::after, nav a:focus::after {
     position: fixed;
     bottom: calc(var(--footer-height) + 10px);
     right: 20px;
-    
+
     /* Aligne au centre l'image à l'intérieur */
     display: flex;
     align-items: center;
@@ -358,7 +368,7 @@ nav a:hover::after, nav a:focus::after {
 }
 
 /* Image inversée de base, et tournée car la flèche est pointée vers le bas de base */
-#up > img {
+#up>img {
     filter: invert();
     width: 55%;
     rotate: 180deg;
@@ -390,8 +400,9 @@ textarea {
 button,
 input,
 textarea,
-select {
-    background-color: var(--tertiary-theme-color);
+select,
+option {
+    background-color: var(--main-theme-color);
 }
 
 button:focus,
@@ -401,48 +412,47 @@ textarea:focus {
     background-color: var(--main-theme-color);
 }
 
-select {
-    border: 2px solid var(--theme-accent-color);
-    border-radius: 25px;
-    height: 40px;
-    width: 250px;
-    appearance: none;
-    padding: 10px;
-    
-    /* Supprime la flèche classique des selects */
-    appearance: none;
-    -webkit-appearance: none;
-
-    /*
-        Flèche sur la droite. Faite avec seulement la propriété background.
-        Nous avions tenté avec un élément after, mais il est impossible d'en faire apparaître un dans
-        un élément select ou input, car ils ne s'affichent que dans des éléments containers
-    */
-    background:
-        linear-gradient(45deg, transparent 50%, gray 50%),
-        linear-gradient(135deg, gray 50%, transparent 50%),
-        radial-gradient(#ddd 70%, transparent 72%);
-    background-position:
-        calc(100% - 20px) 50%,
-        calc(100% - 15px) 50%,
-        calc(100% - 10px) 50%,
-        center center;
-    background-size:
-        5px 5px,
-        5px 5px,
-        1.5em 1.5em, cover;
-    background-repeat: no-repeat;
-
-    /* Couleur de fond globale + pour les choix du select */
-    background-color: var(--tertiary-theme-color);
+.check-box {
+    cursor: pointer;
 }
 
-/* Quand le select est en focus (ouvert) la flèche pointe vers le haut */
-select:focus {
-    background-image: linear-gradient(135deg, transparent 50%, gray 50%),
-        linear-gradient(45deg, gray 50%, transparent 50%),
-        radial-gradient(#ddd 70%, transparent 72%);
+.check-box input {
+    display: none;
+}
 
+.check-box svg {
+    width: 20px;
+    height: 20px;
+    overflow: visible;
+}
+
+.check-box path {
+    fill: none;
+    stroke: white;
+    stroke-width: 6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: stroke-dasharray 0.5s ease, stroke-dashoffset 0.5s ease, stroke .5s ease;
+    stroke-dasharray: 241 9999999;
+    stroke-dashoffset: 0;
+}
+
+.check-box input:checked~svg path {
+    stroke: orange;
+    stroke-dasharray: 70.5096664428711 9999999;
+    stroke-dashoffset: -262.2723388671875;
+}
+
+.conditions-accept {
+    margin: 10px;
+    display: flex;
+    flex-direction:row;
+    align-items: center;
+}
+
+.conditions-accept > p {
+    font-size: .6em;
+    margin-left: 7px;
 }
 
 /* --------------------- USEFUL CLASSES --------------------- */
@@ -539,16 +549,17 @@ select:focus {
     align-items: end;
 }
 
-.quote > q {
+.quote>q {
     font-size: 2rem;
 }
 
 /* Affiche les guillemets de la citation avec la couleur d'accent */
-.quote > q::before, .quote > q::after {
+.quote>q::before,
+.quote>q::after {
     color: var(--theme-accent-color);
 }
 
-.quote > span {
+.quote>span {
     /* Position relative pour l'affichage de la ligne au-dessus */
     position: relative;
     font-size: 1rem;
@@ -569,7 +580,7 @@ select:focus {
 }
 
 /* Ajout automatique d'un '- ' avant l'auteur d'une citation */
-.quote > span::before {
+.quote>span::before {
     content: '— ';
 }
 
@@ -627,12 +638,17 @@ select:focus {
         --theme-box-shadow: 0 1px 8px 3px rgba(255, 255, 255, 0.2);
     }
 
+    * {
+        color-scheme: dark;
+    }
+
     /* On inverse la couleur des images dépenantes du thème (icônes svg etc.) */
     .img-theme {
         filter: invert();
     }
 
-    #login:hover>img, #up > img {
+    #login:hover>img,
+    #up>img {
         filter: none;
     }
 }
@@ -642,11 +658,12 @@ select:focus {
     Disposition ordinateur
 */
 @media (min-width:768px) {
+
     /*
         L'affichage du nav change complètement, il est maintenant inclus dans le header et affiche
         ses enfants en ligne.
         Il est désormais affiché en toutes circonstances
-    */ 
+    */
     nav {
         display: flex;
         position: initial;

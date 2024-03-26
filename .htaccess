@@ -1,0 +1,15 @@
+# Définit la page 404 du site, en cas de mauvaise requête
+ErrorDocument 404 /pages/404
+
+# Va chercher la page correspondant à la requête dans le dossier /pages/
+# Permet de ne pas afficher /pages/ dans l'URL, ce qui le raccourcit
+RewriteEngine On
+    RewriteCond %{REQUEST_URI} ^/[a-z]+$
+    RewriteRule (.+) /pages/$1 [NC]
+
+# Rajoute l'extension .php aux fichiers
+# Permet d'embellir l'URL en enlevant les extensions de fichiers
+RewriteEngine On
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^([^\.]+)$ $1.php [NC,L]
