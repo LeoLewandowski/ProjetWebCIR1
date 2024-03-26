@@ -2,39 +2,17 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/main.css">
-    <title>Octime - Conditions d'utilisation</title>
+<?php
+    require_once('../util/common.php');
+    getPageHead('Conditions d\'utilisation');
+    ?>
 </head>
 
 <body>
-    <!-- Navigation Menu -->
-    <header>
-        <a id="logo-header" href="/">
-            <picture class="img-theme">
-                <source srcset="/images/logo.svg" media="(min-width:992px)">
-                <img src="/images/logo_short.svg">
-            </picture>
-        </a>
-        <button id="nav-button">
-            <svg class="img-theme" width="50" height="50">
-                <line x1="0" y1="50%" x2="100%" y2="50%" class="nav-btn-bar" id="nav-btn-bar1" />
-                <line x1="0" y1="50%" x2="100%" y2="50%" class="nav-btn-bar" id="nav-btn-bar2" />
-                <line x1="0" y1="50%" x2="100%" y2="50%" class="nav-btn-bar" id="nav-btn-bar3" />
-            </svg>
-        </button>
-        <nav id="nav">
-            <a href="/histoire/">Présentation</a>
-            <a href="/concept/">Concept</a>
-            <a href="/produits/">Produits</a>
-            <a href="/team/">Notre équipe</a>
-            <a href="/contact/">Contact</a>
-        </nav>
-        <a id="login" class="center container-vertical" title="Se connecter" href="/login/index.html"><img
-                src="/images/login.svg" class="img-theme"></a>
-    </header>
-    <!-- End Navigation Menu -->
+    <?php
+    getPageHeader('produits');
+    ?>
+
     <main>
         <h1>Conditions d'utilisation</h1>
         <p> Bienvenue sur Octime, où chaque montre est une ode à l'innovation et au raffinement. En vous inscrivant,
@@ -67,9 +45,11 @@
             invitons à les consulter régulièrement afin de rester informé de vos droits et obligations en tant que
             membre de la communauté Octime.
         </p>
-    </main> <!-- Footer -->
-    <footer> Projet Web - Décembre 2023 <a href="/conditions/">Conditions d'utilisation</a> </footer>
-    <!-- End Footer -->
+    </main>
+
+    <?php
+    getPageFooter();
+    ?>
 </body>
 
 </html>

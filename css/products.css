@@ -1,6 +1,6 @@
 main {
-    flex-direction: row;
-    align-items: start;
+    flex-direction: column;
+    align-items: center;
     justify-content: flex-start;
     padding: 0 2.5%;
 }
@@ -11,10 +11,9 @@ main {
 */
 .filters {
     display: flex;
-    flex-grow: 5;
     top:135px;
+    flex-grow: 0;
     flex-direction: column;
-    position: sticky;
     margin: 35px 0;
     padding: 10px;
     max-height: calc(100vh - 150px);
@@ -43,23 +42,27 @@ main {
     -webkit-appearance: none;
 }
 
+.filters input[type="submit"] {
+    width: fit-content;
+    padding: 5px 10px;
+    margin: 10px auto;
+    cursor: pointer;
+}
+
 .products {
-    flex-grow: 0;
-    display: flex;
-    justify-content: center;
-    flex-flow: row wrap;
+    display: grid;
+    width: 100%;
+    box-sizing: border-box;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     padding: 0 25px;
 }
 
-.products > div {
+.products > a {
+    display: flex;
     background-color: var(--tertiary-theme-color);
     border-radius: 10px;
     padding: 10px;
-
-    /* Permet de mettre le plus possibe de produits sur 1 seule page, puis de les agrandir
-        pour qu'ils occupent toute la place libre */
-    flex-basis: 200px;
-    flex-grow: 1;
+    width: auto;
 
     margin: 10px;
     display: flex;
@@ -68,7 +71,7 @@ main {
     text-align: center;
 }
 
-.products > div img {
+.products > a img {
     width: 100%;
     border-radius: inherit;
 }
@@ -83,16 +86,8 @@ input[type="submit"] {
 
 /* Version mobile */
 @media (max-width:768px) {
-    main {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .filters {
-        position: initial;
-    }
-
     .products {
-        justify-content: center;
+        grid-template-columns: 80%;
     }
+    
 }

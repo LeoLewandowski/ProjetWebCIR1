@@ -2,12 +2,10 @@
 <html lang="en">
 
 <head>
-    <title>Document</title>
-    <link rel="stylesheet" href="/css/main.css">
-    <link rel="stylesheet" href="/css/index.css">
-    <link rel="icon" href="/images/clock.svg">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <?php
+    require_once('./util/common.php');
+    getPageHead('OcTime', 'index');
+    ?>
 </head>
 
 <body>
@@ -24,13 +22,13 @@
     <section id="nav">
         <div id="clock-links">
             <a href="/" style="color: var(--theme-accent-color);">Accueil</a>
-            <a href="/histoire/">Histoire</a>
-            <a href="/produits/">Produits</a>
-            <a href="/contact/">Contact</a>
-            <a href="/concept/">Concept</a>
-            <a href="/login/">Connexion</a>
-            <a href="/inscription/">Inscription</a>
-            <a href="/team/">Équipe</a>
+            <a href="/history">Histoire</a>
+            <a href="/products">Produits</a>
+            <a href="/contact">Contact</a>
+            <a href="/concept">Concept</a>
+            <a href="/login">Connexion</a>
+            <a href="/register">Inscription</a>
+            <a href="/team">Équipe</a>
         </div>
         <svg class="img-theme" width="256" height="256" stroke="black" fill="black" stroke-width="10"
             stroke-linecap="round">
@@ -132,15 +130,10 @@
     </section>
     <!-- End Feedback -->
 
-    <!-- Lien pour remonter en haut de la page-->
-    <a id="up" href="#"><img src="/images/arrow.svg"></a>
-
-    <!-- Footer -->
-    <footer>
-        Projet Web - Décembre 2023
-        <a href="/conditions/">Conditions d'utilisation</a>
-    </footer>
-    <!-- End Footer -->
+    <?php
+    getPageTopButton();
+    getPageFooter();
+    ?>
 </body>
 
 </html>

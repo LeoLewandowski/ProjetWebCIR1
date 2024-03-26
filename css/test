@@ -1,0 +1,43 @@
+select {
+    border: 2px solid var(--theme-accent-color);
+    border-radius: 25px;
+    height: 40px;
+    width: 250px;
+    appearance: none;
+    padding: 10px;
+    
+    /* Supprime la flèche classique des selects */
+    appearance: none;
+    -webkit-appearance: none;
+
+    /*
+        Flèche sur la droite. Faite avec seulement la propriété background.
+        Nous avions tenté avec un élément after, mais il est impossible d'en faire apparaître un dans
+        un élément select ou input, car ils ne s'affichent que dans des éléments containers
+    */
+    background:
+        linear-gradient(45deg, transparent 50%, gray 50%),
+        linear-gradient(135deg, gray 50%, transparent 50%),
+        radial-gradient(#ddd 70%, transparent 72%);
+    background-position:
+        calc(100% - 20px) 50%,
+        calc(100% - 15px) 50%,
+        calc(100% - 10px) 50%,
+        center center;
+    background-size:
+        5px 5px,
+        5px 5px,
+        1.5em 1.5em, cover;
+    background-repeat: no-repeat;
+
+    /* Couleur de fond globale + pour les choix du select */
+    background-color: var(--tertiary-theme-color);
+}
+
+/* Quand le select est en focus (ouvert) la flèche pointe vers le haut */
+select:focus {
+    background-image: linear-gradient(135deg, transparent 50%, gray 50%),
+        linear-gradient(45deg, gray 50%, transparent 50%),
+        radial-gradient(#ddd 70%, transparent 72%);
+
+}
