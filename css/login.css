@@ -1,7 +1,9 @@
-main{
+main {
     margin-top: 75px;
 }
-.formLetter{/*disposition des elements dans le formulaire*/
+
+.formLetter {
+    /*disposition des elements dans le formulaire*/
     position: relative;
     display: flex;
     justify-content: center;
@@ -9,42 +11,62 @@ main{
     flex-direction: column;
     padding-top: 5vh;
 }
-fieldset{
+
+fieldset {
     padding: 1%;
     margin: 1%;
-    border: 2px solid var(--theme-accent-color) ;
+    border: 2px solid var(--theme-accent-color);
     border-radius: 4px;
     padding: 1vw;
 }
-input, textarea, .btn > a {
+
+textarea,
+.btn>a {
     border: 1px solid var(--main-theme-color);
     border-radius: 5px;
     padding: 2px 5px;
 }
-button, input[type="submit"], .btn > a {
+
+button,
+input[type="submit"],
+.btn>a {
     border-radius: 5px;
     border: 2px solid var(--theme-accent-color);
 }
 
+
+
 /*ici, on définit la taille des différents éléments du formulaire, ainsi que du formulaire lui-même*/
 .formLetter {
+    position: relative;
     width: max-content;
 }
-.formLetter #prenom,#nom,#courriel,#start,#start{
+
+.formLetter #prenom,
+#nom,
+#courriel,
+#start,
+#start {
     height: 2vw;
 }
-.formLetter #prenom,#nom{
+
+.formLetter #prenom,
+#nom {
     width: 10vw;
 }
-.formLetter #courriel{
+
+.formLetter #courriel {
     width: 15vw;
 }
-.formLetter #start{
+
+.formLetter #start {
     width: 7.7vw;
     color: #757575;
 }
-.signupbtn {/*style du bouton*/
-    background-color:black;
+
+.signupbtn {
+    /*style du bouton*/
+    background-color: black;
     color: white;
     padding: 0 2vh;
     cursor: pointer;
@@ -52,15 +74,18 @@ button, input[type="submit"], .btn > a {
     border-radius: 5px;
     height: 5vh;
 }
+
 .signupbtn:active {
     opacity: 0.5;
     color: white;
 }
-.formLetter > label{
+
+.formLetter>label {
     position: relative;
     left: 35%;
 }
-.background{
+
+.background {
     position: fixed;
     right: 0;
     bottom: 0;
@@ -68,11 +93,13 @@ button, input[type="submit"], .btn > a {
     min-height: 100%;
 }
 
-.btn{ /*disposition des éléments dans la partie bouton (pour connexion.html)*/
+.btn {
+    /*disposition des éléments dans la partie bouton (pour connexion.html)*/
     display: flex;
     justify-content: space-evenly;
 }
-.Connexion{
+
+.connexion {
     cursor: pointer;
     height: 3.5vh;
     color: black;
@@ -80,4 +107,63 @@ button, input[type="submit"], .btn > a {
     background-color: white;
     padding: 0.5vh;
     border-radius: 5px;
+}
+
+.input-box {
+    margin: 10px;
+}
+
+input, select, textarea {
+    border: solid 1.5px var(--tertiary-theme-color);
+    border-radius: 1rem;
+    background: none;
+    padding: 1rem;
+    font-size: 1rem;
+    color: #f5f5f5;
+    transition: border 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.input-box > label {
+    position: absolute;
+    left: 15px;
+    color: gray;
+    pointer-events: none;
+    transform: translate(2rem, 1rem);
+    transition: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+input:focus,
+input:valid,
+select:focus,
+select:valid,
+textarea:focus,
+textarea:valid {
+    outline: none;
+    border: 1.5px solid var(--theme-accent-color);
+}
+
+.input-box > input:focus ~ label,
+.input-box > input:not(:placeholder-shown) ~ label,
+.input-box > select:focus ~ label,
+.input-box > input:not(:placeholder-shown) ~ label,
+.input-box > textarea:focus ~ label,
+.input-box > input:not(:placeholder-shown) ~ label {
+    transform: translate(1rem, -50%) scale(0.8);
+    background: var(--secondary-theme-color) linear-gradient(to top, var(--main-theme-color), var(--secondary-theme-color) 75%);
+    color: var(--text-theme-color);
+    padding: 0 .2em;
+    filter: none;
+}
+
+.input-box > input:focus ~ label,
+.input-box > select:focus ~ label, 
+.input-box > textarea:focus ~ label {
+    color: var(--theme-accent-color);
+}
+
+
+.input-box.force-anim > label {
+    transform: translate(1rem, -50%) scale(0.8);
+    background-color: var(--secondary-theme-color);
+    padding: 0 .2em;
 }

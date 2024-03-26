@@ -15,7 +15,7 @@
     </section>
     
     <?php
-    getPageHeader('produits');
+    getPageHeader('concept');
     ?>
 
     <div class="concept">

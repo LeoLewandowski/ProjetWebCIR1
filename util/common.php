@@ -1,6 +1,16 @@
 <?php
 // File used to incude HTML Elements common to multiple pages, such as the header and the footer
 
+enum Language:string {
+    case French = 'fr';
+    case English = 'en';
+}
+
+$lg = Language::French;
+if(isset($_COOKIE['lang'])) $lg = Language::from($_COOKIE['lang']);
+
+define('LANGUAGE', $lg);
+
 function getPageHeader( string|null $pageName = '' ) {
     echo '
     <header>
@@ -18,9 +28,9 @@ function getPageHeader( string|null $pageName = '' ) {
             </svg>
         </button>
         <nav id="nav">
-            <a href="/histoire"'. ($pageName == 'histoire' ? 'style="color: var(--theme-accent-color);"' : '') .'>Présentation</a>
+            <a href="/history"'. ($pageName == 'history' ? 'style="color: var(--theme-accent-color);"' : '') .'>Présentation</a>
             <a href="/concept"'. ($pageName == 'concept' ? 'style="color: var(--theme-accent-color);"' : '') .'>Concept</a>
-            <a href="/produits"'. ($pageName == 'produits' ? 'style="color: var(--theme-accent-color);"' : '') .'>Produits</a>
+            <a href="/products"'. ($pageName == 'products' ? 'style="color: var(--theme-accent-color);"' : '') .'>Produits</a>
             <a href="/team"'. ($pageName == 'team' ? 'style="color: var(--theme-accent-color);"' : '') .'>Notre équipe</a>
             <a href="/contact"'. ($pageName == 'contact' ? 'style="color: var(--theme-accent-color);"' : '') .'>Contact</a>
         </nav>

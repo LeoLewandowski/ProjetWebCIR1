@@ -22,12 +22,12 @@
     <section id="nav">
         <div id="clock-links">
             <a href="/" style="color: var(--theme-accent-color);">Accueil</a>
-            <a href="/histoire">Histoire</a>
-            <a href="/produits">Produits</a>
+            <a href="/history">Histoire</a>
+            <a href="/products">Produits</a>
             <a href="/contact">Contact</a>
             <a href="/concept">Concept</a>
             <a href="/login">Connexion</a>
-            <a href="/inscription">Inscription</a>
+            <a href="/register">Inscription</a>
             <a href="/team">Équipe</a>
         </div>
         <svg class="img-theme" width="256" height="256" stroke="black" fill="black" stroke-width="10"

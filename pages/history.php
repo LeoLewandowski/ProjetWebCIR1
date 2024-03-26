@@ -16,7 +16,7 @@
     </section>
 
     <?php
-    getPageHeader('histoire');
+    getPageHeader('history');
     ?>
 
     <div class="histoire">
