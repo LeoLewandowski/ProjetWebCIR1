@@ -36,16 +36,17 @@
             else $watch = $res[0];
         }
 
-        if ($err) echo $connection->query("SELECT txt FROM translations WHERE name = 'watchNotFound' AND FIND_IN_SET('$lang', langs)")->fetchAll()[0][0];
+        if ($err) echo _(Localization::ERROR_WATCH_NOT_FOUND->value);
         else {
             $wID = $watch['id'];
 
-            $characteristics = $connection->query("SELECT txt FROM translations WHERE name = 'characteristics' AND FIND_IN_SET('$lang', langs)")->fetchAll()[0][0];
-            $timeTitle = $connection->query("SELECT txt FROM translations WHERE name = 'timeTitle' AND FIND_IN_SET('$lang', langs)")->fetchAll()[0][0];
-            $timeSys = $connection->query("SELECT txt FROM translations WHERE name = 'timeType" . $watch['timeType'] . "' AND FIND_IN_SET('$lang', langs)")->fetchAll()[0][0];
-            $price = $connection->query("SELECT txt FROM translations WHERE name = 'price' AND FIND_IN_SET('$lang', langs)")->fetchAll()[0][0];
-            $braceletTitle = $connection->query("SELECT txt FROM translations WHERE name = 'braceletTitle' AND FIND_IN_SET('$lang', langs)")->fetchAll()[0][0];
-            $braceletType = $connection->query("SELECT txt FROM translations WHERE name = 'braceletType" . $watch['braceletType'] . "' AND FIND_IN_SET('$lang', langs)")->fetchAll()[0][0];
+            $characteristics = _(Localization::CHARACTERICS->value);
+            $timeTitle = _(Localization::TIME_SYSTEM->value);
+            $timeSys = _(TimeType::tryFrom($watch['timeType'])->name ?? Localization::ERROR_DEFAULT);
+            $price = _(Localization::PRICE->value);
+            $braceletTitle = _(Localization::BRACELET_COMPOSITION->value);
+            $braceletType = _(BraceletMaterial::tryFrom($watch['braceletType'])->name ?? Localization::ERROR_DEFAULT);
+
 
             echo "<h2>" . $watch['name'] . "</h2>
             <img src='/images/watch/montre_$wID.png'>
