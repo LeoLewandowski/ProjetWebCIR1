@@ -610,6 +610,20 @@ textarea:focus {
     border-radius: 50%;
 }
 
+/* Classe pour afficher les messages d'erreur */
+.error {
+    background-color: rgba(150, 0,20,0.4);
+    border-radius: 15px;
+    max-width: 35vw;
+    padding: 10px 15px;
+    display: block;
+}
+
+.error, .error * {
+    color: rgba(220, 0, 0, 0.9);
+    margin: 5px;
+}
+
 /* -------------------------- ANIMATIONS -------------------------- */
 
 @keyframes fadein {

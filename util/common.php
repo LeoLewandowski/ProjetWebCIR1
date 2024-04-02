@@ -1,13 +1,61 @@
 <?php
 // File used to incude HTML Elements common to multiple pages, such as the header and the footer
 
-enum Language:string {
+enum Localization : string {
+
+    #region INVALID_INPUTS
+    case INVALID_VALUE = 'This option is invalid, please choose another one';
+    case INVALID_NAME = 'This name is invalid. Names must only contain word characters or ideogras, hyphens and apostrophes, and be shorter than 64 characters';
+    case INVALID_PASSWORD = 'The password must be between 8 and 64 characters long and can only include the following characters, with at least one of each type :<ul><li>Lower or upper-case latin letters, without accents</li><li>Digits (between 0 and 9)</li><li>Special characters in this list : \\*/+-_=#~&@$</li></ul>';
+    case INVALID_EMAIL = 'The given email adress is invalid, or it is longer than 64 characters';
+    case INVALID_DATE = 'The given date must be between today and 1900/01/01';
+    case UNACCEPTED_CONDITIONS = 'You must accept the conditions to continue';
+    #endregion
+
+    #region ERRORS
+    case ERROR_WATCH_NOT_FOUND = "<h3>Sorry, this watch is unavailable</h3><br><h4>Please go back to the <a href=\"/products\">products page</a></h4>";
+    case ERROR_DEFAULT = "<span class='error'>An error occured</span>";
+    #endregion
+
+    #region TEXT
+    case CHARACTERICS = 'Characteristics';
+    case TIME_SYSTEM = 'Time system';
+    case PRICE = 'Price';
+    case BRACELET_COMPOSITION = 'Bracelet composition';
+    #endregion
+}
+
+
+enum TimeType : string {
+    case Duodecimal = 'D';
+    case Octal = 'O';
+}
+
+enum BraceletMaterial : string {
+    case Silicone = 'S';
+    case Leather = 'L';
+    case Metal = 'M';
+}
+
+enum Language : string {
     case French = 'fr';
     case English = 'en';
 }
 
+enum Gender : string {
+    case Male = 'M';
+    case Female = 'F';
+    case Unspecified = 'N';
+}
+
+Locale::setDefault('en');
+setlocale(LC_ALL, 'en_US');
+putenv('LC_ALL=en_US');
+bindtextdomain('main', realpath('../') . DIRECTORY_SEPARATOR . 'localization');
+textdomain("main");
+
 $lg = Language::French;
-if(isset($_COOKIE['lang'])) $lg = Language::from($_COOKIE['lang']);
+if(isset($_COOKIE['lang'])) $lg = Language::tryFrom($_COOKIE['lang']) ?? Language::French;
 
 define('LANGUAGE', $lg);
 
@@ -59,4 +107,10 @@ function getPageHead( string $title, string|null $cssFileName = '') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">';
     if($cssFileName) echo '<link rel="stylesheet" href="/css/'.$cssFileName.'.css">';
+}
+
+function fetchTranslation(PDO $connection, string $name, Language $lang = LANGUAGE) : string{
+    $stmt = $connection->prepare("SELECT txt FROM translations WHERE name = ? AND FIND_IN_SET(?, langs)");
+    $stmt->execute([$name, $lang->value]);
+    return $stmt->fetch()[0];
 }

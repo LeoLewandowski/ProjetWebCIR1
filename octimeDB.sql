@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mar. 26 mars 2024 à 17:43
+-- Généré le : mar. 02 avr. 2024 à 19:25
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -24,39 +24,37 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Structure de la table `translations`
+-- Structure de la table `accounts`
 --
 
-CREATE TABLE `translations` (
-  `name` varchar(255) NOT NULL,
-  `txt` text NOT NULL,
-  `langs` set('fr','en') DEFAULT NULL
+CREATE TABLE `accounts` (
+  `gender` char(1) NOT NULL DEFAULT 'N',
+  `name` varchar(64) NOT NULL,
+  `surname` varchar(64) NOT NULL,
+  `email` varchar(64) NOT NULL,
+  `password` longtext NOT NULL,
+  `birth` date NOT NULL,
+  `admin` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Déchargement des données de la table `translations`
+-- Déchargement des données de la table `accounts`
 --
 
-INSERT INTO `translations` (`name`, `txt`, `langs`) VALUES
-('characteristics', 'Caractéristiques', 'fr'),
-('characteristics', 'Characteristics', 'en'),
-('timeTitle', 'Système temporel', 'fr'),
-('timeTitle', 'Time system', 'en'),
-('timeTypeO', 'Octal (8h)', 'fr,en'),
-('timeTypeD', 'Duodécimal (12h)', 'fr'),
-('timeTypeD', 'Duodecimal (12h)', 'en'),
-('braceletTitle', 'Matière du bracelet', 'fr'),
-('braceletTitle', 'Bracelet composition', 'en'),
-('braceletTypeS', 'Silicone', 'fr'),
-('braceletTypeS', 'Rubber', 'en'),
-('braceletTypeL', 'Leather', 'en'),
-('braceletTypeL', 'Cuir', 'fr'),
-('braceletTypeM', 'Metal', 'en'),
-('braceletTypeM', 'Métal', 'fr'),
-('price', 'Price', 'en'),
-('price', 'Prix', 'fr'),
-('watchNotFound', '<h3>Désolé, cette montre n\'existe pas</h3><br><h4>Veuillez retourner sur <a href=\'/products\'>la page des produits</a>', 'fr'),
-('watchNotFound', '<h3>Sorry, this watch does not exist</h3><br><h4>Please go bac to the <a href=\'/products\'>products page</a>', 'en');
+INSERT INTO `accounts` (`gender`, `name`, `surname`, `email`, `password`, `birth`, `admin`) VALUES
+('M', 'Lewandowski', 'Léo', 'leo.lewandowski@student.junia.com', '$argon2i$v=19$m=65536,t=4,p=1$b04xa1JXUWFoeFZBZWhqeA$Hdp9GRynrSKmhHE1qyjCkbO7u8SS1aSyo65sgkclads', '2024-03-13', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `shopping_carts`
+--
+
+CREATE TABLE `shopping_carts` (
+  `product_id` int(11) NOT NULL,
+  `client_email` varchar(64) NOT NULL,
+  `count` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -86,6 +84,20 @@ INSERT INTO `watches` (`name`, `description`, `timeType`, `braceletType`, `price
 --
 
 --
+-- Index pour la table `accounts`
+--
+ALTER TABLE `accounts`
+  ADD PRIMARY KEY (`email`),
+  ADD UNIQUE KEY `email` (`email`);
+
+--
+-- Index pour la table `shopping_carts`
+--
+ALTER TABLE `shopping_carts`
+  ADD KEY `product_id` (`product_id`),
+  ADD KEY `client_email` (`client_email`);
+
+--
 -- Index pour la table `watches`
 --
 ALTER TABLE `watches`
@@ -100,6 +112,17 @@ ALTER TABLE `watches`
 --
 ALTER TABLE `watches`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- Contraintes pour les tables déchargées
+--
+
+--
+-- Contraintes pour la table `shopping_carts`
+--
+ALTER TABLE `shopping_carts`
+  ADD CONSTRAINT `client_email_FK` FOREIGN KEY (`client_email`) REFERENCES `accounts` (`email`),
+  ADD CONSTRAINT `product_id_FK` FOREIGN KEY (`product_id`) REFERENCES `watches` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

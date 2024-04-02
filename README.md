@@ -38,3 +38,7 @@ Autres :
 - Enregistrer des produits dans la base de données
 - Fetch les produits depuis la BDD avec PHP et SQL, pour les afficher automatiquement sur les pages, en utilisant les filtres
 - Mettre en place un système de compte client (création de compte, login avec mdp, etc.)
+
+BDD password (pas encore implémenté) : `c=B.r:,6yairn1qu_NA1+{C3WCy][Q1w=#XNyRRqgSN72a.j7mBCNz:U27xJ;vJ?`
+
+IMPORTANT : L'extension PHP `gettext` est nécessaire pour faire tourner le projet. Pour l'installer, rien de plus simple : ouvrir le fichier `php.ini` de votre stack, et rajouter la ligne `extension=gettext` si elle n'y est pas déjà.
