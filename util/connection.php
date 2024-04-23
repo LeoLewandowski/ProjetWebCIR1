@@ -26,3 +26,10 @@ if(isset($_COOKIE['email']) && validateEmail($_COOKIE['email']) && isset($_COOKI
     // Si c'est le cas, alors on définit l'userInfo comme la ligne de données associées à cet user
     if($res['password'] == $_COOKIE['password']) $userInfo = $res;
 } catch(Exception $e) { $userInfo = null; }
+
+function login(string $email, string $hashedPwd):bool {
+    try {
+
+        return true;
+    } catch (Exception $e) { return false; }
+}

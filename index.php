@@ -14,6 +14,7 @@
     <section class="banner parallax" style="--src:url(/images/mechanism.jpg)">
         <img src="/images/logo.svg" style="filter: invert();">
         <a href="#nav"></a>
+        <span class="transition" style="--color:var(--secondary-theme-color);"></span>
     </section>
     <!-- End Banner -->
 
@@ -27,7 +28,7 @@
             <a href="/contact">Contact</a>
             <a href="/concept">Concept</a>
             <a href="/login">Connexion</a>
-            <a href="/register">Inscription</a>
+            <a href="/login?signup">Inscription</a>
             <a href="/team">Équipe</a>
         </div>
         <svg class="img-theme" width="256" height="256" stroke="black" fill="black" stroke-width="10"

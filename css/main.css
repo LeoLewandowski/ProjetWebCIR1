@@ -21,6 +21,7 @@
     --text-theme-color: black;
     --theme-box-shadow: 0 1px 8px 3px rgba(0, 0, 0, 0.0509803922);
     --theme-accent-color: orange;
+    --glasspane-filter-size: 5px;
 
     /* Variables inutilisés, servent en tant que reminder des valeurs à utiliser en media-query*/
     --breakpoint-xs: 0;
@@ -35,7 +36,7 @@
     une police de caractères ainsi que la couleur de texte associée au thème
  */
 * {
-    font-family: 'Franklin Gothic', Arial, sans-serif;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     margin: 0;
     padding: 0;
     color: var(--text-theme-color);
@@ -69,6 +70,14 @@ body {
     Thème des titres en général
 */
 
+.title {
+    margin: 20px 0 20px 0;
+    font-size: 25px;
+    font-weight: 900;
+    text-align: center;
+    color: var(--main-color);
+}
+
 h1,
 h2,
 h3,
@@ -78,6 +87,7 @@ h6 {
     text-align: center;
     margin: 1.25rem;
     text-indent: 0;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 /* Grand titre, en petites majuscules */
@@ -118,8 +128,8 @@ header {
     flex-direction: row;
     align-items: center;
 
-    /* Couleurs */
-    background-color: var(--main-theme-color);
+    /* Style et apparence de l'élément derrière */
+    backdrop-filter: blur(5px) brightness(50%);
     box-shadow: var(--theme-box-shadow);
 
     /* Permet de l'accrocher au haut de la page quand on le dépasse en scrollant */
@@ -128,6 +138,7 @@ header {
 
     /* Affichage au-dessus de tous les autres éléments */
     z-index: 1000;
+
 }
 
 footer {
@@ -438,7 +449,7 @@ textarea:focus {
 }
 
 .check-box input:checked~svg path {
-    stroke: orange;
+    stroke: var(--theme-accent-color);
     stroke-dasharray: 70.5096664428711 9999999;
     stroke-dashoffset: -262.2723388671875;
 }
@@ -457,7 +468,8 @@ textarea:focus {
 
 /* --------------------- USEFUL CLASSES --------------------- */
 
-/* Classe bannière : Ce qui est affiché dans les pages accueil, produit, histoire et concept */
+/* Classe bannière : Ce qui est affiché dans les pages accueil, produit, histoire et concept
+   Inclus aussi la classe transition component, pour la transition entre les éléments */
 .banner {
     /*
         Variable de source, précisée en CSS inline dans le document html.
@@ -522,6 +534,31 @@ textarea:focus {
 
     /* Délai avant le début de l'animation */
     animation-delay: 2s;
+}
+
+.transition {
+    /* Variables nécessaires */
+    --filter-size: var(--glasspane-filter-size);
+    --color: var(--main-theme-color);
+    --angle: 0deg;
+
+    /* Définit la taille de l'élément, et le force à afficher
+    seulement ce qui rentre dans l'écran */
+    overflow: hidden;
+    bottom: 0px;
+    position: absolute;
+    width: 100vw;
+    max-width: 100vw;
+    height: 15vh;
+
+    /* Définit les effets du background : backdrop-blur en dégradé + dégradé de couleur */
+    mask:linear-gradient(var(--angle), black 60%, transparent);
+    backdrop-filter: blur(var(--filter-size));
+    background: linear-gradient(var(--angle), var(--color), #0000);
+
+    /* Supprime l'animation imposée par certains éléments parents */
+    animation: none;
+    opacity: 100%;
 }
 
 /* Affiche le fond en position fixe par rapport au Viewport */
@@ -614,14 +651,102 @@ textarea:focus {
 .error {
     background-color: rgba(150, 0,20,0.4);
     border-radius: 15px;
-    max-width: 35vw;
     padding: 10px 15px;
+    box-sizing: content-box;
+    max-width: 35vw;
     display: block;
 }
 
 .error, .error * {
     color: rgba(220, 0, 0, 0.9);
     margin: 5px;
+}
+
+.error-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Classe pour les inputs stylisés */
+
+.form-generic {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.input-box {
+    margin: 10px;
+    position: relative;
+    width: fit-content;
+}
+
+.input-box input,
+.input-box select,
+.input-box textarea {
+    border: solid 1.5px var(--tertiary-theme-color);
+    border-radius: 1rem;
+    padding: 1rem;
+    font-size: 1rem;
+    color: #f5f5f5;
+    transition: border 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.input-box > label {
+    position: absolute;
+    left: -12px;
+    color: gray;
+    pointer-events: none;
+    transform: translate(2rem, 1rem);
+    transition: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.input-box input:focus,
+.input-box input:valid,
+.input-box select:focus,
+.input-box select:valid,
+.input-box textarea:focus,
+.input-box textarea:valid {
+    outline: none;
+    border: 1.5px solid var(--theme-accent-color);
+}
+
+.input-box > input:focus ~ label,
+.input-box > input:not(:placeholder-shown) ~ label,
+.input-box > select:focus ~ label,
+.input-box > input:not(:placeholder-shown) ~ label,
+.input-box > textarea:focus ~ label,
+.input-box > input:not(:placeholder-shown) ~ label,
+.input-box.force-anim > label {
+    transform: translate(1rem, -100%) scale(0.8);
+    color: white;
+    padding: 0 .2em;
+    filter: none;
+}
+
+.input-box > input:focus ~ label,
+.input-box > select:focus ~ label, 
+.input-box > textarea:focus ~ label {
+    color: var(--theme-accent-color);
+}
+
+input[type="submit"]{
+    /*style du bouton*/
+    background-color: black;
+    color: white;
+    border: 2px solid var(--theme-accent-color);
+    padding: 0 2vh;
+    cursor: pointer;
+    width: max(30%, fit-content);
+    border-radius: 5px;
+    height: 5vh;
+    text-align: center;
+}
+
+legend {
+    padding: 7px;
 }
 
 /* -------------------------- ANIMATIONS -------------------------- */
@@ -649,7 +774,7 @@ textarea:focus {
         --secondary-theme-color: rgb(20, 20, 20);
         --tertiary-theme-color: rgb(60, 60, 60);
         --text-theme-color: white;
-        --theme-box-shadow: 0 1px 8px 3px rgba(255, 255, 255, 0.2);
+        --theme-box-shadow: 0 3px 4px 0 rgba(255, 255, 255, 0.2);
     }
 
     * {

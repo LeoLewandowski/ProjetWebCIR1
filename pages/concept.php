@@ -12,6 +12,7 @@
     <section class="banner parallax" style="--src:url(/images/mechanism.jpg)">
         <h1>Une toute nouvelle façon de voir le temps</h1>
         <a href="#nav"></a>
+        <span class="transition"></span>
     </section>
     
     <?php

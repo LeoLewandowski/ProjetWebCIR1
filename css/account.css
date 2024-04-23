@@ -1,0 +1,33 @@
+main {
+    flex-direction: row;
+    align-items: start;
+}
+
+menu {
+    min-width: fit-content;
+    width: 15%;
+    top: 110px;
+    position: sticky;
+    margin-right: 20px;
+    list-style-type: none;
+}
+
+menu a {
+    padding: 7px;
+    margin: 2px;
+    display: inline-block;
+    width: 100%;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: all .2s;
+}
+
+menu a:hover {
+    background-color: var(--tertiary-theme-color);
+}
+
+main > form {
+    border-left: 2px solid var(--theme-accent-color);
+    padding-left: 10px;
+    margin-left: 10px;
+}
