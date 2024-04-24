@@ -88,8 +88,7 @@ h2 {
 }
 
 /*
-    Encore une fois le JS étant interdit, nous avons simplifié la disposition des nombres avec des caculs via CSS
-    ainsi que du CSS inline dans le document HTML (variable --angle)
+    Utilise des variables CSS afin de positionner les nombres, eux-mêmes ajoutés avec du JS
 */
 .number {
     --angle: 45deg;

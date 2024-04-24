@@ -13,6 +13,7 @@
     <section class="banner parallax" style="--src:url(/images/mechanism.jpg)">
         <h1>Une histoire pas comme les autres</h1>
         <a href="#nav"></a>
+        <span class="transition"></span>
     </section>
 
     <?php
@@ -34,7 +35,7 @@
             extra-terrestres authentiques.
         </p>
 
-        <img src="/images/watches/montre_3.png" class=" img1">
+        <img src="/images/watch/montre_3.png" class=" img1">
 
 
 
@@ -49,7 +50,7 @@
             Chaque pièce était ainsi imprégnée symboliquement d'une part de l'univers.
         </p>
 
-        <img class="image img2" src="../images/watches/montre_2.png">
+        <img class="image img2" src="../images/watch/montre_2.png">
 
         <h2>Lancement spectaculaire de la première collection</h2>
         <p class="p1">
@@ -76,7 +77,7 @@
             pour donner naissance à de nouvelles idées et concepts
             révolutionnaires.
         </p>
-        <img class="image img1" src="../images/watches/montre_5.png">
+        <img class="image img1" src="../images/watch/montre_5.png">
 
         <h2>Une entreprise active dans la transmission des sciences</h2>
         <p class="p2">
@@ -92,7 +93,7 @@
             pour l'exploration spatiale dans chaque montre qu'elle crée.
 
         </p>
-        <img class="image img2" src="../images/watches/montre_4.png">
+        <img class="image img2" src="../images/watch/montre_4.png">
         <span class="placeholder"></span>
     </div>
     <!-- End Histoire -->

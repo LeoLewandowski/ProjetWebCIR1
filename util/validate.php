@@ -47,3 +47,9 @@ function validateDate(string|null $date) : bool {
         && $dt < time()
         && $dt > strtotime('1900-01-01');
 }
+
+function validateId(string|null $id) : bool {
+    return isset($id)
+        && strlen($id) == 23
+        && preg_match('/^[a-z0-9]{14}\.[a-z0-9]{8}$/', $id);
+}

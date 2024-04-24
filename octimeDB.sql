@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mar. 02 avr. 2024 à 19:25
+-- Généré le : mer. 24 avr. 2024 à 15:07
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -34,15 +34,30 @@ CREATE TABLE `accounts` (
   `email` varchar(64) NOT NULL,
   `password` longtext NOT NULL,
   `birth` date NOT NULL,
-  `admin` tinyint(1) NOT NULL DEFAULT 0
+  `admin` tinyint(1) NOT NULL DEFAULT 0,
+  `id` char(23) NOT NULL,
+  `pfp_extension` varchar(8) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `accounts`
 --
 
-INSERT INTO `accounts` (`gender`, `name`, `surname`, `email`, `password`, `birth`, `admin`) VALUES
-('M', 'Lewandowski', 'Léo', 'leo.lewandowski@student.junia.com', '$argon2i$v=19$m=65536,t=4,p=1$b04xa1JXUWFoeFZBZWhqeA$Hdp9GRynrSKmhHE1qyjCkbO7u8SS1aSyo65sgkclads', '2024-03-13', 0);
+INSERT INTO `accounts` (`gender`, `name`, `surname`, `email`, `password`, `birth`, `admin`, `id`, `pfp_extension`) VALUES
+('M', 'Lewandowski', 'Léo', 'leo.lewandowski@student.junia.com', '$argon2i$v=19$m=65536,t=4,p=1$YXZJVkFnanJEL2dvUmxrRA$pc23vI41ZkfShQfpzDDWbKHz5EhwBglD61wJChniy0w', '2024-04-03', 0, '6628fb66c12f15.51178933', 'png');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `messages`
+--
+
+CREATE TABLE `messages` (
+  `subject` text NOT NULL,
+  `content` text NOT NULL,
+  `image` longblob NOT NULL,
+  `user_id` char(23) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Table pour page "contact"';
 
 -- --------------------------------------------------------
 
@@ -52,8 +67,8 @@ INSERT INTO `accounts` (`gender`, `name`, `surname`, `email`, `password`, `birth
 
 CREATE TABLE `shopping_carts` (
   `product_id` int(11) NOT NULL,
-  `client_email` varchar(64) NOT NULL,
-  `count` int(11) NOT NULL
+  `count` int(11) NOT NULL,
+  `client_id` char(23) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -87,15 +102,23 @@ INSERT INTO `watches` (`name`, `description`, `timeType`, `braceletType`, `price
 -- Index pour la table `accounts`
 --
 ALTER TABLE `accounts`
-  ADD PRIMARY KEY (`email`),
-  ADD UNIQUE KEY `email` (`email`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`),
+  ADD UNIQUE KEY `pfp` (`id`),
+  ADD UNIQUE KEY `id` (`id`);
+
+--
+-- Index pour la table `messages`
+--
+ALTER TABLE `messages`
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Index pour la table `shopping_carts`
 --
 ALTER TABLE `shopping_carts`
   ADD KEY `product_id` (`product_id`),
-  ADD KEY `client_email` (`client_email`);
+  ADD KEY `client_id` (`client_id`);
 
 --
 -- Index pour la table `watches`
@@ -118,10 +141,16 @@ ALTER TABLE `watches`
 --
 
 --
+-- Contraintes pour la table `messages`
+--
+ALTER TABLE `messages`
+  ADD CONSTRAINT `user_id` FOREIGN KEY (`user_id`) REFERENCES `accounts` (`id`);
+
+--
 -- Contraintes pour la table `shopping_carts`
 --
 ALTER TABLE `shopping_carts`
-  ADD CONSTRAINT `client_email_FK` FOREIGN KEY (`client_email`) REFERENCES `accounts` (`email`),
+  ADD CONSTRAINT `client_id_FK` FOREIGN KEY (`client_id`) REFERENCES `accounts` (`id`),
   ADD CONSTRAINT `product_id_FK` FOREIGN KEY (`product_id`) REFERENCES `watches` (`id`);
 COMMIT;
 
