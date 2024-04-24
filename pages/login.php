@@ -4,11 +4,9 @@
 <head>
     <?php
     require_once ('../util/common.php');
-    require_once ('../util/connection.php');
-    require_once ('../util/validate.php');
 
     // Si l'utilisateur est déjà connecté, on le redirige vers la page de gestion de compte
-    // if (isset($userInfo)) header('location:./account');
+    if (isset($userInfo)) header('location:./account');
     
     // Définit les messages d'erreur à utiliser plus tard
     $genderError = null;
@@ -60,7 +58,6 @@
 
         if (!validatePassword($password))
             $passwordError = _(Localization::PASSWORD_INVALID->value);
-        // Version FR : "Le mot de passe doit faire entre 8 et 64 caractères et ne peut contenir que les caractères suivants, dont au moins 1 de chaque type :<ul><li>Lettres latines minuscules ou majuscules non accentuées</li><li>Chiffres (entre 0 et 9)</li><li>Caractères spéciaux parmi : \\*/+-_=#~&@$</li></ul>"
     
         if (!validateEmail($email))
             $emailError = _(Localization::EMAIL_INVALID->value);
@@ -91,18 +88,21 @@
             $check->execute([$email]);
             if (count($check->fetchAll()) > 0) $emailError = _(Localization::EMAIL_USED->value);
             else {
+                // On crée une photo de profil pour l'utilisateur, basée sur ses initiales. On met un nom unique à la photo
+                $clientID = uniqid("", true);
+                createPfp($clientID . '.png', $surname[0] . $name[0]);
+
                 // On enregistre les infos de l'utilisateur dans la BDD
-                $stmt = $connection->prepare("INSERT INTO accounts (`gender`, `name`, `surname`, `password`, `email`, `birth`, `admin`) VALUES (?, ?, ?, ?, ?, DATE ?, 0)");
-                $stmt->execute([$gender->value, $name, $surname, $hashedPwd, $email, $date]);
+                $stmt = $connection->prepare("INSERT INTO accounts (`gender`, `name`, `surname`, `password`, `email`, `birth`, `pfp_extension`, `id`, `admin`) VALUES (?, ?, ?, ?, ?, DATE ?, ?, ?, 0)");
+                $stmt->execute([$gender->value, $name, $surname, $hashedPwd, $email, $date, 'png', $clientID]);
 
-                // On enregistre les informations de l'utilisateur dans des cookies. Le MdP hashé est aussi celui
-                // mis dans le cookie, ainsi même si un tiers récupère le cookie contenant le MdP hashé, il ne
-                // pourra rien en faire car le hash est indécryptable, et le MdP originel (non hashé) est nécessaire
-                // pour la connexion au compte.
-                setcookie('email', $email);
-                setcookie('password', $hashedPwd);
+                // On enregistre les informations de l'utilisateur dans des cookies. Le MdP est quant à lui
+                // mis dans une session du côté serveur pour une sécurité supplémentaire
+                setcookie('id', $clientID);
+                $_SESSION['password'] = $hashedPwd;
 
-                header('location:/account');
+                if(isset($_GET['redirect'])) header('location:'.$_GET['redirect']);
+                else header('location:/account');
             }
         }
     }
@@ -126,13 +126,14 @@
             try {
                 // Cherche la ligne de données correspondant à l'utilisateur, et vérifie si le MdP est bien le même
                 // du côté client et serveur. Le MdP côté serveur est préalablement hashé
-                $stmt = $connection->prepare("SELECT `password` FROM accounts WHERE `email` = ?");
+                $stmt = $connection->prepare("SELECT `password`, `id` FROM accounts WHERE `email` = ?");
                 $stmt->execute([$email]);
                 $line = $stmt->fetch();
                 if (isset($line[0]) && password_verify($password, $line[0])) {
-                    setcookie('email', $email);
-                    setcookie('password', $line[0]);
-                    header('location:./account');
+                    setcookie('id', $line[1]);
+                    $_SESSION['password'] = $line[0];
+                    if(isset($_GET['redirect'])) header('location:'.$_GET['redirect']);
+                    else header('location:/account');
                 } else if (empty($line[0]))
                     $emailError = _(Localization::ERROR_EMAIL_UNUSED->value);
                 else
@@ -165,11 +166,11 @@
                 <label id="switch">
                     <input type="checkbox" class="toggle" onchange="onToggle(this.checked)" <?= isset($_GET['signup']) ? 'checked' : '' ?>>
                     <span class="slider"></span>
-                    <span class="card-side"></span>
+                    <span class="card-side" style="--text-before: <?= _(Localization::LOGIN->value) ?>; --text-after: <?= _(Localization::SIGNUP->value) ?>;"></span>
                 </label>
                 <div class="flip-card-inner">
                     <div class="flip-card-login">
-                        <h6 class="title">Log in</h6>
+                        <h6 class="title"><?= _(Localization::LOGIN->value) ?></h6>
                         <form class="form-generic center" action="#" method="post">
                             <div class="error-wrapper">
                                 <div class="input-box">
@@ -192,14 +193,14 @@
                         </form>
                     </div>
                     <div class="flip-card-signup">
-                        <h6 class="title">Sign up</h6>
+                        <h6 class="title"><?= _('Sign up') ?></h6>
                         <form class="form-generic center" action="?signup#" method="post">
                             <div class="error-wrapper">
                                 <div class="input-box force-anim">
                                     <select name="gender" id="gender">
-                                        <option value="N" <?= ($gender == Gender::Unspecified || isset($genderError)) ? ' selected' : '' ?>> <?= _(Localization::GENDER_NEUTRAL->value) ?></option>
-                                        <option value="M" <?= ($gender == Gender::Male && !isset($genderError)) ? ' selected' : '' ?>> <?= _(Localization::GENDER_MALE->value) ?></option>
-                                        <option value="F" <?= ($gender == Gender::Female && !isset($genderError)) ? ' selected' : '' ?>> <?= _(Localization::GENDER_FEMALE->value) ?></option>
+                                        <option value="N" <?= ($gender == Gender::Unspecified || isset($genderError)) ? ' selected' : '' ?>> <?= _(Gender::Unspecified->name) ?></option>
+                                        <option value="M" <?= ($gender == Gender::Male && !isset($genderError)) ? ' selected' : '' ?>> <?= _(Gender::Male->name) ?></option>
+                                        <option value="F" <?= ($gender == Gender::Female && !isset($genderError)) ? ' selected' : '' ?>> <?= _(Gender::Female->name) ?></option>
                                     </select>
                                     <label><?= _(Localization::GENDER_CIVILITY->value) ?></label>
                                 </div><?php if ($genderError)

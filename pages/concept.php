@@ -3,9 +3,121 @@
 
 <head>
     <?php
-    require_once('../util/common.php');
+    require_once ('../util/common.php');
     getPageHead('Concept', 'concept');
     ?>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Update les horloges toutes les secondes
+            setInterval(updateConversion, 1000);
+
+            // Initialisation de l'horloge
+            updateConversion();
+
+            // Dessine les aiguilles des 2 horloges
+            drawLines(document.getElementById('clock-2'), 60, 5);
+            drawLines(document.getElementById('clock-1'), 40, 5);
+        })
+
+        // Renvoie un temps octal à partir d'un élément Date
+        function getOctTime(dt) {
+            const time = Math.round(dt.getTime() / 1000);
+            const hour = dt.getHours();
+            const trinute = Math.floor((time % 3600) / 90);
+            const second = Math.floor(time % 90);
+            return [hour, trinute, second]
+        }
+
+        // Renvoie un string de temps sous format 24h à partir d'une Date
+        function h24(dt) {
+            let add = " heures (du matin),<br>";
+            if (dt.getHours() > 12) add = `heures,<br>&emsp;C'est-à-dire ${dt.getHours() - 12} heures de l'après-midi,<br>`;
+            return `${dt.getHours()} ${add}
+            ${dt.getMinutes()} minutes,<br>
+            ${dt.getSeconds()} secondes.<br>`;
+        }
+
+        // Renvoie un string de temps sous format 8h à partir d'une Date
+        function h8(dt) {
+            let add = `${dt[0]} heure premières`;
+            if (dt[0] > 16) add = `${dt[0] - 16} heures hexales`;
+            else if (dt[0] > 8) add = `${dt[0] - 8} heures octales`;
+            return `${add},<br>
+            ${dt[1]} trinutes,<br>
+            ${dt[2]} secondes.<br>`;
+        }
+
+        // Mets à jour les horloges toutes les secondes
+        function updateClock(dt, odt) {
+
+            // HEURE OCTALE
+            secondRatio = odt[2] / 90;
+            minuteRatio = (odt[1] + secondRatio) / 40;
+            hourRatio = (odt[0] + minuteRatio) / 8;
+
+            setRotation('secondHand', secondRatio);
+            setRotation('minuteHand', minuteRatio);
+            setRotation('hourHand', hourRatio);
+
+            // HEURE CLASSIQUE
+            secondRatio = dt.getSeconds() / 60;
+            minuteRatio = (secondRatio + dt.getMinutes()) / 60;
+            hourRatio = (minuteRatio + dt.getHours()) / 12;
+            setRotation('secondHand2', secondRatio);
+            setRotation('minuteHand2', minuteRatio);
+            setRotation('hourHand2', hourRatio);
+
+        }
+
+        function setRotation(elementID, rotationRatio) {
+            document.getElementById(elementID).style.transform = `rotate(${rotationRatio * 360}deg)`;
+        }
+
+        function updateConversion() {
+            const ts = Math.floor(Date.now() / 1000); // Temps actuel en secondes
+            const dt = new Date(ts * 1000);
+            const odt = getOctTime(dt);
+            updateClock(dt, odt);
+
+            // Mets à jour les paragraphes HTML avec la bonne date
+            document.getElementById("format24").innerHTML = h24(dt);
+            document.getElementById("format8").innerHTML = h8(odt);
+
+            // Mets à jour l'horloge 12h
+            document.getElementById("format24-hms").innerHTML = `
+                ${dt.getHours().toString().padStart(2, '0')} :
+                ${dt.getMinutes().toString().padStart(2, '0')} :
+                ${dt.getSeconds().toString().padStart(2, '0')}
+                <br>&emsp;ou<br> 
+                ${(dt.getHours() % 12).toString().padStart(2, '0')} :
+                ${dt.getMinutes().toString().padStart(2, '0')} :
+                ${dt.getSeconds().toString().padStart(2, '0')} 
+                ${dt.getHours() > 12 ? "de l'après-midi" : "du matin"}
+                `;
+
+            // Update l'horloge 8h
+            document.getElementById("format8-hts").innerHTML = `
+                ${odt[0].toString().padStart(2, '0')} :
+                ${odt[1].toString().padStart(2, '0')} :
+                ${odt[2].toString().padStart(2, '0')}
+                <br>&emsp;ou<br> 
+                ${(odt[0] % 8).toString().padStart(2, '0')}:
+                ${odt[1].toString().padStart(2, '0')} :
+                ${odt[2].toString().padStart(2, '0')} 
+                ${odt[0] > 8 ? (odt[0] > 16 ? 'H (Hexale)' : 'O (Octale)') : 'M (Midenalle)'}
+                `;
+        }
+
+        // Fonction pour dessiner n lignes sur l'horloge données. Toutes les dn lignes,
+        // un plus gros trait sera dessiné, avec un nombre pour la marquer en plus
+        function drawLines(clock, n, dn) {
+            const delta = 360 / n, startAngle = -90;
+            for (let i = 0; i < n; i++) {
+                if (!(i % dn)) clock.innerHTML += `<span class="number" style="--angle:${i * delta + startAngle}deg;">${i ? i / dn : n / dn}</span>`;
+                clock.innerHTML += `<span class="line ${!(i % dn) ? 'big' : ''}" style="--angle:${i * delta + startAngle}deg;"></span>`;
+            }
+        }
+    </script>
 </head>
 
 <body>
@@ -14,7 +126,7 @@
         <a href="#nav"></a>
         <span class="transition"></span>
     </section>
-    
+
     <?php
     getPageHeader('concept');
     ?>
@@ -56,149 +168,22 @@
     <section id="time">
         <div>
             <h3>Format d'heure octal</h3>
-            <p>
-                22: 21: 78
-                <br>&emsp;ou<br>
-                06: 21: 78 H (Hexale)
-            </p>
+            <p id="format8"></p>
+            <p id="format8-hts"></p> <!-- HH:TT:SS -->
             <div id="clock-1" class="clock">
-                <div class="hand hour" id="hourHand" style="transform: rotate(1014.6deg);"></div>
-                <div class="hand minute" id="minuteHand" style="transform: rotate(196.8deg);"></div>
-                <div class="hand second" id="secondHand" style="transform: rotate(312deg);"></div>
-                <span class="number" style="--angle:-90deg;">8</span>
-                <span class="line big" style="--angle:-90deg;"></span>
-                <span class="line " style="--angle:-81deg;"></span>
-                <span class="line " style="--angle:-72deg;"></span>
-                <span class="line " style="--angle:-63deg;"></span>
-                <span class="line " style="--angle:-54deg;"></span>
-                <span class="number" style="--angle:-45deg;">1</span>
-                <span class="line big" style="--angle:-45deg;"></span>
-                <span class="line " style="--angle:-36deg;"></span>
-                <span class="line " style="--angle:-27deg;"></span>
-                <span class="line " style="--angle:-18deg;"></span>
-                <span class="line " style="--angle:-9deg;"></span>
-                <span class="number" style="--angle:0deg;">2</span>
-                <span class="line big" style="--angle:0deg;"></span>
-                <span class="line " style="--angle:9deg;"></span>
-                <span class="line " style="--angle:18deg;"></span>
-                <span class="line " style="--angle:27deg;"></span>
-                <span class="line " style="--angle:36deg;"></span>
-                <span class="number" style="--angle:45deg;">3</span>
-                <span class="line big" style="--angle:45deg;"></span>
-                <span class="line " style="--angle:54deg;"></span>
-                <span class="line " style="--angle:63deg;"></span>
-                <span class="line " style="--angle:72deg;"></span>
-                <span class="line " style="--angle:81deg;"></span>
-                <span class="number" style="--angle:90deg;">4</span>
-                <span class="line big" style="--angle:90deg;"></span>
-                <span class="line " style="--angle:99deg;"></span>
-                <span class="line " style="--angle:108deg;"></span>
-                <span class="line " style="--angle:117deg;"></span>
-                <span class="line " style="--angle:126deg;"></span>
-                <span class="number" style="--angle:135deg;">5</span>
-                <span class="line big" style="--angle:135deg;"></span>
-                <span class="line " style="--angle:144deg;"></span>
-                <span class="line " style="--angle:153deg;"></span>
-                <span class="line " style="--angle:162deg;"></span>
-                <span class="line " style="--angle:171deg;"></span>
-                <span class="number" style="--angle:180deg;">6</span>
-                <span class="line big" style="--angle:180deg;"></span>
-                <span class="line " style="--angle:189deg;"></span>
-                <span class="line " style="--angle:198deg;"></span>
-                <span class="line " style="--angle:207deg;"></span>
-                <span class="line " style="--angle:216deg;"></span>
-                <span class="number" style="--angle:225deg;">7</span>
-                <span class="line big" style="--angle:225deg;"></span>
-                <span class="line " style="--angle:234deg;"></span>
-                <span class="line " style="--angle:243deg;"></span>
-                <span class="line " style="--angle:252deg;"></span>
-                <span class="line " style="--angle:261deg;"></span>
+                <div class="hand hour" id="hourHand"></div>
+                <div class="hand minute" id="minuteHand"></div>
+                <div class="hand second" id="secondHand"></div>
             </div>
         </div>
         <div>
             <h3>Format d'heure classique</h3>
-            <p>
-                22: 32: 48
-                <br>&emsp;ou<br>
-                10: 32: 48 de l'après-midi
-            </p>
-
+            <p id="format24"></p>
+            <p id="format24-hms"></p> <!-- HH:MM:SS -->
             <div id="clock-2" class="clock">
-                <div class="hand hour" id="hourHand2" style="transform: rotate(676.4deg);"></div>
-                <div class="hand minute" id="minuteHand2" style="transform: rotate(196.8deg);"></div>
-                <div class="hand second" id="secondHand2" style="transform: rotate(288deg);"></div>
-                <span class="number" style="--angle:-90deg;">12</span>
-                <span class="line big" style="--angle:-90deg;"></span>
-                <span class="line " style="--angle:-84deg;"></span>
-                <span class="line " style="--angle:-78deg;"></span>
-                <span class="line " style="--angle:-72deg;"></span>
-                <span class="line " style="--angle:-66deg;"></span>
-                <span class="number" style="--angle:-60deg;">1</span>
-                <span class="line big" style="--angle:-60deg;"></span>
-                <span class="line " style="--angle:-54deg;"></span>
-                <span class="line " style="--angle:-48deg;"></span>
-                <span class="line " style="--angle:-42deg;"></span>
-                <span class="line " style="--angle:-36deg;"></span>
-                <span class="number" style="--angle:-30deg;">2</span>
-                <span class="line big" style="--angle:-30deg;"></span>
-                <span class="line " style="--angle:-24deg;"></span>
-                <span class="line " style="--angle:-18deg;"></span>
-                <span class="line " style="--angle:-12deg;"></span>
-                <span class="line " style="--angle:-6deg;"></span>
-                <span class="number" style="--angle:0deg;">3</span>
-                <span class="line big" style="--angle:0deg;"></span>
-                <span class="line " style="--angle:6deg;"></span>
-                <span class="line " style="--angle:12deg;"></span>
-                <span class="line " style="--angle:18deg;"></span>
-                <span class="line " style="--angle:24deg;"></span>
-                <span class="number" style="--angle:30deg;">4</span>
-                <span class="line big" style="--angle:30deg;"></span>
-                <span class="line " style="--angle:36deg;"></span>
-                <span class="line " style="--angle:42deg;"></span>
-                <span class="line " style="--angle:48deg;"></span>
-                <span class="line " style="--angle:54deg;"></span>
-                <span class="number" style="--angle:60deg;">5</span>
-                <span class="line big" style="--angle:60deg;"></span>
-                <span class="line " style="--angle:66deg;"></span>
-                <span class="line " style="--angle:72deg;"></span>
-                <span class="line " style="--angle:78deg;"></span>
-                <span class="line " style="--angle:84deg;"></span>
-                <span class="number" style="--angle:90deg;">6</span>
-                <span class="line big" style="--angle:90deg;"></span>
-                <span class="line " style="--angle:96deg;"></span>
-                <span class="line " style="--angle:102deg;"></span>
-                <span class="line " style="--angle:108deg;"></span>
-                <span class="line " style="--angle:114deg;"></span>
-                <span class="number" style="--angle:120deg;">7</span>
-                <span class="line big" style="--angle:120deg;"></span>
-                <span class="line " style="--angle:126deg;"></span>
-                <span class="line " style="--angle:132deg;"></span>
-                <span class="line " style="--angle:138deg;"></span>
-                <span class="line " style="--angle:144deg;"></span>
-                <span class="number" style="--angle:150deg;">8</span>
-                <span class="line big" style="--angle:150deg;"></span>
-                <span class="line " style="--angle:156deg;"></span>
-                <span class="line " style="--angle:162deg;"></span>
-                <span class="line " style="--angle:168deg;"></span>
-                <span class="line " style="--angle:174deg;"></span>
-                <span class="number" style="--angle:180deg;">9</span>
-                <span class="line big" style="--angle:180deg;"></span>
-                <span class="line " style="--angle:186deg;"></span>
-                <span class="line " style="--angle:192deg;"></span>
-                <span class="line " style="--angle:198deg;"></span>
-                <span class="line " style="--angle:204deg;"></span>
-                <span class="number" style="--angle:210deg;">10</span>
-                <span class="line big" style="--angle:210deg;"></span>
-                <span class="line " style="--angle:216deg;"></span>
-                <span class="line " style="--angle:222deg;"></span>
-                <span class="line " style="--angle:228deg;"></span>
-                <span class="line " style="--angle:234deg;"></span>
-                <span class="number" style="--angle:240deg;">11</span>
-                <span class="line big" style="--angle:240deg;"></span>
-                <span class="line " style="--angle:246deg;"></span>
-                <span class="line " style="--angle:252deg;"></span>
-                <span class="line " style="--angle:258deg;"></span>
-                <span class="line " style="--angle:264deg;"></span>
+                <div class="hand hour" id="hourHand2"></div>
+                <div class="hand minute" id="minuteHand2"></div>
+                <div class="hand second" id="secondHand2"></div>
             </div>
         </div>
     </section>

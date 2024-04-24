@@ -327,9 +327,6 @@ nav a:focus::after {
     transform: translateY(-50%);
     right: 20px;
 
-    /* Décale l'image à l'intérieur */
-    padding: 10px;
-
     border-radius: 50%;
     transition: all .3s;
     height: fit-content;
@@ -340,9 +337,10 @@ nav a:focus::after {
 }
 
 /* Définit la taille de l'image */
-#login>img {
-    width: 25px;
-    height: 25px;
+#login > img {
+    width: 50px;
+    height: 50px;
+    border-radius: inherit;
 }
 
 /* Couleurs inversées lors du survol */
@@ -638,6 +636,11 @@ textarea:focus {
     align-items: center;
 }
 
+.error-wrapper.center * {
+    justify-content: center;
+    align-items: center;
+}
+
 .wrap {
     flex-wrap: wrap;
 }
@@ -649,7 +652,7 @@ textarea:focus {
 
 /* Classe pour afficher les messages d'erreur */
 .error {
-    background-color: rgba(150, 0,20,0.4);
+    background-color: rgba(140, 0,20,0.5);
     border-radius: 15px;
     padding: 10px 15px;
     box-sizing: content-box;
@@ -665,8 +668,6 @@ textarea:focus {
 .error-wrapper {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
 }
 
 /* Classe pour les inputs stylisés */
@@ -732,17 +733,23 @@ textarea:focus {
     color: var(--theme-accent-color);
 }
 
-input[type="submit"]{
+input[type="submit"] {
     /*style du bouton*/
     background-color: black;
     color: white;
     border: 2px solid var(--theme-accent-color);
     padding: 0 2vh;
     cursor: pointer;
-    width: max(30%, fit-content);
+    box-sizing: content-box;
+    margin:auto;
+    width: 30%;
     border-radius: 5px;
     height: 5vh;
     text-align: center;
+}
+
+input:hover {
+    color: var(--theme-accent-color);
 }
 
 legend {

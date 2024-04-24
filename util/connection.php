@@ -16,20 +16,14 @@ $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $userInfo = null;
 
 // Si l'email donné dans les cookies est valide, on tente de connecter l'utilisateur automatiquement
-if(isset($_COOKIE['email']) && validateEmail($_COOKIE['email']) && isset($_COOKIE['password'])) try {
-    // On sélection le compte via l'email
-    $stmt = $connection->prepare("SELECT * FROM accounts WHERE email = ?");
-    $stmt->execute([$_COOKIE['email']]);
+if(isset($_COOKIE['id']) && validateId($_COOKIE['id']) && isset($_SESSION['password'])) try {
+    // On sélectionne le compte via l'email
+    $stmt = $connection->prepare("SELECT * FROM accounts WHERE id = ?");
+    $stmt->execute([$_COOKIE['id']]);
     $res = $stmt->fetch(PDO::FETCH_ASSOC);
 
     // On vérifie que les MdP (préalablement hashés) soient bien les mêmes
     // Si c'est le cas, alors on définit l'userInfo comme la ligne de données associées à cet user
-    if($res['password'] == $_COOKIE['password']) $userInfo = $res;
+    // Si jamais aucun utilisateur ne correspond, alors $res n'est pas défini et on ne connecte pas
+    if(isset($res['password']) && $res['password'] == $_SESSION['password']) $userInfo = $res;
 } catch(Exception $e) { $userInfo = null; }
-
-function login(string $email, string $hashedPwd):bool {
-    try {
-
-        return true;
-    } catch (Exception $e) { return false; }
-}

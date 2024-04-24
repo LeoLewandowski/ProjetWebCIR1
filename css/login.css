@@ -10,30 +10,27 @@ body {
     background-attachment: fixed;
 }
 
+.formLetter textarea {
+    width: 85%;
+    margin: auto;
+}
+
 .formLetter {
     /*disposition des elements dans le formulaire*/
     position: relative;
     display: flex;
     margin: 5px;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
     padding-top: 5vh;
     margin-top: 5vh;
     border-radius: 4px;
     padding: 1vw;
     backdrop-filter: blur(5px) brightness(45%);
+    max-width: 90vw;
     box-shadow: 0 0 5px 2px black;
 }
 
-fieldset {
-    padding: 1%;
-    margin: 1%;
-    border: none;
-    /* 2px solid var(--theme-accent-color); */
-}
-
-.formLetter>label {
+.formLetter > label {
     position: relative;
     left: 35%;
 }
@@ -69,9 +66,14 @@ fieldset {
     height: 20px;
 }
 
+.card-side {
+    --text-before: '';
+    --text-after: '';
+}
+
 .card-side::before {
     position: absolute;
-    content: 'Log in';
+    content: var(--text-before);
     left: -70px;
     top: 0;
     width: 60px;
@@ -82,7 +84,7 @@ fieldset {
 
 .card-side::after {
     position: absolute;
-    content: 'Sign up';
+    content: var(--text-after);
     left: 70px;
     top: 0;
     width: 70px;
