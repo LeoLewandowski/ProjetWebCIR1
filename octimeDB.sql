@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mer. 24 avr. 2024 à 15:07
+-- Généré le : jeu. 25 avr. 2024 à 19:42
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -44,7 +44,8 @@ CREATE TABLE `accounts` (
 --
 
 INSERT INTO `accounts` (`gender`, `name`, `surname`, `email`, `password`, `birth`, `admin`, `id`, `pfp_extension`) VALUES
-('M', 'Lewandowski', 'Léo', 'leo.lewandowski@student.junia.com', '$argon2i$v=19$m=65536,t=4,p=1$YXZJVkFnanJEL2dvUmxrRA$pc23vI41ZkfShQfpzDDWbKHz5EhwBglD61wJChniy0w', '2024-04-03', 0, '6628fb66c12f15.51178933', 'png');
+('M', 'Lewandowski', 'Léo', 'leo.lewandowski@student.junia.com', '$argon2i$v=19$m=65536,t=4,p=1$YXZJVkFnanJEL2dvUmxrRA$pc23vI41ZkfShQfpzDDWbKHz5EhwBglD61wJChniy0w', '2024-04-03', 1, '6628fb66c12f15.51178933', 'png'),
+('N', 'Test', 'Test', 'test@junia.com', '$argon2i$v=19$m=65536,t=4,p=1$dG1mOEpWd1hsMEs2Y25pMQ$m3TFeJ657Aq/9DJYSIsQhWlHZVpjp7e2GpnEjLGPWhA', '2024-04-11', 0, '662a84c3ec5670.78596281', 'png');
 
 -- --------------------------------------------------------
 
