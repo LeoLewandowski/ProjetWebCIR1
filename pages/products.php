@@ -3,8 +3,8 @@
 
 <head>
     <?php
-    require_once('../util/common.php');
-    require_once('../util/connection.php');
+    require_once($_SERVER['DOCUMENT_ROOT'] . '/util/common.php');
+    require_once($_SERVER['DOCUMENT_ROOT'] . '/util/connection.php');
     getPageHead('Produits', 'products');
 
     $params = [];
@@ -40,7 +40,7 @@
 
 <body>
     <?php
-    getPageHeader('produits');
+    getPageHeader('produits', $userInfo);
     ?>
 
     <main>
@@ -102,11 +102,11 @@
                  </a>";
             }
 
-            if($empty) echo "
+            if($empty) echo _("
             <div>
-                <h3>Aucune montre ne correspond à ces critères</h3>
-                <h4 style='color:grey'>Veuillez essayer autre chose</h4>
-            </div>";
+                <h3>No watch match these filters</h3>
+                <h4 style='color:grey'>Please try something else</h4>
+            </div>");
             ?>
             
         </section>

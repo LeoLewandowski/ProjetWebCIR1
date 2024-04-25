@@ -7,7 +7,6 @@ main {
 
 /*
     Style du div des filtres
-    Position sticky pour accompagner l'écran en descendant plus bas dans la page
 */
 .filters {
     display: flex;

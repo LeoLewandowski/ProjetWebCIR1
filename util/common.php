@@ -1,95 +1,19 @@
 <?php
+require('localization.php');
 // File used to incude HTML Elements common to multiple pages, such as the header and the footer
-require_once ('connection.php');
-enum Localization: string
+
+define('DB_HOSTNAME', "127.0.0.1");
+define('DB_NAME', "octime");
+define('DB_USERNAME', "root");
+define('DB_PASSWORD', "");
+
+function getPageHeader(string|array|null $pageName = '', array|null $uInfo = null)
 {
-
-    #region INVALID_INPUTS
-    case VALUE_INVALID = 'This option is invalid, please choose another one';
-    case NAME_INVALID = 'This name is invalid. Names must only contain word characters or ideogras, hyphens and apostrophes, and be shorter than 64 characters';
-    case PASSWORD_INVALID = 'The password must be between 8 and 64 characters long and can only include the following characters, with at least one of each type :<ul><li>Lower or upper-case latin letters, without accents</li><li>Digits (between 0 and 9)</li><li>Special characters in this list : \\*/+-_=#~&@$</li></ul>';
-    case PASSWORD_WRONG = 'Wrong password !';
-    case EMAIL_INVALID = 'The given email adress is invalid, or it is longer than 64 characters';
-    case EMAIL_USED = "This email adress is already linked to an account";
-    case ERROR_EMAIL_UNUSED = "This email adress is not linked to any account";
-    case DATE_INVALID = 'The given date must be between today and 1900/01/01';
-    case CONDITIONS_UNACCEPTED = 'You must accept the conditions to continue';
-    #endregion
-
-    #region ERRORS
-    case ERROR_WATCH_NOT_FOUND = "<h3>Sorry, this watch is unavailable</h3><br><h4>Please go back to the <a href=\"/products\">products page</a></h4>";
-    case ERROR_DEFAULT = "<span class='error'>An error occured</span>";
-    #endregion
-
-    #region INPUT
-    case EMAIL = 'Email';
-    case NAME = 'Name';
-    case SURNAME = 'Surname';
-    case PASSWORD = 'Password';
-    #endregion
-
-    #region TEXT
-    case CHARACTERICS = 'Characteristics';
-    case TIME_SYSTEM = 'Time system';
-    case PRICE = 'Price';
-    case BRACELET_COMPOSITION = 'Bracelet composition';
-    case ACCOUNT_INFOS = 'Account informations';
-    case GREETING = 'Welcome, ';
-    case LOGIN = 'Log in';
-    case SIGNUP = 'Sign up';
-    case GENDER_NEUTRAL = 'Other / Prefers not to say';
-    case GENDER_MALE = 'Male';
-    case GENDER_FEMALE = 'Female';
-    case GENDER_CIVILITY = 'Gender';
-    case BIRTH_DATE = 'Birth date';
-    case CONDITIONS_AGREE = 'I agree to the <a href="/conditions">terms and conditions</a> of this website';
-    case DANGER_ZONE = 'Danger zone';
-    case APPLY_CHANGES = 'Apply changes';
-    #endregion
-}
-
-
-enum TimeType: string
-{
-    case Duodecimal = 'D';
-    case Octal = 'O';
-}
-
-enum BraceletMaterial: string
-{
-    case Silicone = 'S';
-    case Leather = 'L';
-    case Metal = 'M';
-}
-
-enum Language: string
-{
-    case French = 'fr';
-    case English = 'en';
-}
-
-enum Gender: string
-{
-    case Male = 'M';
-    case Female = 'F';
-    case Unspecified = 'N';
-}
-
-Locale::setDefault('en');
-setlocale(LC_ALL, 'en_US');
-putenv('LC_ALL=en_US');
-bindtextdomain('main', realpath('../') . DIRECTORY_SEPARATOR . 'localization');
-textdomain("main");
-
-$lg = Language::French;
-if (isset($_COOKIE['lang']))
-    $lg = Language::tryFrom($_COOKIE['lang']) ?? Language::French;
-
-define('LANGUAGE', $lg);
-
-function getPageHeader(string|null $pageName = '')
-{
-    echo '
+    if(empty($uInfo) && is_array($pageName)){
+        $uInfo = $pageName;
+        $pageName = null;
+    }
+    ?>
     <header>
         <a id="logo-header" href="/">
             <picture class="img-theme">
@@ -97,7 +21,7 @@ function getPageHeader(string|null $pageName = '')
                 <img src="/images/logo_short.svg">
             </picture>
         </a>
-        <button id="nav-button">
+        <button id="nav-button" onclick="openNav()">
             <svg class="img-theme" width="50" height="50">
                 <line x1="0" y1="50%" x2="100%" y2="50%" class="nav-btn-bar" id="nav-btn-bar1" />
                 <line x1="0" y1="50%" x2="100%" y2="50%" class="nav-btn-bar" id="nav-btn-bar2" />
@@ -105,23 +29,25 @@ function getPageHeader(string|null $pageName = '')
             </svg>
         </button>
         <nav id="nav">
-            <a href="/history"' . ($pageName == 'history' ? 'style="color: var(--theme-accent-color);"' : '') . '>Présentation</a>
-            <a href="/concept"' . ($pageName == 'concept' ? 'style="color: var(--theme-accent-color);"' : '') . '>Concept</a>
-            <a href="/products"' . ($pageName == 'products' ? 'style="color: var(--theme-accent-color);"' : '') . '>Produits</a>
-            <a href="/team"' . ($pageName == 'team' ? 'style="color: var(--theme-accent-color);"' : '') . '>Notre équipe</a>
-            <a href="/contact"' . ($pageName == 'contact' ? 'style="color: var(--theme-accent-color);"' : '') . '>Contact</a>
+            <a href="/history" <?= $pageName == 'history' ? 'style="color: var(--theme-accent-color);"' : '' ?> >Présentation</a>
+            <a href="/concept" <?= $pageName == 'concept' ? 'style="color: var(--theme-accent-color);"' : '' ?> >Concept</a>
+            <a href="/products" <?= $pageName == 'products' ? 'style="color: var(--theme-accent-color);"' : '' ?> >Produits</a>
+            <a href="/team" <?= $pageName == 'team' ? 'style="color: var(--theme-accent-color);"' : '' ?> >Notre équipe</a>
+            <a href="/contact" <?= $pageName == 'contact' ? 'style="color: var(--theme-accent-color);"' : '' ?> >Contact</a>
         </nav>
-        <a id="login" class="center container-vertical" title="Se connecter" href="/login"><img id="pfp" src="/images/login.svg" class="img-theme"></a>
-    </header>';
+        <a id="login" class="center container-vertical" title="<?= isset($uInfo) ? _('Your account') . '" href="/account"' : _(Localization::LOGIN->value) . '" href="/login"' ?>"><img id="pfp" src="/images/<?= isset($uInfo) ? ('pfp/' . $uInfo['id'] . '.' . $uInfo['pfp_extension']) : 'login.svg" class="img-theme' ?>" ></a>
+    </header>
+    <?php
 }
 
 function getPageFooter()
 {
-    echo '
+    ?>
     <footer>
         Projet Web - Décembre 2023
         <a href="/conditions">Conditions d\'utilisation</a>
-    </footer>';
+    </footer>
+    <?php
 }
 
 function getPageTopButton()
@@ -131,24 +57,34 @@ function getPageTopButton()
 
 function getPageHead(string $title, string|null $cssFileName = '')
 {
-    echo '
-    <title>' . $title . '</title>
+    ?>
+    <title><?= $title ?></title>
     <link rel="stylesheet" href="/css/main.css">
     <link rel="icon" href="/images/clock.svg">
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">';
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        function openNav(force = null){
+            if(force === false || (force === null && document.querySelector('header').classList.contains('nav-opened'))) document.querySelector('header').classList.remove('nav-opened');
+            else document.querySelector('header').classList.add('nav-opened');
+        }
+    </script>
+    <?php 
     if ($cssFileName)
         echo '<link rel="stylesheet" href="/css/' . $cssFileName . '.css">';
 }
 
+// Convertit une couleur HSL en RGB
 function ColorHSLToRGB($h, $s, $l)
 {
-
+    // Définition des valeurs rgb
     $r = $l;
     $g = $l;
     $b = $l;
+    // Valeur HSL
     $v = ($l <= 0.5) ? ($l * (1.0 + $s)) : ($l + $s - $l * $s);
     if ($v > 0) {
+        // Définition variables nécessaires
         $m = $sv = $sextant = $fract = $vsf = $mid1 = $mid2 = 0;
 
         $m = $l + $l - $v;
@@ -196,43 +132,62 @@ function ColorHSLToRGB($h, $s, $l)
     return array('r' => $r * 255.0, 'g' => $g * 255.0, 'b' => $b * 255.0);
 }
 
-function createPfp(string $imageName, string $text): bool|null
+function createPfp(string $imageName, string $text, int $width = 500, int $height = 500, int $minPadding = 100): bool|null
 {
-    $minPadding = 50;
+    // Paramètre pour la taille de police
     $fontSize = 800;
-    $height = 500;
-    $width = 500;
 
-    $im = @imagecreate($width, $height)
+    // Crée une image avec les dimensions données
+    $im = imagecreate($width, $height)
         or die("Cannot Initialize new GD image stream");
+
+    // Définit une couleur de fond à partir d'une couleur HSL. On utilise HSL pour obtenir une couleur pastel,
+    // que l'on décode ensuite en RGB pour l'allocation sur l'image
     $randomRGB = ColorHSLToRGB(random_int(0, 359) / 360, 1, 0.8);
     $background_color = imagecolorallocate($im, $randomRGB['r'], $randomRGB['g'], $randomRGB['b']);
-    $rectColor = imagecolorallocate($im, 255, 0, 0);
+
+    // Le texte est écrit en noir
     $text_color = imagecolorallocate($im, 0, 0, 0);
 
+    // On réduit la taille de la police jusqu'à ce que le texte rentre dans l'image, avec un
+    // padding minimum (défini par le paramètre `$minPadding`) entre le texte et le bord de l'image
     do {
         $fontSize -= 1;
+        // On dessine le texte, puis on récupère les coordonnées des 4 points du rectangle de texte
         $rect = imagettftext($im, $fontSize, 0, 0, 0, $text_color, '../font/arial.ttf', $text);
         $minX = min(array($rect[0], $rect[2], $rect[4], $rect[6]));
         $maxX = max(array($rect[0], $rect[2], $rect[4], $rect[6]));
         $minY = min(array($rect[1], $rect[3], $rect[5], $rect[7]));
         $maxY = max(array($rect[1], $rect[3], $rect[5], $rect[7]));
 
+        // On définit la "boîte" qui contient le texte
         $box = array(
             "left" => abs($minX) - 1,
             "top" => abs($minY) - 1,
             "width" => $maxX - $minX,
-            "height" => $maxY - $minY,
-            "boundingBox" => $rect
+            "height" => $maxY - $minY
         );
+    // Tant que la taille de la boîte plus le padding minimum (fois 2 car des deux côtés) est supérieur
+    // à la taille de l'image, on répète la boucle (rétrécissement de la taille de police, check, etc.)
     } while ($box['width'] + 2 * $minPadding > $width || $box['height'] + 2 * $minPadding > $height);
 
+    // On définit des paddings en fonction de la taille de la boîte de texte et de l'espace inutilisé
+    // Permet de centrer le texte au milieu de l'image
     $topPadding = $box['top'] + ($height - $box['height']) / 2;
-    $leftPadding = $box['left'] + ($width - $box['width']) / 2;
+    $leftPadding = -$box['left'] + ($width - $box['width']) / 2;
 
-    imagefilledrectangle($im, 0, ($height - $box['height']) / 2, $box['width'], $box['height'] + ($height - $box['height']) / 2, $rectColor);
+    // Rectangle pour mettre le fond de l'image + recouvrir les textes précédents (essais de taille)
+    imagefilledrectangle($im, 0, 0, $width, $height, $background_color);
+
+    // Ecriture du texte au centre de l'image, avec la bonne taille
     imagettftext($im, $fontSize, 0, $leftPadding, $topPadding, $text_color, '../font/arial.ttf', $text);
+
+    // Enregistrement de l'image sous format PNG
     imagepng($im, '../images/pfp/' . $imageName);
+
+    // Image non nécessaire ; on la détruit
     imagedestroy($im);
+
+    // L'opération s'est terminée ; on renvoiei true
     return true;
 }

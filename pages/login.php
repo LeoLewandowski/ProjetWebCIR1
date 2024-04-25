@@ -3,7 +3,8 @@
 
 <head>
     <?php
-    require_once ('../util/common.php');
+    require_once($_SERVER['DOCUMENT_ROOT'] . '/util/common.php');
+    require_once($_SERVER['DOCUMENT_ROOT'] . '/util/connection.php');
 
     // Si l'utilisateur est déjà connecté, on le redirige vers la page de gestion de compte
     if (isset($userInfo)) header('location:./account');
@@ -158,7 +159,7 @@
 
 <body>
     <?php
-    getPageHeader();
+    getPageHeader($userInfo);
     ?>
     <main>
         <div class="wrapper formLetter">

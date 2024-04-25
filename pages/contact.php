@@ -3,7 +3,8 @@
 
 <head>
     <?php
-    require_once ('../util/common.php');
+    require_once($_SERVER['DOCUMENT_ROOT'] . '/util/common.php');
+    require_once($_SERVER['DOCUMENT_ROOT'] . '/util/connection.php');
     if(empty($userInfo)) header('location: ./login?redirect=contact');
     getPageHead('Contactez-nous', 'login');
     ?>
@@ -11,7 +12,7 @@
 
 <body>
     <?php
-    getPageHeader('contact');
+    getPageHeader('contact', $userInfo);
     ?>
 
     <main>
