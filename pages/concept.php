@@ -3,7 +3,8 @@
 
 <head>
     <?php
-    require_once ('../util/common.php');
+    require_once($_SERVER['DOCUMENT_ROOT'] . '/util/common.php');
+    require_once($_SERVER['DOCUMENT_ROOT'] . '/util/connection.php'); 
     getPageHead('Concept', 'concept');
     ?>
     <script>
@@ -128,7 +129,7 @@
     </section>
 
     <?php
-    getPageHeader('concept');
+    getPageHeader('concept', $userInfo);
     ?>
 
     <div class="concept">

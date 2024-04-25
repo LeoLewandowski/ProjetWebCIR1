@@ -3,21 +3,21 @@
 
 <head>
     <?php
-    require_once('../util/common.php');
-    require_once('../util/connection.php');
+    require_once($_SERVER['DOCUMENT_ROOT'] . '/util/common.php');
+    require_once($_SERVER['DOCUMENT_ROOT'] . '/util/connection.php');
     getPageHead('Montre', 'products');
     ?>
 </head>
 
 <body>
     <?php
-    getPageHeader('products');
+    getPageHeader('products', $userInfo);
     ?>
 
     <main>
         <?php
         $lang = $_GET['lang'] ?? LANGUAGE->value;
-        $err = false;
+        $valid = false;
 
         $wID = $_GET['id'];
         if (is_numeric($wID)) {
@@ -25,18 +25,18 @@
             $stmt->execute([$wID]);
             $res = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-            if (count($res) <= 0 || !isset($res)) $err = true;
+            if (count($res) <= 0 || !isset($res)) $valid = true;
             else $watch = $res[0];
         } else {
             $stmt = $connection->query("SELECT * FROM watches WHERE name = ?");
             $stmt->execute($wID);
             $res = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-            if (count($res) <= 0 || !isset($res)) $err = true;
+            if (count($res) <= 0 || !isset($res)) $valid = true;
             else $watch = $res[0];
         }
 
-        if ($err) echo _(Localization::ERROR_WATCH_NOT_FOUND->value);
+        if ($valid) echo _(Localization::ERROR_WATCH_NOT_FOUND->value);
         else {
             $wID = $watch['id'];
 

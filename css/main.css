@@ -115,11 +115,12 @@ p {
 /* ------------------------- HEADER & NAV -------------------------- */
 
 /* Evite d'avoir un grand espace vide après le header */
-header+* {
+header + * {
     margin-top: 0 !important;
 }
 
 header {
+    --height:100vh;
     width: 100%;
     height: 100px;
 
@@ -128,10 +129,6 @@ header {
     flex-direction: row;
     align-items: center;
 
-    /* Style et apparence de l'élément derrière */
-    backdrop-filter: blur(5px) brightness(50%);
-    box-shadow: var(--theme-box-shadow);
-
     /* Permet de l'accrocher au haut de la page quand on le dépasse en scrollant */
     position: sticky;
     top: 0;
@@ -139,6 +136,31 @@ header {
     /* Affichage au-dessus de tous les autres éléments */
     z-index: 1000;
 
+}
+
+header > * {
+    z-index: 10;
+}
+
+header::after {
+    position: absolute;
+    content: '';
+    top: 0;
+    height: 100px;
+    z-index: 9;
+    left: 0;
+    right: 0;
+    transition: all .5s ease-in-out;
+
+    pointer-events: none;
+
+    /* Style et apparence des éléments derrière */
+    backdrop-filter: blur(var(--glasspane-filter-size)) brightness(50%);
+    box-shadow: var(--theme-box-shadow);
+}
+
+header.nav-opened::after{
+    height: calc(var(--height) + 100px);
 }
 
 footer {
@@ -188,10 +210,6 @@ main {
 /* --------------------------- NAVIGATION --------------------------- */
 
 nav {
-    /* Propriété pour l'affichage mobile */
-    --height: 200px;
-    overflow-y: scroll;
-
     /* Positionné en-dessous du header, sur toute la largeur */
     position: absolute;
     left: 0;
@@ -211,7 +229,8 @@ nav {
 
     /* Misc */
     z-index: 10;
-    background-color: inherit;
+    overflow-y: auto;
+    pointer-events: none;
 
     /* Animation : hauteur de 0 quand le nav est fermé, transition smooth et linéaire */
     max-height: 0;
@@ -225,10 +244,7 @@ nav {
     Seul hic : on ne peut pas re-cliquer sur le bouton pour refermer le menu, il faut cliquer autre part sur la
     page
 */
-nav:hover,
-nav:focus,
-#nav-button:hover+nav,
-#nav-button:focus+nav {
+header.nav-opened nav {
     margin-bottom: 15px;
     max-height: var(--height);
 }
@@ -239,6 +255,8 @@ nav a {
     height: 50px;
     vertical-align: middle;
     line-height: 50px;
+    z-index: 10;
+    pointer-events: all;
 }
 
 /* Crée la ligne sous les liens du nav */
@@ -304,18 +322,18 @@ nav a:focus::after {
     Réduit la largeur de la barre centrale, ce qui la fait disparaître
 */
 
-#nav-button:hover #nav-btn-bar1,
-#nav-button:focus #nav-btn-bar1 {
+header.nav-opened #nav-button #nav-btn-bar1,
+header.nav-opened #nav-button #nav-btn-bar1 {
     transform: rotate(45deg);
 }
 
-#nav-button:hover #nav-btn-bar2,
-#nav-button:focus #nav-btn-bar2 {
+header.nav-opened #nav-button #nav-btn-bar2,
+header.nav-opened #nav-button #nav-btn-bar2 {
     transform: scaleX(0.1);
 }
 
-#nav-button:hover #nav-btn-bar3,
-#nav-button:focus #nav-btn-bar3 {
+header.nav-opened #nav-button #nav-btn-bar3,
+header.nav-opened #nav-button #nav-btn-bar3 {
     transform: rotate(-45deg);
 }
 
@@ -332,7 +350,6 @@ nav a:focus::after {
     height: fit-content;
 
     /* Couleur */
-    border: 1px solid var(--text-theme-color);
     box-shadow: 0 0 10px var(--text-theme-color);
 }
 
@@ -651,13 +668,35 @@ textarea:focus {
 }
 
 /* Classe pour afficher les messages d'erreur */
-.error {
-    background-color: rgba(140, 0,20,0.5);
+.error, .confirm, .warn {
     border-radius: 15px;
     padding: 10px 15px;
     box-sizing: content-box;
     max-width: 35vw;
+    width: fit-content;
     display: block;
+}
+
+.confirm {
+    background-color: rgba(0, 140, 0,0.5)
+}
+
+.confirm, .confirm * {
+    color: limegreen;
+    margin: 5px;
+}
+
+.warn {
+    background-color: rgba(183, 110, 1, 0.5)
+}
+
+.warn, .warn * {
+    color: orangered;
+    margin: 5px;
+}
+
+.error {
+    background-color: rgba(140, 0,20,0.5)
 }
 
 .error, .error * {
@@ -733,7 +772,7 @@ textarea:focus {
     color: var(--theme-accent-color);
 }
 
-input[type="submit"] {
+input[type="submit"], input[type="button"] {
     /*style du bouton*/
     background-color: black;
     color: white;
@@ -819,12 +858,12 @@ legend {
         flex-direction: row;
         transition: none;
         margin-bottom: 0 !important;
-        background-color: transparent;
+        backdrop-filter: none;
         box-shadow: none;
         overflow: hidden;
     }
 
-    /* Marge horizontale pour séparer les liens du nave entre eux */
+    /* Marge horizontale pour séparer les liens du nav entre eux */
     nav a {
         margin: 0 10px;
     }

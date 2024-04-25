@@ -3,14 +3,15 @@
 
 <head>
     <?php
-    require_once('../util/common.php');
+    require_once($_SERVER['DOCUMENT_ROOT'] . '/util/common.php');
+    require_once($_SERVER['DOCUMENT_ROOT'] . '/util/connection.php');
     getPageHead('L\'équipe Octime', 'team')
         ?>
 </head>
 
 <body>
     <?php
-    getPageHeader('team');
+    getPageHeader('team', $userInfo);
     ?>
 
     <main>

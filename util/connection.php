@@ -1,14 +1,9 @@
 <?php
 // File used for configuration and connection to the database and the account
 
-require_once('../util/validate.php');
+require_once('validate.php');
 
-session_start();
-
-define('DB_HOSTNAME', "127.0.0.1");
-define('DB_NAME', "octime");
-define('DB_USERNAME', "root");
-define('DB_PASSWORD', "");
+@session_start();
 
 $connection = new PDO("mysql:host=".DB_HOSTNAME.";dbname=".DB_NAME, DB_USERNAME, DB_PASSWORD);
 $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -27,3 +22,11 @@ if(isset($_COOKIE['id']) && validateId($_COOKIE['id']) && isset($_SESSION['passw
     // Si jamais aucun utilisateur ne correspond, alors $res n'est pas défini et on ne connecte pas
     if(isset($res['password']) && $res['password'] == $_SESSION['password']) $userInfo = $res;
 } catch(Exception $e) { $userInfo = null; }
+
+function disconnect(){
+    setcookie('id', '', -1);
+    setcookie('lang', '', -1);
+    session_unset();
+    session_destroy();
+    header('location:/login');
+}

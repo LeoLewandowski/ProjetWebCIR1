@@ -3,7 +3,8 @@
 
 <head>
     <?php
-    require_once('../util/common.php');
+    require_once($_SERVER['DOCUMENT_ROOT'] . '/util/common.php');
+    require_once($_SERVER['DOCUMENT_ROOT'] . '/util/connection.php');
     getPageHead('Histoire', 'histoire');
     ?>
 </head>
@@ -17,7 +18,7 @@
     </section>
 
     <?php
-    getPageHeader('history');
+    getPageHeader('history', $userInfo);
     ?>
 
     <div class="histoire">
