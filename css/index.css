@@ -1,23 +1,16 @@
-#quotes > * {
+#quotes>* {
     width: 100%
 }
 
 /* Les enfants de quote alignent leurs élément de manière alternée, soit à droite soit à gauche */
-#quotes > :nth-child(2n) {
+#quotes> :nth-child(2n) {
     align-items: start;
     text-align: start;
 }
 
-#quotes > :nth-child(2n + 1) {
+#quotes> :nth-child(2n + 1) {
     align-items: end;
     text-align: end;
-}
-
-
-/* La largeur du texte des citations est limité, pour laisser un espace
-    et bien montrer l'alternance d'alignement */
-#quotes > * > * {
-    max-width: 60%;
 }
 
 /* ------------------------ CLOCK NAV ------------------------ */
@@ -45,19 +38,25 @@
     width: 100%;
 }
 
-#clock-links > * {
+#clock-links>* {
     margin: 0;
     position: absolute;
     text-decoration: none;
     left: 50%;
     /* Centre les liens par rapport à la position où ils sont placés */
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
 }
 
 /* Affichage ordinateur : le nav a une taille normale */
 @media (min-width:576px) {
     #nav {
         transform: scale(100%);
+    }
+
+    /* La largeur du texte des citations est limité, pour laisser un espace
+    et bien montrer l'alternance d'alignement */
+    #quotes>*>* {
+        max-width: 60%;
     }
 }
 
@@ -66,7 +65,7 @@
 */
 
 #clock-links :nth-child(1) {
-    top:-15px;
+    top: -15px;
 }
 
 #clock-links :nth-child(2) {
@@ -85,7 +84,7 @@
 }
 
 #clock-links :nth-child(5) {
-    top:calc(100% + 15px);
+    top: calc(100% + 15px);
 }
 
 #clock-links :nth-child(6) {

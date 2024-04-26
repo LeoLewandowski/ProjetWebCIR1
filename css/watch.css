@@ -1,0 +1,48 @@
+.display-box {
+    --padding: max(2vw, 2vh);
+    padding: var(--padding);
+    border-radius: 20px;
+    box-shadow: 0 0 30px 5px var(--tertiary-theme-color);
+    background-color: var(--tertiary-theme-color);
+    font-size: min(3.5vh, 4vw);
+}
+
+#watchDisplay {
+    position: relative;
+    width: 40vw;
+    mask: radial-gradient(black 40%, transparent 90%);
+}
+
+#watchDisplay img {
+    width: 100%;
+    opacity: 1;
+    z-index: 5;
+    filter: none;
+    border-radius: 20px;
+}
+
+#watchOverlay {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: var(--padding);
+    bottom: var(--padding);
+    left: var(--padding);
+    right: var(--padding);
+    background-color: rgba(0, 0,0,0.6);
+    opacity: 0;
+    cursor: pointer;
+}
+
+#watchOverlay:hover {
+    opacity: 1;
+}
+
+h3, h2 {
+    text-shadow: 0 0 6px var(--text-theme-color);
+}
+
+li {
+    margin-left: 20px;
+}

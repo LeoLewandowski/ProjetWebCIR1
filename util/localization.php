@@ -79,8 +79,25 @@ enum Gender: string
 bindtextdomain('main', realpath('../') . DIRECTORY_SEPARATOR . 'localization');
 textdomain("main");
 
-$lg = Language::English;
+$lg = getClientLang(['fr', 'en']);
 if (isset($_COOKIE['lang']))
-    $lg = Language::tryFrom($_COOKIE['lang']) ?? Language::English;
+    $lg = Language::tryFrom($_COOKIE['lang']) ?? $lg;
 
 define('LANGUAGE', $lg);
+
+// Recherche la première langue acceptée par le client qui est aussi supportée par le site
+function getClientLang($checklanguages, $default = Language::English): Language
+{
+    if (isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
+        $langs = explode(',', $_SERVER['HTTP_ACCEPT_LANGUAGE']);
+        foreach ($langs as $value) {
+            $getlang = substr($value, 0, 2);
+            if (in_array($getlang, $checklanguages)) {
+                $test = Language::tryFrom($getlang);
+                if(isset($test)) return $test;
+            }
+        }
+    }
+    //Return default.
+    return $default;
+}

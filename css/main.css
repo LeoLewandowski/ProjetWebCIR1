@@ -29,6 +29,8 @@
     --breakpoint-md: 768px;
     --breakpoint-lg: 992px;
     --breakpoint-xl: 1200px;
+
+    font-size: min(14px, 2.5vw);
 }
 
 /* 
@@ -64,6 +66,10 @@ body {
 
     /* Sert à l'affichage du footer, pour qu'aucun élément n'apparaisse à la place du footer */
     padding-bottom: calc(var(--footer-height) + 10px);
+}
+
+svg {
+    stroke: var(--text-theme-color);
 }
 
 /* ---------------------------- TITLES & PARAGRAPHS -----------------------------
@@ -194,6 +200,7 @@ main {
     position: relative;
     margin: 25px 0;
     padding: 0 7.5%;
+    gap: 15px;
 }
 
 /* Logo Octime */
@@ -229,7 +236,7 @@ nav {
 
     /* Misc */
     z-index: 10;
-    overflow-y: auto;
+    overflow-y: hidden;
     pointer-events: none;
 
     /* Animation : hauteur de 0 quand le nav est fermé, transition smooth et linéaire */
@@ -714,7 +721,7 @@ textarea:focus {
 .form-generic {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 15px;
 }
 
 .input-box {

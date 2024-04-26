@@ -65,21 +65,21 @@
                     $pfp = null;
                     $pfpError = _('This file is not a valid image !');
                 } else {
-                    $valid = true;
+                    $invalid = true;
                     $pfpName = '../images/pfp/' . $userInfo['id'] . '.';
 
                     // Supprime la photo de profil précédente si elle existe
-                    if(file_exists($pfpName . $userInfo['pfp_extension'])) $valid = unlink($pfpName . $userInfo['pfp_extension']);
+                    if(file_exists($pfpName . $userInfo['pfp_extension'])) $invalid = unlink($pfpName . $userInfo['pfp_extension']);
 
                     // Enregistre la nouvelle extension de photo de profil
                     $stmt = $connection->prepare("UPDATE accounts SET pfp_extension = ? WHERE id = ?");
-                    $valid = $valid && $stmt->execute([$extension, $userInfo['id']]);
+                    $invalid = $invalid && $stmt->execute([$extension, $userInfo['id']]);
 
                     // Déplace l'image au bon endroit
-                    $valid = $valid && move_uploaded_file($pfp['tmp_name'], $pfpName . $extension);
+                    $invalid = $invalid && move_uploaded_file($pfp['tmp_name'], $pfpName . $extension);
 
                     // Si une erreur est apparue
-                    if(!$valid) $pfpError = _('Sorry, an unknown error occured');
+                    if(!$invalid) $pfpError = _('Sorry, an unknown error occured');
                 }
             }
         }
@@ -157,13 +157,7 @@
 
     getPageHead(_('Compte - Paramètres'), 'account');
     ?>
-    <style src="/css/login.css"></style>
-    <script>
-        function updateImage(files) {
-            const [f] = files;
-            if (f) document.getElementById('pfp-preview').src = URL.createObjectURL(f);
-        }
-    </script>
+    <script src="/util/imageChange.js"></script>
 </head>
 
 <body>
@@ -188,7 +182,7 @@
                             src="/images/pfp/<?= $userInfo['id'] . '.' . $userInfo['pfp_extension'] ?>">
                         <div id="pfp-overlay" onclick="document.getElementById('pfp-input').click()">
                             <input type="hidden" name="MAX_FILE_SIZE" value="30000000" />
-                            <input id="pfp-input" type="file" name="pfp" hidden onchange="updateImage(this.files)"
+                            <input id="pfp-input" type="file" name="pfp" hidden onchange="updateImage(this.files, 'pfp-preview')"
                                 accept="image/jpg, image/jpeg, image/png, image/webp, image/gif">
                             <label><?= _('Change profile picture') ?></label>
                         </div>
