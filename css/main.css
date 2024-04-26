@@ -21,6 +21,7 @@
     --text-theme-color: black;
     --theme-box-shadow: 0 1px 8px 3px rgba(0, 0, 0, 0.0509803922);
     --theme-accent-color: orange;
+    --glasspane-filter-size: 5px;
 
     /* Variables inutilisés, servent en tant que reminder des valeurs à utiliser en media-query*/
     --breakpoint-xs: 0;
@@ -28,6 +29,8 @@
     --breakpoint-md: 768px;
     --breakpoint-lg: 992px;
     --breakpoint-xl: 1200px;
+
+    font-size: min(14px, 2.5vw);
 }
 
 /* 
@@ -35,7 +38,7 @@
     une police de caractères ainsi que la couleur de texte associée au thème
  */
 * {
-    font-family: 'Franklin Gothic', Arial, sans-serif;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     margin: 0;
     padding: 0;
     color: var(--text-theme-color);
@@ -65,9 +68,21 @@ body {
     padding-bottom: calc(var(--footer-height) + 10px);
 }
 
+svg {
+    stroke: var(--text-theme-color);
+}
+
 /* ---------------------------- TITLES & PARAGRAPHS -----------------------------
     Thème des titres en général
 */
+
+.title {
+    margin: 20px 0 20px 0;
+    font-size: 25px;
+    font-weight: 900;
+    text-align: center;
+    color: var(--main-color);
+}
 
 h1,
 h2,
@@ -78,6 +93,7 @@ h6 {
     text-align: center;
     margin: 1.25rem;
     text-indent: 0;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 /* Grand titre, en petites majuscules */
@@ -105,11 +121,12 @@ p {
 /* ------------------------- HEADER & NAV -------------------------- */
 
 /* Evite d'avoir un grand espace vide après le header */
-header+* {
+header + * {
     margin-top: 0 !important;
 }
 
 header {
+    --height:100vh;
     width: 100%;
     height: 100px;
 
@@ -118,16 +135,38 @@ header {
     flex-direction: row;
     align-items: center;
 
-    /* Couleurs */
-    background-color: var(--main-theme-color);
-    box-shadow: var(--theme-box-shadow);
-
     /* Permet de l'accrocher au haut de la page quand on le dépasse en scrollant */
     position: sticky;
     top: 0;
 
     /* Affichage au-dessus de tous les autres éléments */
     z-index: 1000;
+
+}
+
+header > * {
+    z-index: 10;
+}
+
+header::after {
+    position: absolute;
+    content: '';
+    top: 0;
+    height: 100px;
+    z-index: 9;
+    left: 0;
+    right: 0;
+    transition: all .5s ease-in-out;
+
+    pointer-events: none;
+
+    /* Style et apparence des éléments derrière */
+    backdrop-filter: blur(var(--glasspane-filter-size)) brightness(50%);
+    box-shadow: var(--theme-box-shadow);
+}
+
+header.nav-opened::after{
+    height: calc(var(--height) + 100px);
 }
 
 footer {
@@ -161,6 +200,7 @@ main {
     position: relative;
     margin: 25px 0;
     padding: 0 7.5%;
+    gap: 15px;
 }
 
 /* Logo Octime */
@@ -177,10 +217,6 @@ main {
 /* --------------------------- NAVIGATION --------------------------- */
 
 nav {
-    /* Propriété pour l'affichage mobile */
-    --height: 200px;
-    overflow-y: scroll;
-
     /* Positionné en-dessous du header, sur toute la largeur */
     position: absolute;
     left: 0;
@@ -200,7 +236,8 @@ nav {
 
     /* Misc */
     z-index: 10;
-    background-color: inherit;
+    overflow-y: hidden;
+    pointer-events: none;
 
     /* Animation : hauteur de 0 quand le nav est fermé, transition smooth et linéaire */
     max-height: 0;
@@ -214,10 +251,7 @@ nav {
     Seul hic : on ne peut pas re-cliquer sur le bouton pour refermer le menu, il faut cliquer autre part sur la
     page
 */
-nav:hover,
-nav:focus,
-#nav-button:hover+nav,
-#nav-button:focus+nav {
+header.nav-opened nav {
     margin-bottom: 15px;
     max-height: var(--height);
 }
@@ -228,6 +262,8 @@ nav a {
     height: 50px;
     vertical-align: middle;
     line-height: 50px;
+    z-index: 10;
+    pointer-events: all;
 }
 
 /* Crée la ligne sous les liens du nav */
@@ -293,18 +329,18 @@ nav a:focus::after {
     Réduit la largeur de la barre centrale, ce qui la fait disparaître
 */
 
-#nav-button:hover #nav-btn-bar1,
-#nav-button:focus #nav-btn-bar1 {
+header.nav-opened #nav-button #nav-btn-bar1,
+header.nav-opened #nav-button #nav-btn-bar1 {
     transform: rotate(45deg);
 }
 
-#nav-button:hover #nav-btn-bar2,
-#nav-button:focus #nav-btn-bar2 {
+header.nav-opened #nav-button #nav-btn-bar2,
+header.nav-opened #nav-button #nav-btn-bar2 {
     transform: scaleX(0.1);
 }
 
-#nav-button:hover #nav-btn-bar3,
-#nav-button:focus #nav-btn-bar3 {
+header.nav-opened #nav-button #nav-btn-bar3,
+header.nav-opened #nav-button #nav-btn-bar3 {
     transform: rotate(-45deg);
 }
 
@@ -316,22 +352,19 @@ nav a:focus::after {
     transform: translateY(-50%);
     right: 20px;
 
-    /* Décale l'image à l'intérieur */
-    padding: 10px;
-
     border-radius: 50%;
     transition: all .3s;
     height: fit-content;
 
     /* Couleur */
-    border: 1px solid var(--text-theme-color);
     box-shadow: 0 0 10px var(--text-theme-color);
 }
 
 /* Définit la taille de l'image */
-#login>img {
-    width: 25px;
-    height: 25px;
+#login > img {
+    width: 50px;
+    height: 50px;
+    border-radius: inherit;
 }
 
 /* Couleurs inversées lors du survol */
@@ -438,7 +471,7 @@ textarea:focus {
 }
 
 .check-box input:checked~svg path {
-    stroke: orange;
+    stroke: var(--theme-accent-color);
     stroke-dasharray: 70.5096664428711 9999999;
     stroke-dashoffset: -262.2723388671875;
 }
@@ -457,7 +490,8 @@ textarea:focus {
 
 /* --------------------- USEFUL CLASSES --------------------- */
 
-/* Classe bannière : Ce qui est affiché dans les pages accueil, produit, histoire et concept */
+/* Classe bannière : Ce qui est affiché dans les pages accueil, produit, histoire et concept
+   Inclus aussi la classe transition component, pour la transition entre les éléments */
 .banner {
     /*
         Variable de source, précisée en CSS inline dans le document html.
@@ -522,6 +556,31 @@ textarea:focus {
 
     /* Délai avant le début de l'animation */
     animation-delay: 2s;
+}
+
+.transition {
+    /* Variables nécessaires */
+    --filter-size: var(--glasspane-filter-size);
+    --color: var(--main-theme-color);
+    --angle: 0deg;
+
+    /* Définit la taille de l'élément, et le force à afficher
+    seulement ce qui rentre dans l'écran */
+    overflow: hidden;
+    bottom: 0px;
+    position: absolute;
+    width: 100vw;
+    max-width: 100vw;
+    height: 15vh;
+
+    /* Définit les effets du background : backdrop-blur en dégradé + dégradé de couleur */
+    mask:linear-gradient(var(--angle), black 60%, transparent);
+    backdrop-filter: blur(var(--filter-size));
+    background: linear-gradient(var(--angle), var(--color), #0000);
+
+    /* Supprime l'animation imposée par certains éléments parents */
+    animation: none;
+    opacity: 100%;
 }
 
 /* Affiche le fond en position fixe par rapport au Viewport */
@@ -601,6 +660,11 @@ textarea:focus {
     align-items: center;
 }
 
+.error-wrapper.center * {
+    justify-content: center;
+    align-items: center;
+}
+
 .wrap {
     flex-wrap: wrap;
 }
@@ -608,6 +672,134 @@ textarea:focus {
 /* Classe pour rendre les images rondes */
 .img-round {
     border-radius: 50%;
+}
+
+/* Classe pour afficher les messages d'erreur */
+.error, .confirm, .warn {
+    border-radius: 15px;
+    padding: 10px 15px;
+    box-sizing: content-box;
+    max-width: 35vw;
+    width: fit-content;
+    display: block;
+}
+
+.confirm {
+    background-color: rgba(0, 140, 0,0.5)
+}
+
+.confirm, .confirm * {
+    color: limegreen;
+    margin: 5px;
+}
+
+.warn {
+    background-color: rgba(183, 110, 1, 0.5)
+}
+
+.warn, .warn * {
+    color: orangered;
+    margin: 5px;
+}
+
+.error {
+    background-color: rgba(140, 0,20,0.5)
+}
+
+.error, .error * {
+    color: rgba(220, 0, 0, 0.9);
+    margin: 5px;
+}
+
+.error-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Classe pour les inputs stylisés */
+
+.form-generic {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.input-box {
+    margin: 10px;
+    position: relative;
+    width: fit-content;
+}
+
+.input-box input,
+.input-box select,
+.input-box textarea {
+    border: solid 1.5px var(--tertiary-theme-color);
+    border-radius: 1rem;
+    padding: 1rem;
+    font-size: 1rem;
+    color: #f5f5f5;
+    transition: border 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.input-box > label {
+    position: absolute;
+    left: -12px;
+    color: gray;
+    pointer-events: none;
+    transform: translate(2rem, 1rem);
+    transition: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.input-box input:focus,
+.input-box input:valid,
+.input-box select:focus,
+.input-box select:valid,
+.input-box textarea:focus,
+.input-box textarea:valid {
+    outline: none;
+    border: 1.5px solid var(--theme-accent-color);
+}
+
+.input-box > input:focus ~ label,
+.input-box > input:not(:placeholder-shown) ~ label,
+.input-box > select:focus ~ label,
+.input-box > input:not(:placeholder-shown) ~ label,
+.input-box > textarea:focus ~ label,
+.input-box > input:not(:placeholder-shown) ~ label,
+.input-box.force-anim > label {
+    transform: translate(1rem, -100%) scale(0.8);
+    color: white;
+    padding: 0 .2em;
+    filter: none;
+}
+
+.input-box > input:focus ~ label,
+.input-box > select:focus ~ label, 
+.input-box > textarea:focus ~ label {
+    color: var(--theme-accent-color);
+}
+
+input[type="submit"], input[type="button"] {
+    /*style du bouton*/
+    background-color: black;
+    color: white;
+    border: 2px solid var(--theme-accent-color);
+    padding: 0 2vh;
+    cursor: pointer;
+    box-sizing: content-box;
+    margin:auto;
+    width: 30%;
+    border-radius: 5px;
+    height: 5vh;
+    text-align: center;
+}
+
+input:hover {
+    color: var(--theme-accent-color);
+}
+
+legend {
+    padding: 7px;
 }
 
 /* -------------------------- ANIMATIONS -------------------------- */
@@ -635,7 +827,7 @@ textarea:focus {
         --secondary-theme-color: rgb(20, 20, 20);
         --tertiary-theme-color: rgb(60, 60, 60);
         --text-theme-color: white;
-        --theme-box-shadow: 0 1px 8px 3px rgba(255, 255, 255, 0.2);
+        --theme-box-shadow: 0 3px 4px 0 rgba(255, 255, 255, 0.2);
     }
 
     * {
@@ -673,12 +865,12 @@ textarea:focus {
         flex-direction: row;
         transition: none;
         margin-bottom: 0 !important;
-        background-color: transparent;
+        backdrop-filter: none;
         box-shadow: none;
         overflow: hidden;
     }
 
-    /* Marge horizontale pour séparer les liens du nave entre eux */
+    /* Marge horizontale pour séparer les liens du nav entre eux */
     nav a {
         margin: 0 10px;
     }

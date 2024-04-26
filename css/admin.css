@@ -1,0 +1,59 @@
+#mainTable {
+    max-width: 95vw;
+    transition: none;
+}
+
+#mainTable, #mainTable td, #mainTable th {
+    border: 1px solid var(--theme-accent-color);
+    box-shadow: 0 0 3px .3px var(--theme-accent-color);
+    border-collapse: collapse;
+}
+
+#mainTable td, #mainTable th {
+    padding: 1vw;
+    height: 100%;
+    transition: none;
+}
+
+#mainTable td:nth-child(1) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+#mainTable td:nth-child(1) a {
+    text-decoration: none;
+}
+
+#watchEdit .input-box,
+#watchEdit input,
+#watchEdit select,
+#watchEdit textarea {
+    box-sizing: border-box;
+    width: 100%;
+}
+
+#mainTable #addWatch {
+    display:table-cell;
+    text-align: center;
+}
+
+#mainTable #addWatch div,
+#mainTable #addWatch a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+#mainTable #addWatch a:hover svg {
+    stroke: var(--theme-accent-color);
+}
+
+#mainTable #addWatch svg {
+    width: min(10vw,50px);
+    height: min(10vw,50px);
+    transition: inherit;
+}

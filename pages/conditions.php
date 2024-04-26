@@ -3,14 +3,14 @@
 
 <head>
 <?php
-    require_once('../util/common.php');
+    require_once($_SERVER['DOCUMENT_ROOT'] . '/util/common.php');
     getPageHead('Conditions d\'utilisation');
     ?>
 </head>
 
 <body>
     <?php
-    getPageHeader('produits');
+    getPageHeader($userInfo);
     ?>
 
     <main>
