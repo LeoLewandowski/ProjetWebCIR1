@@ -98,11 +98,7 @@
                  </a>";
             }
 
-            if($empty) echo _("
-            <div>
-                <h3>No watch match these filters</h3>
-                <h4 style='color:grey'>Please try something else</h4>
-            </div>");
+            if($empty) echo _("<div><h3>No watch match these filters</h3><h4 style='color:grey'>Please try something else</h4></div>");
             ?>
             
         </section>

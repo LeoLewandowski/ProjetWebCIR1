@@ -1,0 +1,238 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2024-04-26 21:29+0200\n"
+"PO-Revision-Date: 2024-04-26 21:43+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.2\n"
+"X-Poedit-Basepath: ../../..\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: pages/404.php:7
+msgid "Page not found"
+msgstr "Page non trouvée"
+
+#: pages/404.php:15
+msgid "Oops, seems the page you just requisted doesn't exist !"
+msgstr "Oups, on dirait que cette page n'existe pas !"
+
+#: pages/account.php:36
+msgid "Changes saved !"
+msgstr "Modifications enregistrées !"
+
+#: pages/account.php:60
+msgid "The picture's size must not exceed 30MB"
+msgstr "La taille de l'image ne doit pas excéder 30 Mo"
+
+#: pages/account.php:66
+msgid "This file is not a valid image !"
+msgstr "Ce fichier n'est pas une image valide !"
+
+#: pages/account.php:82 pages/admin/watches.php:44
+msgid "Sorry, an unknown error occured"
+msgstr "Désolé, une erreur inconnue est apparue"
+
+#: pages/account.php:136
+msgid ""
+"Are you sure you want to delete your account ? This operation cannot be "
+"undone."
+msgstr ""
+"Êtes-vous sûr·e de vouloir supprimer votre compte ? Cette opération est "
+"irréversible."
+
+#: pages/account.php:158
+msgid "Compte - Paramètres"
+msgstr ""
+
+#: pages/account.php:171 pages/account.php:250
+msgid "Session parameters"
+msgstr "Paramètres de session"
+
+#: pages/account.php:172 pages/account.php:262
+msgid "Danger zone"
+msgstr "Zone de danger"
+
+#: pages/account.php:187
+msgid "Change profile picture"
+msgstr "Changer photo de profil"
+
+#: pages/account.php:245 pages/admin/watches/edit.php:172
+msgid "Apply changes"
+msgstr "Enregistrer changements"
+
+#: pages/account.php:255
+msgid "Empty shopping cart"
+msgstr "Vider le panier"
+
+#: pages/account.php:256
+msgid "Disconnect"
+msgstr "Déconnexion"
+
+#: pages/account.php:257
+msgid "Access admin page"
+msgstr "Accès page admin"
+
+#: pages/account.php:269
+msgid "Confirm deletion"
+msgstr "Confirmer suppression"
+
+#: pages/account.php:271
+msgid "Delete account"
+msgstr "Suppression du compte"
+
+#: pages/admin.php:18
+msgid "Admin - main panel"
+msgstr "Admin - Menu principal"
+
+#: pages/admin.php:39
+msgid "Admin panel"
+msgstr "Menu admin"
+
+#: pages/admin.php:41 pages/admin/watches.php:62
+msgid "Watch management"
+msgstr "Modifications des montres"
+
+#: pages/admin.php:42
+msgid "Review client messages"
+msgstr "Accès messages clients"
+
+#: pages/admin.php:43
+msgid "View your account parameters"
+msgstr "Voir vos paramètres de compte"
+
+#: pages/admin/watches.php:53
+msgid "Admin - product management"
+msgstr "Admin - modification des produits"
+
+#: pages/admin/watches.php:98
+msgid "Watch deleted successfully"
+msgstr "Montre supprimée avec succès"
+
+#: pages/admin/watches.php:102
+msgid "Watch edited successfully"
+msgstr "Montre modifiée avec succès"
+
+#: pages/admin/watches.php:106
+msgid "An error occured"
+msgstr "Une erreur est apparue"
+
+#: pages/admin/watches.php:113
+msgid "Actions"
+msgstr ""
+
+#: pages/admin/watches.php:114 pages/admin/watches/add.php:93
+#: pages/admin/watches/edit.php:120
+msgid "Name"
+msgstr "Nom"
+
+#: pages/admin/watches.php:115
+msgid "Description"
+msgstr "Description"
+
+#: pages/admin/watches.php:116 pages/admin/watches/add.php:109
+#: pages/admin/watches/edit.php:136
+msgid "Price"
+msgstr "Prix"
+
+#: pages/admin/watches.php:117
+msgid "Bracelet"
+msgstr ""
+
+#: pages/admin/watches.php:118 pages/admin/watches/add.php:116
+#: pages/admin/watches/edit.php:143
+msgid "Time system"
+msgstr "Système tempore"
+
+#: pages/admin/watches.php:125 pages/products.php:101
+msgid ""
+"<div><h3>No watch match these filters</h3><h4 style='color:grey'>Please try "
+"something else</h4></div>"
+msgstr ""
+"<div><h3>Aucune montre ne correspond à ces filtres</h3><h4 style='color:"
+"grey'>Veuillez essayer autre chose</h4></div>"
+
+#: pages/admin/watches/add.php:31 pages/admin/watches/edit.php:52
+msgid "The price must be an integer"
+msgstr "Le prix doit être un nombre entier"
+
+#: pages/admin/watches/add.php:36 pages/admin/watches/add.php:41
+#: pages/admin/watches/edit.php:57 pages/admin/watches/edit.php:62
+msgid "Invalid value for"
+msgstr "Valeur invalide pour"
+
+#: pages/admin/watches/add.php:36 pages/admin/watches/edit.php:57
+msgid "Bracelet type"
+msgstr "Matière du bracelet"
+
+#: pages/admin/watches/add.php:41 pages/admin/watches/edit.php:62
+msgid "Time type"
+msgstr "Système temporel"
+
+#: pages/admin/watches/add.php:53 pages/admin/watches/edit.php:73
+msgid "This picture does not respect the rules !"
+msgstr "Cette image ne respecte pas les normes !"
+
+#: pages/admin/watches/add.php:66 pages/admin/watches/add.php:145
+msgid "Add watch"
+msgstr "Ajouter montre"
+
+#: pages/admin/watches/add.php:98 pages/admin/watches/edit.php:125
+msgid "Watch description (English)"
+msgstr "Description de la montre (Anglais)"
+
+#: pages/admin/watches/add.php:103 pages/admin/watches/edit.php:130
+msgid "Watch description (French)"
+msgstr "Description de la montre (Français)"
+
+#: pages/admin/watches/add.php:105 pages/admin/watches/edit.php:132
+msgid "Characteristics"
+msgstr "Caractéristiques"
+
+#: pages/admin/watches/add.php:119 pages/admin/watches/edit.php:146
+msgid "Octal"
+msgstr "Octale"
+
+#: pages/admin/watches/add.php:122 pages/admin/watches/edit.php:149
+msgid "Duodecimal"
+msgstr "Duodécimal"
+
+#: pages/admin/watches/add.php:131 pages/admin/watches/edit.php:158
+msgid "Bracelet material"
+msgstr "Matière du bracelet"
+
+#: pages/admin/watches/add.php:134 pages/admin/watches/edit.php:161
+msgid "Leather"
+msgstr "Cuir"
+
+#: pages/admin/watches/add.php:136 pages/admin/watches/edit.php:163
+msgid "Silicone"
+msgstr ""
+
+#: pages/admin/watches/add.php:138 pages/admin/watches/edit.php:165
+msgid "Metal"
+msgstr "Métal"
+
+#: pages/admin/watches/edit.php:87
+msgid "Editing"
+msgstr "Modification en cours"
+
+#: pages/admin/watches/edit.php:101
+msgid "Invalid watch"
+msgstr "Montre invalide"
+
+#: pages/admin/watches/edit.php:101
+msgid "Try with another ID"
+msgstr "Essayez avec ne autre ID"
+
+#: pages/login.php:197 pages/login.php:269
+msgid "Sign up"
+msgstr "Inscription"
+
+#: util/common.php:38
+msgid "Your account"
+msgstr "Votre compte"
