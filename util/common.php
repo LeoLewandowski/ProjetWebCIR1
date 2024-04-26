@@ -35,7 +35,7 @@ function getPageHeader(string|array|null $pageName = '', array|null $uInfo = nul
             <a href="/team" <?= $pageName == 'team' ? 'style="color: var(--theme-accent-color);"' : '' ?> >Notre équipe</a>
             <a href="/contact" <?= $pageName == 'contact' ? 'style="color: var(--theme-accent-color);"' : '' ?> >Contact</a>
         </nav>
-        <a id="login" class="center container-vertical" title="<?= isset($uInfo) ? _('Your account') . '" href="/account"' : _(Localization::LOGIN->value) . '" href="/login"' ?>"><img id="pfp" src="/images/<?= isset($uInfo) ? ('pfp/' . $uInfo['id'] . '.' . $uInfo['pfp_extension']) : 'login.svg" class="img-theme' ?>" ></a>
+        <a id="login" class="center container-vertical" title="<?= isset($uInfo) ? _('Your account') . ($uInfo['admin'] ? '" href="/admin"' : '" href="/account"') : _(Localization::LOGIN->value) . '" href="/login"' ?>"><img id="pfp" src="/images/<?= isset($uInfo) ? ('pfp/' . $uInfo['id'] . '.' . $uInfo['pfp_extension']) : 'login.svg" class="img-theme' ?>" ></a>
     </header>
     <?php
 }

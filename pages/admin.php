@@ -38,8 +38,9 @@ if (!$userInfo['admin']) {
     ?>
     <h1><?= _('Admin panel') ?></h1>
     <main>
-        <a href="/admin/watches">Watch management</a>
-        <a href="/admin/messages">Review client messages</a>
+        <a href="/admin/watches"><?= _('Watch management') ?></a>
+        <a href="/admin/messages"><?= _('Review client messages') ?></a>
+        <a href="/account"><?= _('View your account parameters') ?></a>
     </main>
     <?php
     getPageFooter();

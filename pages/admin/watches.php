@@ -93,11 +93,26 @@ else
             </div>
             <input type="submit" value="Appliquer">
         </form>
-        <table id="watches">
+        <?php
+        if (isset($_SESSION['watchDeleted'])) {
+            echo '<span class="confirm">' . _('Watch deleted successfully') . '</span>';
+            $_SESSION['watchDeleted'] = null;
+        }
+        if (isset($_SESSION['watchEdited'])) {
+            echo '<span class="confirm">' . _('Watch edited successfully') . '</span>';
+            $_SESSION['watchEdited'] = null;
+        }
+        if (isset($_SESSION['error'])) {
+            echo '<span class="error">' . _('An error occured') . '</span>';
+            $_SESSION['error'] = null;
+        }
+        ?>
+        <table id="mainTable">
+
             <thead>
                 <th><?= _('Actions') ?></th>
                 <th><?= _('Name') ?></th>
-                <th><?= _('Description (English)') ?></th>
+                <th><?= _('Description') ?></th>
                 <th><?= _('Price') ?></th>
                 <th><?= _('Bracelet') ?></th>
                 <th><?= _('Time system') ?></th>
@@ -114,13 +129,13 @@ else
                 </div>");
                 else
                     foreach ($result as $watch) {
-                        $desc = $watch['description'];
+                        $desc = $watch['description_' . LANGUAGE->value];
                         if (strlen($desc) > 64)
                             $desc = substr($desc, 0, 64) . '<span style="color:gray;">...</span>';
                         ?>
                             <tr>
                                 <td>
-                                    <a href="./watches/update?id=<?= $watch['id'] ?>">📝Update</a>
+                                    <a href="./watches/edit?id=<?= $watch['id'] ?>">📝Edit</a>
                                     <a href="./watches/delete?id=<?= $watch['id'] ?>">❌Delete</a>
                                 </td>
                                 <td><?= $watch['name'] ?></td>
@@ -132,6 +147,19 @@ else
                         <?php
                     }
                 ?>
+                <tr>
+                    <td id="addWatch" colspan=6>
+                        <div>
+                            <a href="./watches/add">
+                                <svg width="64" height="64" stroke-width="4" stroke-linecap="round" viewBox="0 0 64 64">
+                                    <circle cx="32" cy="32" r="28" fill="none" stroke-dasharray="8 14" />
+                                    <line x1="31.5" x2="31.5" y1="15" y2="48" />
+                                    <line x1="15" x2="48" y1="31.5" y2="31.5" />
+                                </svg>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
             </tbody>
         </table>
     </main>

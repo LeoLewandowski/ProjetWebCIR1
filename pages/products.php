@@ -88,17 +88,13 @@
 
                 $wID = $watch['id'];
                 $wName = $watch['name'];
-                $wDesc = $watch['description'];
 
                 $empty = false;
 
-                if(strlen($wDesc) > 125) $wDesc = substr($wDesc, 0, 125) . '<span style="color:gray;">...</span>';
-
                 echo
-                "<a href='/watch?id=$wID'>
+                "<a href='./products/watch?id=$wID'>
                      <img src=\"/images/watch/montre_$wID.png\">
                      <h3>$wName</h3>
-                     <h4>$wDesc</h4>
                  </a>";
             }
 
