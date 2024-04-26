@@ -122,11 +122,7 @@ else
                 if (isset($err))
                     echo $err;
                 else if (count($result) < 1)
-                    echo _("
-                <div>
-                    <h3>No watch match these filters</h3>
-                    <h4 style='color:grey'>Please try something else</h4>
-                </div>");
+                    echo _("<div><h3>No watch match these filters</h3><h4 style='color:grey'>Please try something else</h4></div>");
                 else
                     foreach ($result as $watch) {
                         $desc = $watch['description_' . LANGUAGE->value];

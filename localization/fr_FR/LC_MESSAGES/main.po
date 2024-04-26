@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: 2024-04-01 18:05+0200\n"
-"PO-Revision-Date: 2024-04-02 07:52+0200\n"
+"PO-Revision-Date: 2024-04-26 21:04+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -29,18 +29,16 @@ msgstr "La date donnée doit être entre 01/01/1900 et aujourd'hui"
 
 msgid "You must accept the conditions to continue"
 msgstr "Vous devez accepter les conditions afin de continuer"
+
 # endregion
-
-
 # region ERRORS
 msgid "<h3>Sorry, this watch is unavailable</h3><br><h4>Please go back to the <a href=\"/products\">products page</a></h4>"
 msgstr "<h3>Désolé, cette montre est indisponible</h3><br><h4>Veuillez retourner sur la <a href=\"/products\">page des produits</a></h4>"
 
 msgid "<span class='error'>An error occured</span>"
 msgstr "<span class='error'>Une erreur s'est produite</span>"
+
 # endregion
-
-
 # region TEXT
 msgid "Characteristics"
 msgstr "Caractéristiques"
@@ -53,22 +51,22 @@ msgstr "Prix"
 
 msgid "Bracelet composition"
 msgstr "Matière du bracelet"
-#endregion
 
-#region TIME_TYPE
+# endregion
+# region TIME_TYPE
 msgid "Duodecimal"
 msgstr "Duodécimal"
-#endregion
 
-#region BRACELET_MATERIAL
+# endregion
+# region BRACELET_MATERIAL
 msgid "Leather"
 msgstr "Cuir"
 
 msgid "Metal"
 msgstr "Métal"
-#endregion
 
-#region GENDER
+# endregion
+# region GENDER
 msgid "Gender"
 msgstr "Civilité"
 
@@ -80,15 +78,9 @@ msgstr "Femme"
 
 msgid "Unspecified"
 msgstr "Non spécifié"
-#endregion
 
-#region INPUT_TITLES
-msgid "Log in"
-msgid "Connexion"
-
-msgid "Sign up"
-msgid "Inscription"
-
+# endregion
+# region INPUT_TITLES
 msgid "Name"
 msgstr "Nom"
 
@@ -100,4 +92,3 @@ msgstr "Date de naissance"
 
 msgid "Password"
 msgstr "Mot de passe"
-#endregion
