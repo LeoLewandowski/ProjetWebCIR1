@@ -77,7 +77,7 @@ if (isset($_POST['send'])) {
 
     <main>
         <form class="formLetter" enctype="multipart/form-data" method="post" action="#">
-            <h6 class="title">Laisser un commentaire</h6>
+            <h6 class="title"> <?= _('Leave a comment') ?></h6>
             <?php
             if(isset($_SESSION['message_sent'])){
                 echo '<span class="confirm">' . _("Message sent to the admins !") . '</span>';

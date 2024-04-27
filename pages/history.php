@@ -12,7 +12,7 @@
 <body>
     <!-- Histoire -->
     <section class="banner parallax" style="--src:url(/images/mechanism.jpg)">
-        <h1>Une histoire pas comme les autres</h1>
+        <h1><?= _('A story like no other') ?></h1>
         <a href="#nav"></a>
         <span class="transition"></span>
     </section>
