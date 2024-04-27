@@ -5,7 +5,7 @@
     <?php
     require_once ($_SERVER['DOCUMENT_ROOT'] . '/util/common.php');
     require_once ($_SERVER['DOCUMENT_ROOT'] . '/util/connection.php');
-    getPageHead('Concept', 'concept');
+    getPageHead(_('Concept'), 'concept');
     ?>
     <script>
         const OR = "<?= _('or') ?>";

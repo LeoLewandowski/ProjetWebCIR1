@@ -5,7 +5,7 @@
     <?php
     require_once ($_SERVER['DOCUMENT_ROOT'] . '/util/common.php');
     require_once ($_SERVER['DOCUMENT_ROOT'] . '/util/connection.php');
-    getPageHead('Panier', 'panier');
+    getPageHead(_('Shopping cart'), 'panier');
     // Si l'utilisateur n'est pas connecté, on le redirge vers la page de connexion
     if (empty($userInfo))
         header('location:./login');

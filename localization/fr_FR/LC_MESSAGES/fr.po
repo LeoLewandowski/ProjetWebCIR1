@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2024-04-27 17:46+0200\n"
-"PO-Revision-Date: 2024-04-27 17:47+0200\n"
+"POT-Creation-Date: 2024-04-27 19:34+0200\n"
+"PO-Revision-Date: 2024-04-27 19:35+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -21,11 +21,11 @@ msgstr ""
 msgid "Homepage"
 msgstr "Accueil"
 
-#: index.php:35
+#: index.php:35 pages/history.php:8
 msgid "History"
 msgstr "Histoire"
 
-#: index.php:36 util/common.php:34
+#: index.php:36 pages/products.php:8 util/common.php:34
 msgid "Products"
 msgstr "Produits"
 
@@ -33,20 +33,21 @@ msgstr "Produits"
 msgid "Contact"
 msgstr ""
 
-#: index.php:38 util/common.php:33
+#: index.php:38 pages/concept.php:8 util/common.php:33
 msgid "Concept"
 msgstr ""
 
-#: index.php:39 pages/login.php:170 pages/login.php:174 pages/login.php:192
-#: util/common.php:38
+#: index.php:39 pages/login.php:149 pages/login.php:170 pages/login.php:174
+#: pages/login.php:192 util/common.php:38
 msgid "Log in"
 msgstr "Connexion"
 
-#: index.php:40 pages/login.php:170 pages/login.php:197 pages/login.php:269
+#: index.php:40 pages/login.php:149 pages/login.php:170 pages/login.php:197
+#: pages/login.php:269
 msgid "Sign up"
 msgstr "Inscription"
 
-#: index.php:41 util/common.php:35
+#: index.php:41 pages/team.php:18 util/common.php:35
 msgid "Our team"
 msgstr "Notre équipe"
 
@@ -181,27 +182,39 @@ msgstr "Page non trouvée"
 msgid "Oops, seems the page you just requisted doesn't exist !"
 msgstr "Oups, on dirait que cette page n'existe pas !"
 
-#: pages/account.php:36
+#: pages/account.php:38
 msgid "Changes saved !"
 msgstr "Modifications enregistrées !"
 
-#: pages/account.php:60 pages/contact.php:37
+#: pages/account.php:44
+msgid "Language updated !"
+msgstr "Langue mise à jour !"
+
+#: pages/account.php:55
+msgid ""
+"The language you provided is not supported ! Please choose from the options "
+"above"
+msgstr ""
+"La langue que vous avez choisie n'est pas supportée ! Veuillez choisir parmi "
+"les informations ci-dessus"
+
+#: pages/account.php:83 pages/contact.php:37
 msgid "The picture's size must not exceed 30MB"
 msgstr "La taille de l'image ne doit pas excéder 30 Mo"
 
-#: pages/account.php:66 pages/contact.php:43
+#: pages/account.php:89 pages/contact.php:43
 msgid "This file is not a valid image !"
 msgstr "Ce fichier n'est pas une image valide !"
 
-#: pages/account.php:82 pages/admin/watches.php:44 pages/contact.php:50
+#: pages/account.php:107 pages/admin/watches.php:44 pages/contact.php:50
 msgid "Sorry, an unknown error occured"
 msgstr "Désolé, une erreur inconnue est apparue"
 
-#: pages/account.php:92 pages/login.php:53
+#: pages/account.php:117 pages/login.php:53
 msgid "This option is invalid, please choose another one"
 msgstr "Cette option est invalide, veuillez en choisir une autre"
 
-#: pages/account.php:95 pages/account.php:97 pages/login.php:56
+#: pages/account.php:120 pages/account.php:122 pages/login.php:56
 #: pages/login.php:58
 msgid ""
 "This name is invalid. Names must only contain word characters or ideogras, "
@@ -210,19 +223,19 @@ msgstr ""
 "Ce nom est invalide. Un nom ne peut inclure que des caractères de mots ou "
 "idéogrammes, tirets et apostrophes, et doit faire moins de 64 caractères"
 
-#: pages/account.php:100 pages/login.php:64 pages/login.php:121
+#: pages/account.php:125 pages/login.php:64 pages/login.php:121
 msgid "The given email adress is invalid, or it is longer than 64 characters"
 msgstr "Cette adresse email est invalide, ou fait plus de 64 caractères"
 
-#: pages/account.php:103 pages/login.php:67
+#: pages/account.php:128 pages/login.php:67
 msgid "The given date must be between today and 1900/01/01"
 msgstr "La date donnée doit être comprise entre 01/01/1900 et aujourd'hui"
 
-#: pages/account.php:131
+#: pages/account.php:156
 msgid "Your cart was successfully emptied !"
 msgstr "Votre panier a été vidé !"
 
-#: pages/account.php:136
+#: pages/account.php:161
 msgid ""
 "Are you sure you want to delete your account ? This operation cannot be "
 "undone."
@@ -230,55 +243,93 @@ msgstr ""
 "Êtes-vous sûr·e de vouloir supprimer votre compte ? Cette opération est "
 "irréversible."
 
-#: pages/account.php:158
+#: pages/account.php:183
 msgid "Account - Parameters"
 msgstr "Compte - Paramètres"
 
-#: pages/account.php:167
+#: pages/account.php:192
 msgid "Welcome, "
 msgstr "Bienvenue, "
 
-#: pages/account.php:170 pages/account.php:176
+#: pages/account.php:195 pages/account.php:201
 msgid "Account informations"
 msgstr "Informations de compte"
 
-#: pages/account.php:171 pages/account.php:250
+#: pages/account.php:196 pages/account.php:277
 msgid "Session parameters"
 msgstr "Paramètres de session"
 
-#: pages/account.php:172 pages/account.php:262
+#: pages/account.php:197 pages/account.php:303
 msgid "Danger zone"
 msgstr "Zone de danger"
 
-#: pages/account.php:187
+#: pages/account.php:213
 msgid "Change profile picture"
 msgstr "Changer photo de profil"
 
-#: pages/account.php:204 pages/login.php:206
+#: pages/account.php:225
+msgid "Unspecified"
+msgstr "Non spécifié"
+
+#: pages/account.php:227
+msgid "Male"
+msgstr "Monsieur"
+
+#: pages/account.php:229
+msgid "Female"
+msgstr "Madame"
+
+#: pages/account.php:231 pages/login.php:206
 msgid "Gender"
 msgstr "Civilité"
 
-#: pages/account.php:245 pages/admin/watches/edit.php:172
+#: pages/account.php:240 pages/admin/watches.php:114
+#: pages/admin/watches/add.php:94 pages/admin/watches/edit.php:120
+#: pages/login.php:215
+msgid "Name"
+msgstr "Nom"
+
+#: pages/account.php:249 pages/login.php:224
+msgid "Surname"
+msgstr "Prénom"
+
+#: pages/account.php:258 pages/login.php:180 pages/login.php:233
+msgid "Email"
+msgstr ""
+
+#: pages/account.php:267 pages/login.php:251
+msgid "Birth date"
+msgstr "Date de naissance"
+
+#: pages/account.php:272 pages/admin/watches/edit.php:172
 msgid "Apply changes"
 msgstr "Enregistrer changements"
 
-#: pages/account.php:255
+#: pages/account.php:288
+msgid "Language"
+msgstr "Langue"
+
+#: pages/account.php:289
+msgid "Update language"
+msgstr "Mettre à jour la langue"
+
+#: pages/account.php:296
 msgid "Empty shopping cart"
 msgstr "Vider le panier"
 
-#: pages/account.php:256
+#: pages/account.php:297
 msgid "Disconnect"
 msgstr "Déconnexion"
 
-#: pages/account.php:257
+#: pages/account.php:298
 msgid "Access admin page"
 msgstr "Accès page admin"
 
-#: pages/account.php:269
+#: pages/account.php:310
 msgid "Confirm deletion"
 msgstr "Confirmer suppression"
 
-#: pages/account.php:271
+#: pages/account.php:312
 msgid "Delete account"
 msgstr "Suppression du compte"
 
@@ -322,11 +373,6 @@ msgstr "Une erreur est apparue"
 msgid "Actions"
 msgstr ""
 
-#: pages/admin/watches.php:114 pages/admin/watches/add.php:94
-#: pages/admin/watches/edit.php:120 pages/login.php:215
-msgid "Name"
-msgstr "Nom"
-
 #: pages/admin/watches.php:115
 msgid "Description"
 msgstr "Description"
@@ -341,11 +387,12 @@ msgid "Bracelet"
 msgstr ""
 
 #: pages/admin/watches.php:118 pages/admin/watches/add.php:115
-#: pages/admin/watches/edit.php:143 pages/products/watch.php:56
+#: pages/admin/watches/edit.php:143 pages/products.php:50
+#: pages/products/watch.php:56
 msgid "Time system"
-msgstr "Système tempore"
+msgstr "Système temporel"
 
-#: pages/admin/watches.php:125 pages/products.php:101
+#: pages/admin/watches.php:125 pages/products.php:97
 msgid ""
 "<div><h3>No watch match these filters</h3><h4 style='color:grey'>Please try "
 "something else</h4></div>"
@@ -392,28 +439,32 @@ msgid "Characteristics"
 msgstr "Caractéristiques"
 
 #: pages/admin/watches/add.php:118 pages/admin/watches/edit.php:146
-#: pages/concept.php:15
+#: pages/concept.php:15 pages/products.php:53
 msgid "Octal"
 msgstr "Octale"
 
 #: pages/admin/watches/add.php:121 pages/admin/watches/edit.php:149
+#: pages/products.php:54
 msgid "Duodecimal"
 msgstr "Duodécimal"
 
 #: pages/admin/watches/add.php:130 pages/admin/watches/edit.php:158
-#: pages/products/watch.php:57
+#: pages/products/watch.php:58
 msgid "Bracelet material"
 msgstr "Matière du bracelet"
 
 #: pages/admin/watches/add.php:133 pages/admin/watches/edit.php:161
+#: pages/products.php:61
 msgid "Leather"
 msgstr "Cuir"
 
 #: pages/admin/watches/add.php:135 pages/admin/watches/edit.php:163
+#: pages/products.php:62
 msgid "Silicone"
 msgstr ""
 
 #: pages/admin/watches/add.php:137 pages/admin/watches/edit.php:165
+#: pages/products.php:63
 msgid "Metal"
 msgstr "Métal"
 
@@ -428,6 +479,10 @@ msgstr "Montre invalide"
 #: pages/admin/watches/edit.php:101
 msgid "Try with another ID"
 msgstr "Essayez avec ne autre ID"
+
+#: pages/cart.php:8 util/common.php:40
+msgid "Shopping cart"
+msgstr "Panier"
 
 #: pages/concept.php:11
 msgid "or"
@@ -524,6 +579,10 @@ msgstr "Format d'heure octal"
 msgid "Classic time system"
 msgstr "Format d'heure classique"
 
+#: pages/conditions.php:7
+msgid "Terms and conditions"
+msgstr "Termes & conditions"
+
 #: pages/contact.php:23
 msgid "Please write the subject of your message"
 msgstr "Veuillez écrire le sujet de votre message"
@@ -531,6 +590,10 @@ msgstr "Veuillez écrire le sujet de votre message"
 #: pages/contact.php:28
 msgid "Please write the content of your message"
 msgstr "Veuillez écrire le contenu de votre message"
+
+#: pages/contact.php:68
+msgid "Contact us"
+msgstr "Contactez-nous"
 
 #: pages/contact.php:83
 msgid "Message sent to the admins !"
@@ -548,11 +611,11 @@ msgstr "Votre message"
 msgid "Send"
 msgstr "Envoyer"
 
-#: pages/history.php:55
+#: pages/history.php:25
 msgid "The Beginning of a Grand Project"
 msgstr "Le commencement d'un grand projet"
 
-#: pages/history.php:57
+#: pages/history.php:27
 msgid ""
 "Five years ago, five friends passionate about horology and space exploration "
 "decided to create their own company to bring their common vision to life: "
@@ -573,11 +636,11 @@ msgstr ""
 "horlogère en combinant l'esthétique avant-gardiste avec des matériaux extra-"
 "terrestres authentiques."
 
-#: pages/history.php:62
+#: pages/history.php:32
 msgid "The Beginning of Entrepreneurial Relationships"
 msgstr "Le début des relations d'entreprenariat"
 
-#: pages/history.php:64
+#: pages/history.php:34
 msgid ""
 "From the outset, the Octime team embarked on innovative partnerships with "
 "space agencies and scientific organizations. They succeeded in obtaining "
@@ -591,11 +654,11 @@ msgstr ""
 "ensuite intégrés dans la conception de leurs montres. Chaque pièce était "
 "ainsi imprégnée symboliquement d'une part de l'univers."
 
-#: pages/history.php:69
+#: pages/history.php:39
 msgid "Spectacular Launch of the First Collection"
 msgstr "Lancement spectaculaire de la première collection"
 
-#: pages/history.php:71
+#: pages/history.php:41
 msgid ""
 "The first collection, named \"Cosmic Elegance\", was unveiled at a unique "
 "event where renowned astronauts were present to celebrate this unique "
@@ -625,11 +688,11 @@ msgstr ""
 "artistes pouvaient collaborer pour donner naissance à de nouvelles idées et "
 "concepts révolutionnaires."
 
-#: pages/history.php:76
+#: pages/history.php:46
 msgid "A Company Active in Science Outreach"
 msgstr "Une entreprise active dans la transmission des sciences"
 
-#: pages/history.php:78
+#: pages/history.php:48
 msgid ""
 "Octime also played an active role in education, organizing exhibitions and "
 "events to raise awareness about space exploration and the importance of "
@@ -680,21 +743,9 @@ msgstr "Mauvais mot de passe !"
 msgid "<span class='error'>An error occured</span>"
 msgstr "<span class='error'>Une erreur est apparue</span>"
 
-#: pages/login.php:180 pages/login.php:233
-msgid "Email"
-msgstr ""
-
 #: pages/login.php:188 pages/login.php:241
 msgid "Password"
 msgstr "Mot de passe"
-
-#: pages/login.php:224
-msgid "Surname"
-msgstr "Prénom"
-
-#: pages/login.php:251
-msgid "Birth date"
-msgstr "Date de naissance"
 
 #: pages/login.php:265
 msgid ""
@@ -702,6 +753,22 @@ msgid ""
 "website"
 msgstr ""
 "J'accepte les <a href=\"/conditions\">termes et conditions</a> de ce site web"
+
+#: pages/products.php:48
+msgid "Filters"
+msgstr "Filtres"
+
+#: pages/products.php:52 pages/products.php:60
+msgid "All"
+msgstr "Tout"
+
+#: pages/products.php:67
+msgid "Price interval"
+msgstr "Intervalle de prix"
+
+#: pages/products.php:73
+msgid "Apply"
+msgstr "Appliquer"
 
 #: pages/products/watch.php:45
 msgid ""
@@ -711,6 +778,49 @@ msgstr ""
 "<h3>Désolé, cette montre est indisponible</h3><br><h4>Veuillez retournez à "
 "<a href=\"/products\">la page des produits</a></h4>"
 
+#: pages/products/watch.php:61 pages/products/watch.php:68
+msgid "Add to cart"
+msgstr "Ajouter au panier"
+
+#: pages/products/watch.php:66
+msgid "Quantity"
+msgstr "Quantité"
+
+#: pages/team.php:8
+msgid "The Octeam"
+msgstr "La team Octime"
+
+#: pages/team.php:19
+msgid ""
+"This website is brought to you by our finest team of devs from ISEN Lille"
+msgstr ""
+"Ce site vous est présenté et est rendu possible par notre fine équipe de "
+"programmeurs de l'ISEN."
+
+#: pages/team.php:23
+msgid ""
+"Lead <br> Home, products and watch management pages <br> Logo design <br> "
+"Global help"
+msgstr ""
+"Lead <br> Pages accueil, produits et management des montres<br> Design du "
+"logo<br> Aide globale"
+
+#: pages/team.php:30
+msgid "Writing of the site's text <br> History and contact pages"
+msgstr "Ecriture du texte du site <br> Pages histoire et contact"
+
+#: pages/team.php:37
+msgid "Login, signup and shopping cart pages <br> Report writing"
+msgstr "Pages connexion, inscription et panier <br> Ecriture du rapport"
+
+#: pages/team.php:44
+msgid "Messages management page <br> Artistic direction"
+msgstr "Page de management des messages <br> Direction artistique"
+
+#: pages/team.php:51
+msgid "Cart, conditions and concept pages"
+msgstr "Pages panier, conditions et concept"
+
 #: util/common.php:32
 msgid "Presentation"
 msgstr "Présentation"
@@ -718,10 +828,6 @@ msgstr "Présentation"
 #: util/common.php:38
 msgid "Your account"
 msgstr "Votre compte"
-
-#: util/common.php:40
-msgid "Shopping cart"
-msgstr "Panier"
 
 #: util/common.php:50
 msgid "CIR1 Web Project - April 2024"

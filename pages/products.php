@@ -5,7 +5,7 @@
     <?php
     require_once($_SERVER['DOCUMENT_ROOT'] . '/util/common.php');
     require_once($_SERVER['DOCUMENT_ROOT'] . '/util/connection.php');
-    getPageHead('Produits', 'products');
+    getPageHead(_('Products'), 'products');
 
     $params = [];
 
@@ -40,41 +40,37 @@
 
 <body>
     <?php
-    getPageHeader('produits', $userInfo);
+    getPageHeader('products', $userInfo);
     ?>
 
     <main>
         <form class="filters" method="get">
-            <h3>Filtres</h3>
+            <h3><?= _('Filters') ?></h3>
             <div>
-                <label for="timeType">Montres</label>
+                <label for="timeType"><?= _('Time system') ?></label>
                 <select name="timeType" id="hsystem">
-                    <?php
-                    echo "<option value=''" . ($timeType == "" ? " selected" : '') . ">Toutes</option>"
-                    .    "<option value='O'" . ($timeType == "O" ? " selected" : '') . ">Octales</option>"
-                    .    "<option value='D'" . ($timeType == "D" ? " selected" : '') . ">Dodécales</option>";
-                    ?>
+                    <option value=''  <?= $timeType == "" ? " selected" : ''  ?> ><?= _('All') ?></option>
+                    <option value='O' <?= $timeType == "O" ? " selected" : '' ?> ><?= _('Octal') ?></option>
+                    <option value='D' <?= $timeType == "D" ? " selected" : '' ?> ><?= _('Duodecimal') ?></option>
                 </select>
             </div>
             <div>
-                <label for="braceletType">Bracelets</label>
+                <label for="braceletType"><?= _('Bracelet material') ?></label>
                 <select name="braceletType" id="wrist">
-                    <?php
-                    echo "<option value=''" . ($braceletType == "" ? " selected" : '') . ">Tous</option>"
-                    .    "<option value='L'" . ($braceletType == "L" ? " selected" : '') . ">Cuir</option>"
-                    .    "<option value='S'" . ($braceletType == "S" ? " selected" : '') . ">Silicone</option>"
-                    .    "<option value='M'" . ($braceletType == "M" ? " selected" : '') . ">Métal</option>";
-                    ?>
+                    <option value=''  <?= $braceletType == "" ? " selected" : ''  ?> ><?= _('All') ?></option>
+                    <option value='L' <?= $braceletType == "L" ? " selected" : '' ?> ><?= _('Leather') ?></option>
+                    <option value='S' <?= $braceletType == "S" ? " selected" : '' ?> ><?= _('Silicone') ?></option>
+                    <option value='M' <?= $braceletType == "M" ? " selected" : '' ?> ><?= _('Metal') ?></option>
                 </select>
             </div>
             <div>
-                <label>Intervalle de prix</label>
+                <label><?= _('Price interval') ?></label>
                 <?php
                 echo "<input name='minPrice' type='number' placeholder='50€' value='$minPrice'>"
                 .    "<input name='maxPrice' type='number' placeholder='500€' value='$maxPrice'>";
                 ?>
             </div>
-            <input type="submit" value="Appliquer">
+            <input type="submit" value="<?= _('Apply') ?>">
         </form>
         <section class="products">
             <?php

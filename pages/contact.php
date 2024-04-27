@@ -65,7 +65,7 @@ if (isset($_POST['send'])) {
 
 <head>
     <?php
-    getPageHead('Contactez-nous', 'login');
+    getPageHead(_('Contact us'), 'login');
     ?>
     <script src="/util/imageChange.js"></script>
 </head>

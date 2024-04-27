@@ -4,7 +4,7 @@
 <head>
 <?php
     require_once($_SERVER['DOCUMENT_ROOT'] . '/util/common.php');
-    getPageHead('Conditions d\'utilisation');
+    getPageHead(_('Terms and conditions'));
     ?>
 </head>
 
