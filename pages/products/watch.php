@@ -58,8 +58,8 @@
             </ul>
             <div class="container">
                 <h3 id="titre">Ajouter au panier</h3>
-                <form action="addcart.php" method="post">
-                    <input type="hidden" name="product_id" value="$wID" >
+                <form action="addcart" method="post">
+                    <input type="hidden" name="product_id" value="<?= $wID ?>" >
                     <h6 for="quantite">Quantité: <input type="number" id="quantite" name="quantite" min="1" value="1" max="10"></h6>
                     <input type="submit" id="addcart" value="Ajouter au panier">
                 </form>

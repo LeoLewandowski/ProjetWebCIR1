@@ -3,8 +3,8 @@
 
 <head>
     <?php
-    require_once($_SERVER['DOCUMENT_ROOT'] . '/util/common.php');
-    require_once($_SERVER['DOCUMENT_ROOT'] . '/util/connection.php');
+    require_once ($_SERVER['DOCUMENT_ROOT'] . '/util/common.php');
+    require_once ($_SERVER['DOCUMENT_ROOT'] . '/util/connection.php');
     getPageHead('Histoire', 'histoire');
     ?>
 </head>
@@ -22,77 +22,30 @@
     ?>
 
     <div class="histoire">
-        <h2>Le commencement d'un grand projet</h2>
+        <h2><?= _('The Beginning of a Grand Project') ?></h2>
         <p class="p1">
-            Il y a cinq ans, cinq amis passionnés d'horlogerie et d'exploration spatiale
-            ont décidé de créer leur propre entreprise pour donner vie à leur vision commune
-            : des montres futuristes inspirées par l'espace, intégrant même des éléments provenant
-            de la surface de Mars et de la Lune. Ainsi naquit "Octime".
-            Les fondateurs, Léo, Mathis, Simon, Adèle,
-            et Sasha, possédaient tous des compétences complémentaires
-            allant de l'ingénierie à la conception artistique.
-            Leur ambition était de repousser les limites de la créativité
-            horlogère en combinant l'esthétique avant-gardiste avec des matériaux
-            extra-terrestres authentiques.
+            <?= _("Five years ago, five friends passionate about horology and space exploration decided to create their own company to bring their common vision to life: futuristic watches inspired by space, even integrating elements from the surface of Mars and the Moon. Thus was born \"Octime\". The founders, Léo, Mathis, Simon, Adèle, and Sasha, each possessed complementary skills ranging from engineering to artistic design. Their ambition was to push the boundaries of horological creativity by combining avant-garde aesthetics with authentic extraterrestrial materials.") ?>
         </p>
 
-        <img src="/images/watch/montre_3.png" class=" img1">
+        <img src="/images/watch/montre_3.png" class="img1">
 
-
-
-        <h2>Le début des relations d'entreprenariat </h2>
+        <h2><?= _('The Beginning of Entrepreneurial Relationships') ?></h2>
         <p class="p2">
-
-            Dès le début, l'équipe d'Octime s'est lancée dans des
-            partenariats innovants avec des agences spatiales et
-            des organisations scientifiques. Ils ont réussi à obtenir
-            des fragments de roches lunaires et martiennes, qu'ils ont
-            ensuite intégrés dans la conception de leurs montres.
-            Chaque pièce était ainsi imprégnée symboliquement d'une part de l'univers.
+            <?= _("From the outset, the Octime team embarked on innovative partnerships with space agencies and scientific organizations. They succeeded in obtaining fragments of lunar and Martian rocks, which they then integrated into the design of their watches. Each piece was thus symbolically imbued with a part of the universe.") ?>
         </p>
 
         <img class="image img2" src="../images/watch/montre_2.png">
 
-        <h2>Lancement spectaculaire de la première collection</h2>
+        <h2><?= _('Spectacular Launch of the First Collection') ?></h2>
         <p class="p1">
-
-            La première collection, appelée "Cosmic Elegance",
-            fut dévoilée lors d'un événement inédit où des
-            astronautes renommés étaient présents pour célébrer cette
-            collaboration unique. Les montres étaient des œuvres d'art
-            miniatures, mêlant des lignes futuristes et des matériaux
-            spatiaux d'une élégance inégalée.
-            Au fil des années, Octime a continué à innover,
-            lançant de nouvelles collections inspirées par
-            différentes planètes et phénomènes spatiaux.
-            Chaque modèle était limité en quantité, ce qui ajoutait
-            une touche d'exclusivité et de rareté. Les montres de
-            l'entreprise sont devenues des symboles de prestige,
-            convoitées par les collectionneurs du monde entier.
-
-            Malgré leur succès croissant, les fondateurs ont
-            toujours maintenu une approche collaborative et
-            créative. Ils ont ouvert un atelier de recherche
-            et de développement où des horlogers talentueux,
-            des ingénieurs et des artistes pouvaient collaborer
-            pour donner naissance à de nouvelles idées et concepts
-            révolutionnaires.
+            <?= _("The first collection, named \"Cosmic Elegance\", was unveiled at a unique event where renowned astronauts were present to celebrate this unique collaboration. The watches were miniature works of art, blending futuristic lines and space materials with unmatched elegance. Over the years, Octime continued to innovate, launching new collections inspired by different planets and space phenomena. Each model was limited in quantity, adding a touch of exclusivity and rarity. The company's watches became symbols of prestige, coveted by collectors worldwide. Despite their growing success, the founders always maintained a collaborative and creative approach. They opened a research and development workshop where talented watchmakers, engineers, and artists could collaborate to bring forth new ideas and revolutionary concepts.") ?>
         </p>
+
         <img class="image img1" src="../images/watch/montre_5.png">
 
-        <h2>Une entreprise active dans la transmission des sciences</h2>
+        <h2><?= _('A Company Active in Science Outreach') ?></h2>
         <p class="p2">
-            Octime a également joué un rôle actif dans l'éducation,
-            en organisant des expositions et des événements pour sensibiliser
-            le public à l'exploration spatiale et à l'importance de préserver
-            les ressources extraterrestres.
-            Aujourd'hui encore, cinq ans après sa création,
-            Octime continue de repousser les frontières
-            de l'innovation horlogère et de faire rêver les amateurs
-            de montres du monde entier. L'entreprise demeure fidèle à
-            sa vision initiale, combinant la science, l'art et la passion
-            pour l'exploration spatiale dans chaque montre qu'elle crée.
-
+            <?= _("Octime also played an active role in education, organizing exhibitions and events to raise awareness about space exploration and the importance of preserving extraterrestrial resources. Even today, five years after its creation, Octime continues to push the boundaries of horological innovation and inspire watch enthusiasts worldwide. The company remains true to its initial vision, combining science, art, and a passion for space exploration in every watch it creates.") ?>
         </p>
         <img class="image img2" src="../images/watch/montre_4.png">
         <span class="placeholder"></span>

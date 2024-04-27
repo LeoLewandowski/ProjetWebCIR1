@@ -10,10 +10,9 @@
         // Fonction pour l'animation de l'horloge de l'accueil
         document.addEventListener('mousemove', (e) => {
             var rect = document.getElementById('nav').getBoundingClientRect();
-            var x = e.clientX - (rect.left + rect.right) / 2; //x position within the element.
-            var y = e.clientY - (rect.top + rect.bottom) / 2;  //y position within the element.
-            console.log("Left? : " + x + " ; Top? : " + y + "." + "; Angle? : " + Math.atan2(y, x));
-            document.getElementById('handle').style.setProperty('rotate', Math.round(Math.atan2(y, x) * 100) / 100 + Math.PI/2 + "rad");
+            var x = e.clientX - (rect.left + rect.right) / 2;
+            var y = e.clientY - (rect.top + rect.bottom) / 2; 
+            document.getElementById('handle').style.setProperty('rotate', Math.round(Math.atan2(y, x) * 100) / 100 + Math.PI / 2 + "rad");
         });
     </script>
 </head>
@@ -59,55 +58,38 @@
     <!-- End Clock Nav -->
 
     <main>
-        <h2>Découvrez l'Excellence du Temps avec Octime</h2>
+        <h2><?= _("Discover the excellence of time with Octime") ?></h2>
         <p>
-            Bienvenue dans l'univers raffiné et sophistiqué d'Octime, où chaque montre incarne l'essence même de
-            l'élégance et de la précision. Depuis notre création, nous nous sommes engagés à repousser les limites de
-            l'horlogerie, créant des garde-temps d'exception qui fusionnent art et ingénierie.
+            <?= _('Welcome to the refined and sophisticated world of Octime, where each watch embodies the very essence of elegance and precision. Since our inception, we have been committed to pushing the boundaries of watchmaking, creating exceptional timepieces that merge art and engineering.') ?>
         </p>
-        <h2>Artisanat d'exception</h2>
+        <h2><?= _('Exceptional Craftsmanship') ?></h2>
         <p>
-            Chez Octime, nous croyons en l'artisanat d'exception. Chaque montre est le fruit d'un travail méticuleux
-            effectué par nos maîtres horlogers, experts dans l'art ancestral de la conception de montres. Chaque détail
-            est soigneusement étudié, chaque composant est sélectionné avec précision pour garantir une qualité
-            inégalée.
+            <?= _('At Octime, we believe in exceptional craftsmanship. Each watch is the result of meticulous work carried out by our master watchmakers, experts in the ancient art of watchmaking. Every detail is carefully considered, every component is precisely selected to ensure unparalleled quality.') ?>
         </p>
-        <h2>Design intemporel & unique</h2>
+        <h2><?= _('Timeless & Unique Design') ?></h2>
         <p>
-            Nos montres sont le reflet d'un design intemporel, alliant élégance et modernité. Que vous optiez pour un
-            modèle classique ou contemporain, pour une montre octale ou dodécale, chaque montre Octime est une œuvre
-            d'art à part entière, conçue pour transcender les tendances éphémères et demeurer un symbole intemporel de
-            style.
+            <?= _('Our watches reflect timeless design, combining elegance and modernity. Whether you choose a classic or contemporary model, an octal or dodecal watch, each Octime watch is a work of art in its own right, designed to transcend fleeting trends and remain a timeless symbol of style.') ?>
         </p>
-        <h2>Innovation technologique</h2>
+        <h2><?= _('Technological Innovation') ?></h2>
         <p>
-            À la croisée de la tradition et de l'innovation, Octime intègre les dernières avancées technologiques dans
-            chacune de ses créations. Nos montres sont équipées de mouvements de pointe, assurant une précision
-            chronométrique sans compromis. La durabilité et la fiabilité de nos mécanismes sont à la hauteur de notre
-            engagement envers l'excellence.
+            <?= _('At the intersection of tradition and innovation, Octime incorporates the latest technological advancements into each of its creations. Our watches are equipped with cutting-edge movements, ensuring uncompromising chronometric precision. The durability and reliability of our mechanisms match our commitment to excellence.') ?>
         </p>
-        <h2>Matériaux de qualité supérieure</h2>
+        <h2><?= _('Superior Quality Materials') ?></h2>
         <p>
-            Chez Octime, nous n'utilisons que des matériaux de la plus haute qualité pour la fabrication de nos montres.
-            Des boîtiers en acier inoxydable aux bracelets en cuir de première qualité, chaque composant est choisi avec
-            soin pour assurer une durabilité exceptionnelle et un confort optimal.
+            <?= _('At Octime, we only use the highest quality materials for the manufacture of our watches. From stainless steel cases to premium leather straps, each component is carefully chosen to ensure exceptional durability and optimal comfort.') ?>
         </p>
-        <h2>Garantie de satisfaction</h2>
+        <h2><?= _('Satisfaction Guarantee') ?></h2>
         <p>
-            Nous sommes fiers de la qualité de nos montres, c'est pourquoi nous offrons une garantie de satisfaction à
-            vie. Chez Octime, nous nous engageons à dépasser vos attentes, garantissant que chaque montre que vous
-            choisissez est un investissement dans le luxe et l'élégance durables.
+            <?= _('We take pride in the quality of our watches, which is why we offer a lifetime satisfaction guarantee. At Octime, we are committed to exceeding your expectations, ensuring that each watch you choose is an investment in lasting luxury and elegance.') ?>
             <br><br>
-            Explorez notre collection exceptionnelle et découvrez le mariage parfait entre l'art horloger traditionnel
-            et l'innovation contemporaine. Avec Octime, le temps devient une expérience, un héritage à chérir à travers
-            les générations.
+            <?= _('Explore our exceptional collection and discover the perfect marriage of traditional watchmaking art and contemporary innovation. With Octime, time becomes an experience, a legacy to cherish through generations.') ?>
             <br><br>
-        <h3 style="color: var(--theme-accent-color);font-style: italic;">Choisissez Octime. Choisissez l'excellence.
+        </p>
+        <h3 style="color: var(--theme-accent-color);font-style: italic;"><?= _('Choose Octime. Choose excellence.') ?>
         </h3>
-        </p>
     </main>
 
-    <h1>Quelques avis & citations</h1>
+    <h1><?= _('Some opinions & quotes') ?></h1>
     <!-- Feedback -->
     <section id="quotes">
         <div class="quote">
@@ -136,7 +118,7 @@
         </div>
         <div class="quote">
             <q>Miau</q>
-            <span>Mon chat</span>
+            <span><?= _('My cat') ?></span>
         </div>
     </section>
     <!-- End Feedback -->

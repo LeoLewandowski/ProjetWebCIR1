@@ -3,14 +3,21 @@
 
 <head>
     <?php
-    require_once($_SERVER['DOCUMENT_ROOT'] . '/util/common.php');
-    require_once($_SERVER['DOCUMENT_ROOT'] . '/util/connection.php'); 
+    require_once ($_SERVER['DOCUMENT_ROOT'] . '/util/common.php');
+    require_once ($_SERVER['DOCUMENT_ROOT'] . '/util/connection.php');
     getPageHead('Concept', 'concept');
     ?>
     <script>
+        const OR = "<?= _('or') ?>";
+        const PM = "<?= _('PM') ?>";
+        const AM = "<?= _('AM') ?>";
+        const midenal = "<?= _('Midenal') ?>";
+        const octal = "<?= _('Octal') ?>";
+        const hexal = "<?= _('Hexal') ?>";
+
         document.addEventListener('DOMContentLoaded', () => {
             // Update les horloges toutes les secondes
-            setInterval(updateConversion, 1000);
+            setInterval(updateConversion);
 
             // Initialisation de l'horloge
             updateConversion();
@@ -18,14 +25,14 @@
             // Dessine les aiguilles des 2 horloges
             drawLines(document.getElementById('clock-2'), 60, 5);
             drawLines(document.getElementById('clock-1'), 40, 5);
-        })
+        });
 
         // Renvoie un temps octal à partir d'un élément Date
         function getOctTime(dt) {
-            const time = Math.round(dt.getTime() / 1000);
+            const time = dt.getTime() / 1000;
             const hour = dt.getHours();
             const trinute = Math.floor((time % 3600) / 90);
-            const second = Math.floor(time % 90);
+            const second = time % 90;
             return [hour, trinute, second]
         }
 
@@ -42,10 +49,10 @@
         function h8(dt) {
             let add = `${dt[0]} heure premières`;
             if (dt[0] > 16) add = `${dt[0] - 16} heures hexales`;
-            else if (dt[0] > 8) add = `${dt[0] - 8} heures octales`;
+            else if (dt[0] >= 8) add = `${dt[0] - 8} heures octales`;
             return `${add},<br>
             ${dt[1]} trinutes,<br>
-            ${dt[2]} secondes.<br>`;
+            ${Math.floor(dt[2])} secondes.<br>`;
         }
 
         // Mets à jour les horloges toutes les secondes
@@ -61,7 +68,7 @@
             setRotation('hourHand', hourRatio);
 
             // HEURE CLASSIQUE
-            secondRatio = dt.getSeconds() / 60;
+            secondRatio = (dt.getMilliseconds() / 1_000 + dt.getSeconds()) / 60;
             minuteRatio = (secondRatio + dt.getMinutes()) / 60;
             hourRatio = (minuteRatio + dt.getHours()) / 12;
             setRotation('secondHand2', secondRatio);
@@ -71,41 +78,36 @@
         }
 
         function setRotation(elementID, rotationRatio) {
-            document.getElementById(elementID).style.transform = `rotate(${rotationRatio * 360}deg)`;
+            document.getElementById(elementID).style.rotate = `${rotationRatio * 360}deg`;
         }
 
         function updateConversion() {
-            const ts = Math.floor(Date.now() / 1000); // Temps actuel en secondes
-            const dt = new Date(ts * 1000);
+            const dt = new Date();
             const odt = getOctTime(dt);
             updateClock(dt, odt);
-
-            // Mets à jour les paragraphes HTML avec la bonne date
-            document.getElementById("format24").innerHTML = h24(dt);
-            document.getElementById("format8").innerHTML = h8(odt);
 
             // Mets à jour l'horloge 12h
             document.getElementById("format24-hms").innerHTML = `
                 ${dt.getHours().toString().padStart(2, '0')} :
                 ${dt.getMinutes().toString().padStart(2, '0')} :
                 ${dt.getSeconds().toString().padStart(2, '0')}
-                <br>&emsp;ou<br> 
+                <br>&emsp;${OR}<br> 
                 ${(dt.getHours() % 12).toString().padStart(2, '0')} :
                 ${dt.getMinutes().toString().padStart(2, '0')} :
                 ${dt.getSeconds().toString().padStart(2, '0')} 
-                ${dt.getHours() > 12 ? "de l'après-midi" : "du matin"}
+                ${dt.getHours() > 12 ? PM : AM}
                 `;
 
             // Update l'horloge 8h
             document.getElementById("format8-hts").innerHTML = `
                 ${odt[0].toString().padStart(2, '0')} :
                 ${odt[1].toString().padStart(2, '0')} :
-                ${odt[2].toString().padStart(2, '0')}
-                <br>&emsp;ou<br> 
+                ${Math.floor(odt[2]).toString().padStart(2, '0')}
+                <br>&emsp;${OR}<br> 
                 ${(odt[0] % 8).toString().padStart(2, '0')}:
                 ${odt[1].toString().padStart(2, '0')} :
-                ${odt[2].toString().padStart(2, '0')} 
-                ${odt[0] > 8 ? (odt[0] > 16 ? 'H (Hexale)' : 'O (Octale)') : 'M (Midenalle)'}
+                ${Math.floor(odt[2]).toString().padStart(2, '0')} 
+                ${odt[0] >= 8 ? (odt[0] >= 16 ? 'H (' + hexal + ')' : 'O (' + octal + ')') : 'M (' + midenal + ')'}
                 `;
         }
 
@@ -123,7 +125,7 @@
 
 <body>
     <section class="banner parallax" style="--src:url(/images/mechanism.jpg)">
-        <h1>Une toute nouvelle façon de voir le temps</h1>
+        <h1><?= _('A brand new way of representing time') ?></h1>
         <a href="#nav"></a>
         <span class="transition"></span>
     </section>
@@ -133,43 +135,25 @@
     ?>
 
     <div class="concept">
-        <h2 class="titre"> Le concept d'Octime </h2>
-        <p class="p1 elt">Au tout début de son existence, Octime avait déjà pour but de changer la vision des gens sur
-            le passage du temps.
-            Ses cinq créateurs ont donc décidé de créer une montre qui permettrait de voir le temps passer de manière
-            différente, comment ? Venez, on vous montre !
+        <h2 class="title"><?= _('The Concept of Octime') ?></h2>
+        <p class="p1 elt">
+            <?= _("Right from its inception, Octime aimed to change people's perception of the passage of time. Its five creators decided to create a watch that would allow one to perceive time differently. How? Let us show you!") ?>
         </p>
 
         <p class="p2 elt">
-            Tout est parti d'un concept simple: Si on peut diviser la journée en 2 périodes de 12 heures, pourquoi ne
-            pas pouvoir faire des périodes de 8 heures ?
-            C'est ainsi que furent imaginées respectivement les heures Midenalles (entre 0 et 8h en hexal),
-            Octales(8h-16h) et Hexales (16h-00h).
-            Mais une question s'est posée, comment faire rentrer 60 minutes dans un cadran adapté à 8 heures ?
-            Car voilà, dans le système classique, on peut diviser le cadran en petites périodes de 5 minutes, mais dans
-            le système Octime, il faut diviser le cadran en périodes de 7,5 minutes.
-            C'est comme cela que se posa le premier problème de la création de la montre Octime : Comment faire quelque
-            chose d'esthétique ET pratique ?
+            <?= _("It all started with a simple concept: If we can divide the day into 2 periods of 12 hours, why not be able to have periods of 8 hours? Thus were imagined the Midenalles hours (between 0 and 8h in hexal), Octales (8h-16h), and Hexales (16h-00h). But a question arose, how to fit 60 minutes into a dial suitable for 8 hours? In the classical system, the dial can be divided into small periods of 5 minutes, but in the Octime system, it needs to be divided into periods of 7.5 minutes. This posed the first problem in creating the Octime watch: How to make something both aesthetic and practical?") ?>
         </p>
         <p class="p1 elt">
-            Ce fut l'ami de l'un d'entre nous, qui trouva la solution : si 12 fois 5 est égal à 60, alors 8 fois 5 est
-            égal à 40, pourquoi ne pas faire des trinutes ? des petites périodes de 90 secondes, il y en aurait 40 par
-            heure et cela permettrait d'avoir une forme "classique" de cadran.
-            Les trois périodes
-            Vous êtes perdu ? Pas de panique, on vous montre !
+            <?= _("It was a friend of one of us who found the solution: if 12 times 5 equals 60, then 8 times 5 equals 40, why not make \"trinutes\"? Small periods of 90 seconds, there would be 40 per hour, and this would allow for a \"classic\" dial shape. The three periods. Feeling lost? Don't worry, we'll show you!") ?>
         </p>
         <p class="p2 elt">
-            Prenons un exemple : Il est 18h30, soit 6 heures et 30 minutes de l'après-midi. En octal, cela ferait 2h20 H
-            (pour "hexale")
-            En voici un autre : 15h45 deviendrait 7h30 O (pour "octale")
-            Prenez une pause et réflechissez, vous verrez, ce n'est pas si dur !
+            <?= _('Let\'s take an example: It\'s 6:30 PM, which is 6 hours and 30 minutes in the afternoon. In octal, this would be 2:20 H (for "hexale"). Here\'s another one: 3:45 PM would become 7:30 O (for "octale"). Take a break and think about it, you\'ll see, it\'s not that difficult!') ?>
         </p>
     </div>
     <h2>Exemple</h2>
     <section id="time">
         <div>
-            <h3>Format d'heure octal</h3>
-            <p id="format8"></p>
+            <h3><?= _('Octal time system') ?></h3>
             <p id="format8-hts"></p> <!-- HH:TT:SS -->
             <div id="clock-1" class="clock">
                 <div class="hand hour" id="hourHand"></div>
@@ -178,8 +162,7 @@
             </div>
         </div>
         <div>
-            <h3>Format d'heure classique</h3>
-            <p id="format24"></p>
+            <h3><?= _('Classic time system') ?></h3>
             <p id="format24-hms"></p> <!-- HH:MM:SS -->
             <div id="clock-2" class="clock">
                 <div class="hand hour" id="hourHand2"></div>
