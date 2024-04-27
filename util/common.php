@@ -15,7 +15,7 @@ function getPageHeader($pageName = '', $uInfo = null)
     }
     ?>
     <header>
-        <a id="logo-header" href="/">
+        <a id="logo-header" href="/" title="<?= _('Homepage') ?>">
             <picture class="img-theme">
                 <source srcset="/images/logo.svg" media="(min-width:992px)">
                 <img src="/images/logo_short.svg">
@@ -29,13 +29,16 @@ function getPageHeader($pageName = '', $uInfo = null)
             </svg>
         </button>
         <nav id="nav">
-            <a href="/history" <?= $pageName == 'history' ? 'style="color: var(--theme-accent-color);"' : '' ?> >Présentation</a>
-            <a href="/concept" <?= $pageName == 'concept' ? 'style="color: var(--theme-accent-color);"' : '' ?> >Concept</a>
-            <a href="/products" <?= $pageName == 'products' ? 'style="color: var(--theme-accent-color);"' : '' ?> >Produits</a>
-            <a href="/team" <?= $pageName == 'team' ? 'style="color: var(--theme-accent-color);"' : '' ?> >Notre équipe</a>
-            <a href="/contact" <?= $pageName == 'contact' ? 'style="color: var(--theme-accent-color);"' : '' ?> >Contact</a>
+            <a href="/history" <?= $pageName == 'history' ? 'style="color: var(--theme-accent-color);"' : '' ?> > <?= _('Presentation') ?></a>
+            <a href="/concept" <?= $pageName == 'concept' ? 'style="color: var(--theme-accent-color);"' : '' ?> > <?= _('Concept') ?></a>
+            <a href="/products" <?= $pageName == 'products' ? 'style="color: var(--theme-accent-color);"' : '' ?> ><?= _('Products') ?></a>
+            <a href="/team" <?= $pageName == 'team' ? 'style="color: var(--theme-accent-color);"' : '' ?> > <?= _('Our team') ?></a>
+            <a href="/contact" <?= $pageName == 'contact' ? 'style="color: var(--theme-accent-color);"' : '' ?> > <?= _('Contact') ?></a>
         </nav>
-        <a id="login" class="center container-vertical" title="<?= isset($uInfo) ? _('Your account') . ($uInfo['admin'] ? '" href="/admin"' : '" href="/account"') : _(Localization::LOGIN->value) . '" href="/login"' ?>"><img id="pfp" src="/images/<?= isset($uInfo) ? ('pfp/' . $uInfo['id'] . '.' . $uInfo['pfp_extension']) : 'login.svg" class="img-theme' ?>" ></a>
+        <a id="login" class="center container-vertical" title="<?= isset($uInfo) ? _('Your account') . '" href="/account"' : _('Log in') . '" href="/login"' ?>"><img id="pfp" src="/images/<?= isset($uInfo) ? ('pfp/' . $uInfo['id'] . '.' . $uInfo['pfp_extension']) : 'login.svg" class="img-theme' ?>" ></a>
+        <?php if(isset($uInfo)){ ?>
+        <a id="cart" class="center container-vertical" title="<?= ($uInfo['admin'] ? _('Admin panel') . '" href="/admin"' : _('Shopping cart') . '" href="/cart"') ?>" ><img src="/images/<?= $uInfo['admin'] ? 'admin' : 'cart' ?>.svg" class="img-theme"></a>
+        <?php } ?>
     </header>
     <?php
 }
@@ -44,8 +47,8 @@ function getPageFooter()
 {
     ?>
     <footer>
-        Projet Web - Décembre 2023
-        <a href="/conditions">Conditions d\'utilisation</a>
+        <?= _('CIR1 Web Project - April 2024') ?>
+        <a href="/conditions"><?= _('Terms & conditions') ?></a>
     </footer>
     <?php
 }
