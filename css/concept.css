@@ -72,6 +72,11 @@ h2 {
     transform-origin: bottom;
     margin:-.5px;
     transform: translate(-50%, -50%);
+    transition: none;
+}
+
+.hand {
+    transform: translate(0,0);
 }
 
 .hour {

@@ -14,14 +14,15 @@
             $product_id = $_POST['product_id'];
             $quantite = $_POST['quantite'];
             $requete = $connection->prepare('INSERT INTO shopping_carts (product_id, count, client_id) VALUES (:product_id, :count, :client_id)');
-            $requete->execute(array(
+            $arr = array(
                 'product_id' => $product_id,
                 'count' => $quantite,
                 'client_id' => $userInfo['id']
-            ));
+            );
+            var_dump($arr);
+            $requete->execute($arr);
         }
         header('location: /products');
-        exit;
-    ?>    
+    ?>
 </body>
 </html>
