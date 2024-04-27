@@ -19,7 +19,7 @@
 #handle {
     transform-origin: center;
     rotate: 0deg;
-    transition: rotate ease-in .2s;
+    transition: all 0s;
 }
 
 #nav {
@@ -100,39 +100,4 @@
 #clock-links :nth-child(8) {
     top: 20px;
     left: calc(50% - 130px);
-}
-
-/* ---------------------------- LINK HOVER EFFECT ----------------------------
-    Le JS n'étant pas autorisé, l'effet n'est pas fonctionnel sur Mozilla Firefox (mais l'est sur tout autre
-    navigateur) qui ne supporte pas le sélecteur :has(), et n'est pas exactement aussi développé que
-    nous l'aurions espéré
-    Lorsqu'un lien est en hover ou en focus, l'aiguille se tourne vers lui.
-*/
-
-#nav:has(> #clock-links :nth-child(2):hover, > #clock-links :nth-child(2):focus) #handle {
-    rotate: 45deg;
-}
-
-#nav:has(> #clock-links :nth-child(3):hover, > #clock-links :nth-child(3):focus) #handle {
-    rotate: 90deg;
-}
-
-#nav:has(> #clock-links :nth-child(4):hover, > #clock-links :nth-child(4):focus) #handle {
-    rotate: 135deg;
-}
-
-#nav:has(> #clock-links :nth-child(5):hover, > #clock-links :nth-child(5):focus) #handle {
-    rotate: 180deg;
-}
-
-#nav:has(> #clock-links :nth-child(6):hover, > #clock-links :nth-child(6):focus) #handle {
-    rotate: -135deg;
-}
-
-#nav:has(> #clock-links :nth-child(7):hover, > #clock-links :nth-child(7):focus) #handle {
-    rotate: -90deg;
-}
-
-#nav:has(> #clock-links :nth-child(8):hover, > #clock-links :nth-child(8):focus) #handle {
-    rotate: -45deg;
 }
