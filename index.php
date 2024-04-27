@@ -31,7 +31,7 @@
             <a href="/login?signup">Inscription</a>
             <a href="/team">Équipe</a>
         </div>
-        <svg class="img-theme" width="256" height="256" stroke="black" fill="black" stroke-width="10"
+        <svg width="256" height="256" stroke="black" fill="black" stroke-width="10"
             stroke-linecap="round">
             <circle cx="128.25" cy="128.25" r="123.25" fill="none" />
             <line id="handle" x1="128" x2="128" y1="128" y2="50" />

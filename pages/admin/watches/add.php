@@ -5,7 +5,7 @@ require_once ($_SERVER['DOCUMENT_ROOT'] . '/util/connection.php');
 
 // Si l'utilisateur n'est pas admin, on affiche la page 404 à la place
 if (!$userInfo['admin']) {
-    require ('../404.php');
+    require ($_SERVER['DOCUMENT_ROOT'] . '/pages/404.php');
     die();
 }
 
@@ -42,7 +42,7 @@ if (isset($_POST['add']) && !$invalid) {
 
     $stmt = $connection->prepare("INSERT INTO watches (name, description_en, description_fr, price, timeType, braceletType) VALUES (?, ?, ?, ?, ?, ?)");
     $code = $stmt->execute([$wName, $wDescEn, $wDescFr, $wPrice, $wTime->value, $wBracelet->value]);
-    $wId = (int)$connection->lastInsertId();
+    $wId = (int) $connection->lastInsertId();
 
     // Si l'image a aussi été modifiée
     if ($code && isset($_FILES['watch']) && $_FILES['watch']['error'] != 4) {
@@ -53,8 +53,9 @@ if (isset($_POST['add']) && !$invalid) {
             $imgError = _('This picture does not respect the rules !');
     }
 
-    if (empty($imgError) && empty($braceletError) && empty($timeError) && empty($priceError)) echo 'lol';
-        // header('location: ../watches');
+    if (empty($imgError) && empty($braceletError) && empty($timeError) && empty($priceError))
+        echo 'lol';
+    // header('location: ../watches');
 }
 
 ?>
@@ -92,14 +93,12 @@ if (isset($_POST['add']) && !$invalid) {
                 <input type="text" placeholder=" " name="name" required>
                 <label><?= _('Name') ?></label>
             </div>
-            <div class="input-box force-anim">
-                <textarea rows="12" cols="50" placeholder=" " name="description_en"
-                    required></textarea>
+            <div class="input-box">
+                <textarea rows="12" cols="50" placeholder=" " name="description_en" required></textarea>
                 <label><?= _('Watch description (English)') ?></label>
             </div>
-            <div class="input-box force-anim">
-                <textarea rows="12" cols="50" placeholder=" " name="description_fr"
-                    required></textarea>
+            <div class="input-box">
+                <textarea rows="12" cols="50" placeholder=" " name="description_fr" required></textarea>
                 <label><?= _('Watch description (French)') ?></label>
             </div>
             <h3><?= _('Characteristics') ?></h3>

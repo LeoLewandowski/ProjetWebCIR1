@@ -215,3 +215,48 @@ body {
     color: var(--font-color);
     cursor: pointer;
 }
+
+#imgDisplay {
+    position: relative;
+    width: 40vw;
+    border-radius: 20px;
+    margin: 25px;
+    margin-top: 10px;
+    height: min-content;
+    align-self: center;
+}
+
+#imgDisplay img {
+    width: 100%;
+    opacity: 1;
+    z-index: 5;
+    filter: none;
+    border-radius: inherit;
+}
+
+#imgOverlay {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0,0,0.6);
+    opacity: 0;
+    cursor: pointer;
+    border-radius: inherit;
+}
+
+#imgOverlay:hover {
+    opacity: 1;
+}
+
+/* ------------------------------  AFFICHAGE TELEPHONE ------------------------ */
+
+@media (max-width: 576px) {
+    #imgOverlay {
+        opacity: 1;
+    }
+}

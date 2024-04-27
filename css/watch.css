@@ -46,3 +46,11 @@ h3, h2 {
 li {
     margin-left: 20px;
 }
+
+/* ------------------------------  AFFICHAGE TELEPHONE ------------------------ */
+
+@media (max-width: 576px) {
+    #watchOverlay {
+        opacity: 1;
+    }
+}

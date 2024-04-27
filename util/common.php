@@ -7,7 +7,7 @@ define('DB_NAME', "octime");
 define('DB_USERNAME', "root");
 define('DB_PASSWORD', "");
 
-function getPageHeader(string|array|null $pageName = '', array|null $uInfo = null)
+function getPageHeader($pageName = '', $uInfo = null)
 {
     if(empty($uInfo) && is_array($pageName)){
         $uInfo = $pageName;
