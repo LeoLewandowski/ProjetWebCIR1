@@ -3,8 +3,8 @@
 
 <head>
     <?php
-    require_once($_SERVER['DOCUMENT_ROOT'] . '/util/common.php');
-    require_once($_SERVER['DOCUMENT_ROOT'] . '/util/connection.php');
+    require_once ($_SERVER['DOCUMENT_ROOT'] . '/util/common.php');
+    require_once ($_SERVER['DOCUMENT_ROOT'] . '/util/connection.php');
 
     // Si l'utilisateur n'est pas connecté, on le redirge vers la page de connexion
     if (empty($userInfo))
@@ -13,6 +13,7 @@
     // Messages de confirmation
     $updateConfirm = null;
     $sessionConfirm = null;
+    $langConfirm = null;
     $warning = null;
 
     // Définit les messages d'erreur à utiliser plus tard
@@ -22,6 +23,7 @@
     $emailError = null;
     $dateError = null;
     $pfpError = null;
+    $langError = null;
 
     // Définit les valeurs à utiliser pour auto-remplir la page (ou pour la vérification)
     $gender = null;
@@ -35,6 +37,27 @@
     if (isset($_SESSION['updateAccount'])) {
         $updateConfirm = _('Changes saved !');
         $_SESSION['updateAccount'] = null;
+    }
+
+    // Affiche le message de confirmation de modification de langue
+    if (isset($_SESSION['langUpdated'])) {
+        $langConfirm = _('Language updated !');
+        $_SESSION['langUpdated'] = null;
+    }
+
+    // Si l'utilisateu a changé sa langue d'affichage
+    if (isset($_POST['updateLang'])) {
+        $tryLang = null;
+        if (isset($_POST['language'])) {
+            $tryLang = Language::tryFrom($_POST['language']);
+        }
+        if ($tryLang == null)
+            $langError = _('The language you provided is not supported ! Please choose from the options above');
+        else {
+            $_SESSION['langUpdated'] = true;
+            setcookie('lang', $tryLang->value, time() + 60 * 60 * 24 * 365);
+            header('location:#session');
+        }
     }
 
     // Si l'utilisateur a rempli le form pour modifier son compte :
@@ -69,7 +92,8 @@
                     $pfpName = '../images/pfp/' . $userInfo['id'] . '.';
 
                     // Supprime la photo de profil précédente si elle existe
-                    if(file_exists($pfpName . $userInfo['pfp_extension'])) $invalid = unlink($pfpName . $userInfo['pfp_extension']);
+                    if (file_exists($pfpName . $userInfo['pfp_extension']))
+                        $invalid = unlink($pfpName . $userInfo['pfp_extension']);
 
                     // Enregistre la nouvelle extension de photo de profil
                     $stmt = $connection->prepare("UPDATE accounts SET pfp_extension = ? WHERE id = ?");
@@ -79,7 +103,8 @@
                     $invalid = $invalid && move_uploaded_file($pfp['tmp_name'], $pfpName . $extension);
 
                     // Si une erreur est apparue
-                    if(!$invalid) $pfpError = _('Sorry, an unknown error occured');
+                    if (!$invalid)
+                        $pfpError = _('Sorry, an unknown error occured');
                 }
             }
         }
@@ -182,24 +207,26 @@
                             src="/images/pfp/<?= $userInfo['id'] . '.' . $userInfo['pfp_extension'] ?>">
                         <div id="pfp-overlay" onclick="document.getElementById('pfp-input').click()">
                             <input type="hidden" name="MAX_FILE_SIZE" value="30000000" />
-                            <input id="pfp-input" type="file" name="pfp" hidden onchange="updateImage(this.files, 'pfp-preview')"
+                            <input id="pfp-input" type="file" name="pfp" hidden
+                                onchange="updateImage(this.files, 'pfp-preview')"
                                 accept="image/jpg, image/jpeg, image/png, image/webp, image/gif">
                             <label><?= _('Change profile picture') ?></label>
                         </div>
                     </div>
-                    <?php if($pfpError) echo "<span class='error'>$pfpError</span>" ?>
-                </div>
-                <div class="error-wrapper">
-                    <div class="input-box force-anim">
-                        <?php
-                        $gender = Gender::tryFrom($userInfo['gender']) ?? Gender::Unspecified;
-                        ?>
+                    <?php if ($pfpError)
+                        echo "<span class='error'>$pfpError</span>" ?>
+                    </div>
+                    <div class="error-wrapper">
+                        <div class="input-box force-anim">
+                            <?php
+                    $gender = Gender::tryFrom($userInfo['gender']) ?? Gender::Unspecified;
+                    ?>
                         <select name="gender" id="gender">
-                            <option value="N" <?= ($gender == Gender::Unspecified || isset($genderError)) ? ' selected' : '' ?>> <?= _(Gender::Unspecified->name) ?></option>
+                            <option value="N" <?= ($gender == Gender::Unspecified || isset($genderError)) ? ' selected' : '' ?>> <?= _('Unspecified') ?></option>
                             <option value="M" <?= ($gender == Gender::Male && !isset($genderError)) ? ' selected' : '' ?>>
-                                <?= _(Gender::Male->name) ?>
+                                <?= _('Male') ?>
                             </option>
-                            <option value="F" <?= ($gender == Gender::Female && !isset($genderError)) ? ' selected' : '' ?>> <?= _(Gender::Female->name) ?></option>
+                            <option value="F" <?= ($gender == Gender::Female && !isset($genderError)) ? ' selected' : '' ?>> <?= _('Female') ?></option>
                         </select>
                         <label for="gender"><?= _('Gender') ?></label>
                     </div><?php if ($genderError)
@@ -210,7 +237,7 @@
                     <div class="input-box">
                         <input type="text" name="name" id="name" placeholder=" " <?php if (isset($userInfo['name']))
                             echo "value='$userInfo[name]'"; ?> required>
-                        <label for="name">Nom</label>
+                        <label for="name"><?= _('Name') ?></label>
                     </div><?php if ($nameError)
                         echo "<span class='error'>$nameError</span>"; ?>
                 </div>
@@ -219,7 +246,7 @@
                     <div class="input-box">
                         <input type="text" name="surname" id="surname" placeholder=" " <?php if (isset($userInfo['surname']))
                             echo "value='$userInfo[surname]'"; ?> required>
-                        <label for="surname">Prénom</label>
+                        <label for="surname"><?= _('Surname') ?></label>
                     </div><?php if ($surnameError)
                         echo "<span class='error'>$surnameError</span>"; ?>
                 </div>
@@ -228,7 +255,7 @@
                     <div class="input-box">
                         <input type="email" name="email" id="email" placeholder=" " <?php if (isset($userInfo['email']))
                             echo "value='$userInfo[email]'"; ?> required>
-                        <label for="email">Adresse email</label>
+                        <label for="email"><?= _('Email') ?></label>
                     </div><?php if ($emailError)
                         echo "<span class='error'>$emailError</span>"; ?>
                 </div>
@@ -237,7 +264,7 @@
                     <div class="input-box force-anim">
                         <input type="date" id="birth" name="date" min="1000-01-01" max="<?= date('Y-m-d') ?>" <?php if (isset($userInfo['birth']))
                               echo "value='$userInfo[birth]'"; ?> required>
-                        <label>Date de naissance</label>
+                        <label><?= _('Birth date') ?></label>
                     </div><?php if ($dateError)
                         echo "<span class='error'>$dateError</span>"; ?>
                 </div>
@@ -252,9 +279,23 @@
             <form class="form-generic" action="#session" method="post">
                 <?php if (isset($sessionConfirm))
                     echo '<span class="confirm">' . $sessionConfirm . '</span>'; ?>
+                <div class="error-wrapper">
+                    <div class="input-box force-anim">
+                        <select name="language">
+                            <option value="en" <?= (LANGUAGE == Language::English) ? ' selected' : '' ?>> English </option>
+                            <option value="fr" <?= (LANGUAGE == Language::French) ? ' selected' : '' ?>> Français </option>
+                        </select>
+                        <label><?= _('Language') ?></label>
+                        <input type="submit" name="updateLang" value="<?= _('Update language') ?>">
+                    </div><?php if ($langError)
+                        echo "<span class='error'>$langError</span>";
+                    if ($langConfirm)
+                        echo "<span class='confirm'>$langConfirm</span>"; ?>
+
+                </div>
                 <input type="submit" name="emptyCart" value="<?= _('Empty shopping cart') ?>">
                 <input type="submit" name="disconnect" value="<?= _('Disconnect') ?>">
-                <?= $userInfo['admin'] ? '<a id="admin" href="./admin"><input type="button" name="admin" value="'._('Access admin page').'"></a>' : '' ?>
+                <?= $userInfo['admin'] ? '<a id="admin" href="./admin"><input type="button" name="admin" value="' . _('Access admin page') . '"></a>' : '' ?>
             </form>
 
             <hr>

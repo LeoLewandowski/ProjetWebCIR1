@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : sam. 27 avr. 2024 à 11:57
+-- Généré le : sam. 27 avr. 2024 à 19:45
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -82,6 +82,14 @@ CREATE TABLE `shopping_carts` (
   `client_id` char(23) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Déchargement des données de la table `shopping_carts`
+--
+
+INSERT INTO `shopping_carts` (`product_id`, `count`, `client_id`) VALUES
+(1, 2, '6628fb66c12f15.51178933'),
+(1, 2, '662a84c3ec5670.78596281');
+
 -- --------------------------------------------------------
 
 --
@@ -104,7 +112,7 @@ CREATE TABLE `watches` (
 
 INSERT INTO `watches` (`name`, `description_fr`, `description_en`, `timeType`, `braceletType`, `price`, `id`) VALUES
 ('Spacewalker', 'L\'un de nos premiers modèles, le Spacewalker est indubitablement celui qui représente le mieux Octime. Constitué d\'un alliage d\'acier, de chrome et de régolithe lunaire, ce modèle est extrêmement résistant, étanche et peut supporter une immersion jusqu\'à 100m de profondeur', 'One of our first models, the Spacewalker is undoubtedly the one that represents Octime the best. Forged from an incredible alloy of steel, chrome and lunar regolith, this watch is extremely durable and waterproof, and can even withstand being submerged to 100m depth', 'D', 'M', 149, 1),
-('Eclipse', 'description', 'description à rédiger', 'O', 'L', 199, 2);
+('Eclipse', 'L&#039;Eclipse est notre &quot;montre star&quot; ici, à Octime. Son histoire est unique, car elle est la première montre produite par notre compagnie (et dans le monde entier !) à utiliser le système d&#039;heures octales au lieu du système classique. Elle est forgée à partir de régolithe lunaire, de titane et de chrome.', 'The Eclipse is our &quot;star watch&quot; here at Octime. It&#039;s history is unique, as it is the first ever watch produced in our company (and in the world !) that uses an octal hour system instead of the regular one. It is made out of lunar regolith, titanium and chrome.', 'O', 'M', 199, 2);
 
 --
 -- Index pour les tables déchargées

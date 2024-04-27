@@ -3,7 +3,7 @@ require('localization.php');
 // File used to incude HTML Elements common to multiple pages, such as the header and the footer
 
 define('DB_HOSTNAME', "127.0.0.1");
-define('DB_NAME', "octime");
+define('DB_NAME', "octimeBD");
 define('DB_USERNAME', "root");
 define('DB_PASSWORD', "");
 

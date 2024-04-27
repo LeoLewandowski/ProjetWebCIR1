@@ -61,18 +61,10 @@ li {
     padding: 10px;
     text-align: center; /* Centrer le contenu horizontalement */
 }
-#titre{
-    font-size: 0.5em;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-#addcart {
-    height: 30px;
-    width: 100px;
-    margin-bottom: px; /* Espacement entre le champ de quantité et le bouton */
-}
-#quantite {
-    width: 30px;
+
+label, input[type="submit"] {
+    font-size: 14px;
+    width: max-content;
 }
 
 /* ------------------------------  AFFICHAGE TELEPHONE ------------------------ */

@@ -146,7 +146,7 @@
             }
     }
 
-    getPageHead('Connexion', 'login');
+    getPageHead(_('Log in') . ' | ' . _('Sign up'), 'login');
     ?>
     <script>
         function onToggle(toggle) {
