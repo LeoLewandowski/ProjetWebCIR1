@@ -1,0 +1,21 @@
+.message {
+    top: 70px;
+    margin: 20px 0;
+    padding: 10px;
+    background-color: var(--main-theme-color);
+    border-radius: 30px;
+    border: 2px solid var(--theme-accent-color);
+}
+
+.author {
+    font-weight: bold;
+}
+
+.message>span {
+    text-decoration: underline var(--theme-accent-color) 2px;
+}
+
+img {
+    max-height: 35vh;
+    width: auto;
+}
