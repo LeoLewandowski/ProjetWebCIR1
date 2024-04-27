@@ -211,7 +211,7 @@ main {
 }
 
 #logo-header img {
-    height: 7vh;
+    height: max(min(7vh, 5vw), 50px);
 }
 
 /* --------------------------- NAVIGATION --------------------------- */
@@ -763,9 +763,8 @@ textarea:focus {
 .input-box > input:focus ~ label,
 .input-box > input:not(:placeholder-shown) ~ label,
 .input-box > select:focus ~ label,
-.input-box > input:not(:placeholder-shown) ~ label,
 .input-box > textarea:focus ~ label,
-.input-box > input:not(:placeholder-shown) ~ label,
+.input-box > textarea:not(:placeholder-shown) ~ label,
 .input-box.force-anim > label {
     transform: translate(1rem, -100%) scale(0.8);
     color: white;

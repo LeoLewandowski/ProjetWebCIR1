@@ -102,7 +102,7 @@
                 setcookie('id', $clientID);
                 $_SESSION['password'] = $hashedPwd;
 
-                if(isset($_GET['redirect'])) header('location:'.$_GET['redirect']);
+                if(isset($_GET['redirect'])) header('location:/'.$_GET['redirect']);
                 else header('location:/account');
             }
         }
@@ -133,7 +133,7 @@
                 if (isset($line[0]) && password_verify($password, $line[0])) {
                     setcookie('id', $line[1]);
                     $_SESSION['password'] = $line[0];
-                    if(isset($_GET['redirect'])) header('location:'.$_GET['redirect']);
+                    if(isset($_GET['redirect'])) header('location:/'.$_GET['redirect']);
                     else header('location:/account');
                 } else if (empty($line[0]))
                     $emailError = _(Localization::ERROR_EMAIL_UNUSED->value);
