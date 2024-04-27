@@ -5,7 +5,7 @@
     <?php
     require_once($_SERVER['DOCUMENT_ROOT'] . '/util/common.php');
     require_once($_SERVER['DOCUMENT_ROOT'] . '/util/connection.php');
-
+    getPageHead('Panier', 'panier');
     // Si l'utilisateur n'est pas connecté, on le redirge vers la page de connexion
     if (empty($userInfo))
         header('location:./login');
@@ -25,30 +25,23 @@
                 <th>Total</th>
             </tr>
             <?php
-            $query = "SELECT * FROM shopping_carts WHERE user_id = " . $userInfo['id'];
-            $result = $conn->query($query);
+            $uID=$userInfo['id'];
+            $crt = $connection->prepare("SELECT * FROM shopping_carts WHERE id = ?");
+            $crt->execute([$uID]);
+            $res = $crt->fetchAll(PDO::FETCH_ASSOC);
             $total = 0;
-            while ($row = $result->fetch_assoc()) {
-                $query = "SELECT * FROM watches WHERE id = " . $row['watch_id'];
-                $watch = $conn->query($query)->fetch_assoc();
-                $total += $watch['price'] * $row['quantity'];
-            ?>
-                <tr>
-                    <td><?php echo $watch['name'] ?></td>
-                    <td><?php echo $watch['price'] ?>€</td>
-                    <td><?php echo $row['quantity'] ?></td>
-                    <td><?php echo $watch['price'] * $row['quantity'] ?>€</td>
-                </tr>
-            <?php
+            foreach ($res as $watch) {
+                $wID = $watch['watch_id'];
+                $stmt = $connection->prepare("SELECT * FROM watches WHERE id = ?");
+                $stmt->execute([$wID]);
+                $res = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                $watch = $res[0];
+                $total += $watch['price'] * $watch['quantity'];
             }
-            ?>
-            <tr>
-                <td colspan="3">Total</td>
-                <td><?php echo $total ?>€</td>
-            </tr>
-        </table>
-    </main>
-
-    <?php
-    getPageFooter();
-    ?>
+                ?>
+                <tr>
+                    <td><?= $watch['name'] ?></td>
+                    <td><?= $watch['price'] ?>€</td>
+                    <td><?= $watch['quantity'] ?></td>
+                    <td><?= $watch['price'] * $watch['quantity'] ?>€</td>
+                </tr>
