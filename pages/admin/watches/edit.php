@@ -5,7 +5,7 @@ require_once ($_SERVER['DOCUMENT_ROOT'] . '/util/connection.php');
 
 // Si l'utilisateur n'est pas admin, on affiche la page 404 à la place
 if (!$userInfo['admin']) {
-    require ('../404.php');
+    require ($_SERVER['DOCUMENT_ROOT'] .'/pages/404.php');
     die();
 }
 
@@ -119,12 +119,12 @@ if (isset($_POST['edit']) && !$invalid) {
                     <input type="text" placeholder=" " name="name" value="<?= _($watch['name']) ?>" required>
                     <label><?= _('Name') ?></label>
                 </div>
-                <div class="input-box force-anim">
+                <div class="input-box">
                     <textarea rows="12" cols="50" placeholder=" " name="description_en"
                         required><?= _($watch['description_en']) ?></textarea>
                     <label><?= _('Watch description (English)') ?></label>
                 </div>
-                <div class="input-box force-anim">
+                <div class="input-box">
                     <textarea rows="12" cols="50" placeholder=" " name="description_fr"
                         required><?= _($watch['description_fr']) ?></textarea>
                     <label><?= _('Watch description (French)') ?></label>

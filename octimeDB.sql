@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : ven. 26 avr. 2024 à 21:46
+-- Généré le : sam. 27 avr. 2024 à 11:57
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -56,9 +56,19 @@ INSERT INTO `accounts` (`gender`, `name`, `surname`, `email`, `password`, `birth
 CREATE TABLE `messages` (
   `subject` text NOT NULL,
   `content` text NOT NULL,
-  `image` longblob NOT NULL,
-  `user_id` char(23) NOT NULL
+  `user_id` char(23) NOT NULL,
+  `img_extension` varchar(4) DEFAULT NULL,
+  `id` char(23) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Table pour page "contact"';
+
+--
+-- Déchargement des données de la table `messages`
+--
+
+INSERT INTO `messages` (`subject`, `content`, `user_id`, `img_extension`, `id`) VALUES
+('Test', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', '662a84c3ec5670.78596281', 'png', '662cc8f1cd0a96.80243253'),
+('Amogus', 'When the imposter is sus! 😳 \r\n\r\n⠀⠀⠀⡯⡯⡾⠝⠘⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢊⠘⡮⣣⠪⠢⡑⡌\r\n⠀⠀⠀⠟⠝⠈⠀⠀⠀⠡⠀⠠⢈⠠⢐⢠⢂⢔⣐⢄⡂⢔⠀⡁⢉⠸⢨⢑⠕⡌\r\n⠀⠀⡀⠁⠀⠀⠀⡀⢂⠡⠈⡔⣕⢮⣳⢯⣿⣻⣟⣯⣯⢷⣫⣆⡂⠀⠀⢐⠑⡌\r\n⢀⠠⠐⠈⠀⢀⢂⠢⡂⠕⡁⣝⢮⣳⢽⡽⣾⣻⣿⣯⡯⣟⣞⢾⢜⢆⠀⡀⠀⠪\r\n⣬⠂⠀⠀⢀⢂⢪⠨⢂⠥⣺⡪⣗⢗⣽⢽⡯⣿⣽⣷⢿⡽⡾⡽⣝⢎⠀⠀⠀⢡\r\n⣿⠀⠀⠀⢂⠢⢂⢥⢱⡹⣪⢞⡵⣻⡪⡯⡯⣟⡾⣿⣻⡽⣯⡻⣪⠧⠑⠀⠁⢐\r\n⣿⠀⠀⠀⠢⢑⠠⠑⠕⡝⡎⡗⡝⡎⣞⢽⡹⣕⢯⢻⠹⡹⢚⠝⡷⡽⡨⠀⠀⢔\r\n⣿⡯⠀⢈⠈⢄⠂⠂⠐⠀⠌⠠⢑⠱⡱⡱⡑⢔⠁⠀⡀⠐⠐⠐⡡⡹⣪⠀⠀⢘\r\n⣿⣽⠀⡀⡊⠀⠐⠨⠈⡁⠂⢈⠠⡱⡽⣷⡑⠁⠠⠑⠀⢉⢇⣤⢘⣪⢽⠀⢌⢎\r\n⣿⢾⠀⢌⠌⠀⡁⠢⠂⠐⡀⠀⢀⢳⢽⣽⡺⣨⢄⣑⢉⢃⢭⡲⣕⡭⣹⠠⢐⢗\r\n⣿⡗⠀⠢⠡⡱⡸⣔⢵⢱⢸⠈⠀⡪⣳⣳⢹⢜⡵⣱⢱⡱⣳⡹⣵⣻⢔⢅⢬⡷\r\n⣷⡇⡂⠡⡑⢕⢕⠕⡑⠡⢂⢊⢐⢕⡝⡮⡧⡳⣝⢴⡐⣁⠃⡫⡒⣕⢏⡮⣷⡟\r\n⣷⣻⣅⠑⢌⠢⠁⢐⠠⠑⡐⠐⠌⡪⠮⡫⠪⡪⡪⣺⢸⠰⠡⠠⠐⢱⠨⡪⡪⡰\r\n⣯⢷⣟⣇⡂⡂⡌⡀⠀⠁⡂⠅⠂⠀⡑⡄⢇⠇⢝⡨⡠⡁⢐⠠⢀⢪⡐⡜⡪⡊\r\n⣿⢽⡾⢹⡄⠕⡅⢇⠂⠑⣴⡬⣬⣬⣆⢮⣦⣷⣵⣷⡗⢃⢮⠱⡸⢰⢱⢸⢨⢌\r\n⣯⢯⣟⠸⣳⡅⠜⠔⡌⡐⠈⠻⠟⣿⢿⣿⣿⠿⡻⣃⠢⣱⡳⡱⡩⢢⠣⡃⠢⠁\r\n⡯⣟⣞⡇⡿⣽⡪⡘⡰⠨⢐⢀⠢⢢⢄⢤⣰⠼⡾⢕⢕⡵⣝⠎⢌⢪⠪⡘⡌⠀\r\n⡯⣳⠯⠚⢊⠡⡂⢂⠨⠊⠔⡑⠬⡸⣘⢬⢪⣪⡺⡼⣕⢯⢞⢕⢝⠎⢻⢼⣀⠀\r\n⠁⡂⠔⡁⡢⠣⢀⠢⠀⠅⠱⡐⡱⡘⡔⡕⡕⣲⡹⣎⡮⡏⡑⢜⢼⡱⢩⣗⣯⣟\r\n⢀⢂⢑⠀⡂⡃⠅⠊⢄⢑⠠⠑⢕⢕⢝⢮⢺⢕⢟⢮⢊⢢⢱⢄⠃⣇⣞⢞⣞⢾\r\n⢀⠢⡑⡀⢂⢊⠠⠁⡂⡐⠀⠅⡈⠪⠪⠪⠣⠫⠑⡁⢔⠕⣜⣜⢦⡰⡎⡯⡾⡽', '662a84c3ec5670.78596281', 'png', '662ccadf7cc823.32427261'),
+('Jojo ref', 'Mon nom est Yoshikage Kira. J&#039;ai 33 ans. Ma maison est située dans la partie nord-est de Morioh, où se trouvent toutes les villas, et je ne suis pas marié. Je travaille comme employé pour les grands magasins Kame Yu et je rentre chez moi tous les jours à 20 heures au plus tard. Je ne fume pas, mais je bois de temps en temps. Je suis au lit à 23 heures et m&#039;assure de dormir huit heures, quoi qu&#039;il arrive. Après avoir bu un verre de lait chaud et fait environ vingt minutes d&#039;étirements avant d&#039;aller me coucher, je n&#039;ai généralement aucun problème à dormir jusqu&#039;au matin. Comme un bébé, je me réveille le matin sans fatigue ni stress. On m&#039;a dit qu&#039;il n&#039;y avait pas de problèmes lors de mon dernier examen. J&#039;essaie d&#039;expliquer que je suis une personne qui souhaite vivre une vie très calme. Je prends soin de ne pas m&#039;inquiéter d&#039;ennemis tels que gagner ou perdre, cela me ferait perdre le sommeil la nuit. C&#039;est comme ça que je traite avec la société et je sais que c&#039;est ce qui m&#039;apporte le bonheur. Bien que, si je devais me battre, je ne perdrais face à personne.', '662a84c3ec5670.78596281', NULL, '662ccbcaecd828.96796049');
 
 -- --------------------------------------------------------
 
@@ -113,6 +123,7 @@ ALTER TABLE `accounts`
 -- Index pour la table `messages`
 --
 ALTER TABLE `messages`
+  ADD PRIMARY KEY (`id`),
   ADD KEY `user_id` (`user_id`);
 
 --
