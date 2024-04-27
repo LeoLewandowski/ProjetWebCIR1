@@ -47,6 +47,34 @@ li {
     margin-left: 20px;
 }
 
+.container {
+    position: relative;
+    --padding: max(2vw, 2vh);
+    padding: var(--padding);
+    border-radius: 20px;
+    box-shadow: 0 0 30px 5px var(--tertiary-theme-color);
+    background-color: var(--tertiary-theme-color);
+    font-size: min(3.5vh, 4vw);
+    max-width: 250px;
+    max-height: 150px;
+    margin: 0 auto;
+    padding: 10px;
+    text-align: center; /* Centrer le contenu horizontalement */
+}
+#titre{
+    font-size: 0.5em;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+#addcart {
+    height: 30px;
+    width: 100px;
+    margin-bottom: px; /* Espacement entre le champ de quantité et le bouton */
+}
+#quantite {
+    width: 30px;
+}
+
 /* ------------------------------  AFFICHAGE TELEPHONE ------------------------ */
 
 @media (max-width: 576px) {
