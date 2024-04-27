@@ -3,9 +3,19 @@
 
 <head>
     <?php
-    require_once('./util/common.php');
+    require_once ('./util/common.php');
     getPageHead('OcTime', 'index');
     ?>
+    <script>
+        // Fonction pour l'animation de l'horloge de l'accueil
+        document.addEventListener('mousemove', (e) => {
+            var rect = document.getElementById('nav').getBoundingClientRect();
+            var x = e.clientX - (rect.left + rect.right) / 2; //x position within the element.
+            var y = e.clientY - (rect.top + rect.bottom) / 2;  //y position within the element.
+            console.log("Left? : " + x + " ; Top? : " + y + "." + "; Angle? : " + Math.atan2(y, x));
+            document.getElementById('handle').style.setProperty('rotate', Math.round(Math.atan2(y, x) * 100) / 100 + Math.PI/2 + "rad");
+        });
+    </script>
 </head>
 
 <body>
@@ -19,20 +29,19 @@
     <!-- End Banner -->
 
     <!-- Clock Nav -->
-    <h2>Navigation</h2>
+    <h2><?= _('Navigation') ?></h2>
     <section id="nav">
         <div id="clock-links">
-            <a href="/" style="color: var(--theme-accent-color);">Accueil</a>
-            <a href="/history">Histoire</a>
-            <a href="/products">Produits</a>
-            <a href="/contact">Contact</a>
-            <a href="/concept">Concept</a>
-            <a href="/login">Connexion</a>
-            <a href="/login?signup">Inscription</a>
-            <a href="/team">Équipe</a>
+            <a href="/" style="color: var(--theme-accent-color);"><?= _('Homepage') ?></a>
+            <a href="/history"><?= _('History') ?></a>
+            <a href="/products"><?= _('Products') ?></a>
+            <a href="/contact"><?= _('Contact') ?></a>
+            <a href="/concept"><?= _('Concept') ?></a>
+            <a href="/login"><?= _('Log in') ?></a>
+            <a href="/login?signup"><?= _('Sign up') ?></a>
+            <a href="/team"><?= _('Our team') ?></a>
         </div>
-        <svg width="256" height="256" stroke="black" fill="black" stroke-width="10"
-            stroke-linecap="round">
+        <svg width="256" height="256" stroke="black" fill="black" stroke-width="10" stroke-linecap="round">
             <circle cx="128.25" cy="128.25" r="123.25" fill="none" />
             <line id="handle" x1="128" x2="128" y1="128" y2="50" />
             <g stroke-width="5">
@@ -93,7 +102,8 @@
             et l'innovation contemporaine. Avec Octime, le temps devient une expérience, un héritage à chérir à travers
             les générations.
             <br><br>
-            <h3 style="color: var(--theme-accent-color);font-style: italic;">Choisissez Octime. Choisissez l'excellence.</h3>
+        <h3 style="color: var(--theme-accent-color);font-style: italic;">Choisissez Octime. Choisissez l'excellence.
+        </h3>
         </p>
     </main>
 

@@ -107,7 +107,7 @@ else
             $_SESSION['error'] = null;
         }
         ?>
-        <table id="mainTable">
+        <table class="mainTable">
 
             <thead>
                 <th><?= _('Actions') ?></th>

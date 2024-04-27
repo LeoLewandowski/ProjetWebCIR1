@@ -50,24 +50,24 @@
         // Si le genre n'est pas une des options dans l'enum (H, F, ou N), alors la variable $gender est unset
         // Permet d'éviter l'injection en cas de valeurs possibles modifiées côté client
         if (!isset($gender))
-            $genderError = _(Localization::VALUE_INVALID->value);
+            $genderError = _('This option is invalid, please choose another one');
 
         if (!validateName($name))
-            $nameError = _(Localization::NAME_INVALID->value);
+            $nameError = _('This name is invalid. Names must only contain word characters or ideogras, hyphens and apostrophes, and be shorter than 64 characters');
         if (!validateName($surname))
-            $surnameError = _(Localization::NAME_INVALID->value);
+            $surnameError = _('This name is invalid. Names must only contain word characters or ideogras, hyphens and apostrophes, and be shorter than 64 characters');
 
         if (!validatePassword($password))
-            $passwordError = _(Localization::PASSWORD_INVALID->value);
+            $passwordError = _('The password must be between 8 and 64 characters long and can only include the following characters, with at least one of each type :<ul><li>Lower or upper-case latin letters, without accents</li><li>Digits (between 0 and 9)</li><li>Special characters in this list : \*/+-_=#~&@$</li></ul>');
     
         if (!validateEmail($email))
-            $emailError = _(Localization::EMAIL_INVALID->value);
+            $emailError = _('The given email adress is invalid, or it is longer than 64 characters');
 
         if (!validateDate($date))
-            $dateError = _(Localization::DATE_INVALID->value);
+            $dateError = _('The given date must be between today and 1900/01/01');
 
         if (!isset($accept))
-            $acceptError = _(Localization::CONDITIONS_UNACCEPTED->value);
+            $acceptError = _('You must accept the conditions to continue');
 
         // S'il n'y a aucune erreur, alors on crée le compte et on connecte l'utilisateur
         if (
@@ -87,7 +87,7 @@
             // On vérifie si un utilisateur avec le même email n'exste pas déjà
             $check = $connection->prepare("SELECT email FROM accounts WHERE email = ?");
             $check->execute([$email]);
-            if (count($check->fetchAll()) > 0) $emailError = _(Localization::EMAIL_USED->value);
+            if (count($check->fetchAll()) > 0) $emailError = _("This email adress is already linked to an account");
             else {
                 // On crée une photo de profil pour l'utilisateur, basée sur ses initiales. On met un nom unique à la photo
                 $clientID = uniqid("", true);
@@ -118,9 +118,9 @@
 
         // Vérifie si les données sont valables ou non
         if (!validateEmail($email))
-            $emailError = _(Localization::EMAIL_INVALID->value);
+            $emailError = _('The given email adress is invalid, or it is longer than 64 characters');
         if (!validatePassword($password))
-            $passwordError = _(Localization::PASSWORD_INVALID->value);
+            $passwordError = _('The password must be between 8 and 64 characters long and can only include the following characters, with at least one of each type :<ul><li>Lower or upper-case latin letters, without accents</li><li>Digits (between 0 and 9)</li><li>Special characters in this list : \*/+-_=#~&@$</li></ul>');
 
         // Si l'email et le MdP sont valides :
         if (!isset($emailError) && !isset($passwordError))
@@ -136,13 +136,13 @@
                     if(isset($_GET['redirect'])) header('location:/'.$_GET['redirect']);
                     else header('location:/account');
                 } else if (empty($line[0]))
-                    $emailError = _(Localization::ERROR_EMAIL_UNUSED->value);
+                    $emailError = _("This email adress is not linked to any account");
                 else
-                    $passwordError = _(Localization::PASSWORD_WRONG->value);
+                    $passwordError = _('Wrong password !');
             }
             // En cas d'erreur, on notifie l'utilisateur
             catch (Exception $e) {
-                echo _(Localization::ERROR_DEFAULT->value);
+                echo _("<span class='error'>An error occured</span>");
             }
     }
 
@@ -167,17 +167,17 @@
                 <label id="switch">
                     <input type="checkbox" class="toggle" onchange="onToggle(this.checked)" <?= isset($_GET['signup']) ? 'checked' : '' ?>>
                     <span class="slider"></span>
-                    <span class="card-side" style="--text-before: <?= _(Localization::LOGIN->value) ?>; --text-after: <?= _(Localization::SIGNUP->value) ?>;"></span>
+                    <span class="card-side" style="--text-before: <?= _('Log in') ?>; --text-after: <?= _('Sign up') ?>;"></span>
                 </label>
                 <div class="flip-card-inner">
                     <div class="flip-card-login">
-                        <h6 class="title"><?= _(Localization::LOGIN->value) ?></h6>
+                        <h6 class="title"><?= _('Log in') ?></h6>
                         <form class="form-generic center" action="#" method="post">
                             <div class="error-wrapper">
                                 <div class="input-box">
                                     <input type="email" name="email" class="email" placeholder=" " <?php if (isset($email))
                                         echo "value='$email'"; ?>>
-                                    <label><?= _(Localization::EMAIL->value) ?></label>
+                                    <label><?= _('Email') ?></label>
                                 </div><?php if ($emailError && isset($_POST['login']))
                                     echo "<span class='error'>$emailError</span>"; ?>
                             </div>
@@ -185,11 +185,11 @@
                             <div class="error-wrapper">
                                 <div class="input-box">
                                     <input type="password" class="password" name="password" placeholder=" ">
-                                    <label><?= _(Localization::PASSWORD->value) ?></label>
+                                    <label><?= _('Password') ?></label>
                                 </div><?php if ($passwordError && isset($_POST['login']))
                                     echo "<span class='error'>$passwordError</span>"; ?>
                             </div>
-                            <input type="submit" name="login" value="<?= _(Localization::LOGIN->value) ?> "
+                            <input type="submit" name="login" value="<?= _('Log in') ?> "
                                 class="signupbtn">
                         </form>
                     </div>
@@ -203,7 +203,7 @@
                                         <option value="M" <?= ($gender == Gender::Male && !isset($genderError)) ? ' selected' : '' ?>> <?= _(Gender::Male->name) ?></option>
                                         <option value="F" <?= ($gender == Gender::Female && !isset($genderError)) ? ' selected' : '' ?>> <?= _(Gender::Female->name) ?></option>
                                     </select>
-                                    <label><?= _(Localization::GENDER_CIVILITY->value) ?></label>
+                                    <label><?= _('Gender') ?></label>
                                 </div><?php if ($genderError)
                                     echo "<span class='error'>$genderError</span>"; ?>
                             </div>
@@ -212,7 +212,7 @@
                                 <div class="input-box">
                                     <input type="text" name="name" class="name" placeholder=" " <?php if (isset($name))
                                         echo "value='$name'"; ?> required>
-                                    <label><?= _(Localization::NAME->value) ?></label>
+                                    <label><?= _('Name') ?></label>
                                 </div><?php if ($nameError)
                                     echo "<span class='error'>$nameError</span>"; ?>
                             </div>
@@ -221,7 +221,7 @@
                                 <div class="input-box">
                                     <input type="text" name="surname" class="name" placeholder=" " <?php if (isset($surname))
                                         echo "value='$surname'"; ?> required>
-                                    <label><?= _(Localization::SURNAME->value) ?></label>
+                                    <label><?= _('Surname') ?></label>
                                 </div><?php if ($surnameError)
                                     echo "<span class='error'>$surnameError</span>"; ?>
                             </div>
@@ -230,7 +230,7 @@
                                 <div class="input-box">
                                     <input type="email" name="email" class="email" placeholder=" " <?php if (isset($email))
                                         echo "value='$email'"; ?> required>
-                                    <label><?= _(Localization::EMAIL->value) ?></label>
+                                    <label><?= _('Email') ?></label>
                                 </div><?php if ($emailError && isset($_POST['signup']))
                                     echo "<span class='error'>$emailError</span>"; ?>
                             </div>
@@ -238,7 +238,7 @@
                             <div class="error-wrapper">
                                 <div class="input-box">
                                     <input type="password" class="password" name="password" placeholder=" " required>
-                                    <label><?= _(Localization::PASSWORD->value) ?></label>
+                                    <label><?= _('Password') ?></label>
                                 </div><?php if ($passwordError && isset($_POST['signup']))
                                     echo "<span class='error'>$passwordError</span>"; ?>
                             </div>
@@ -248,7 +248,7 @@
                                     <input type="date" class="birth" name="date" min="1000-01-01"
                                         max="<?php echo date('Y-m-d') ?>" <?php if (isset($date))
                                                echo "value='$date'"; ?> required>
-                                    <label><?= _(Localization::BIRTH_DATE->value) ?></label>
+                                    <label><?= _('Birth date') ?></label>
                                 </div><?php if ($dateError)
                                     echo "<span class='error'>$dateError</span>"; ?>
                             </div>
@@ -262,7 +262,7 @@
                                             pathLength="575.0541381835938" class="path"></path>
                                     </svg>
                                 </label>
-                                <p> <?= _(Localization::CONDITIONS_AGREE->value) ?> </p>
+                                <p> <?= _('I agree to the <a href="/conditions">terms and conditions</a> of this website') ?> </p>
                             </div>
                             <?php if ($acceptError)
                                 echo "<span class='error'>$acceptError</span>"; ?>

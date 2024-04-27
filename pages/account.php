@@ -89,18 +89,18 @@
         // Si le genre n'est pas une des options dans l'enum (H, F, ou N), alors la variable $gender est unset
         // Permet d'éviter l'injection en cas de valeurs possibles modifiées côté client
         if (!isset($gender))
-            $genderError = _(Localization::VALUE_INVALID->value);
+            $genderError = _('This option is invalid, please choose another one');
 
         if (!validateName($name))
-            $nameError = _(Localization::NAME_INVALID->value);
+            $nameError = _('This name is invalid. Names must only contain word characters or ideogras, hyphens and apostrophes, and be shorter than 64 characters');
         if (!validateName($surname))
-            $surnameError = _(Localization::NAME_INVALID->value);
+            $surnameError = _('This name is invalid. Names must only contain word characters or ideogras, hyphens and apostrophes, and be shorter than 64 characters');
 
         if (!validateEmail($email))
-            $emailError = _(Localization::EMAIL_INVALID->value);
+            $emailError = _('The given email adress is invalid, or it is longer than 64 characters');
 
         if (!validateDate($date))
-            $dateError = _(Localization::DATE_INVALID->value);
+            $dateError = _('The given date must be between today and 1900/01/01');
 
         // S'il n'y a aucune erreur, alors on modifie les paramètres du compte
         // Le compte existe forcément déjà, car userInfo est défini
@@ -128,7 +128,7 @@
     if (isset($_POST['emptyCart'])) {
         $stmt = $connection->prepare("DELETE FROM shopping_carts WHERE client_id = ?");
         $stmt->execute([$userInfo['id']]);
-        $sessionConfirm = _(Localization::CART_EMPTIED->value);
+        $sessionConfirm = _('Your cart was successfully emptied !');
     }
 
     // Si l'utilisateur désire supprimer son compte
@@ -155,7 +155,7 @@
         header('location:/login');
     }
 
-    getPageHead(_('Compte - Paramètres'), 'account');
+    getPageHead(_('Account - Parameters'), 'account');
     ?>
     <script src="/util/imageChange.js"></script>
 </head>
@@ -164,16 +164,16 @@
     <?php
     getPageHeader($userInfo);
     ?>
-    <h1><?php echo _(Localization::GREETING->value) . $userInfo['surname'] . ' ' . $userInfo['name'] ?></h1>
+    <h1><?php echo _('Welcome, ') . $userInfo['surname'] . ' ' . $userInfo['name'] ?></h1>
     <main>
         <menu class="form-generic formLetter">
-            <a href="#account-info"><?= _(Localization::ACCOUNT_INFOS->value) ?></a>
+            <a href="#account-info"><?= _('Account informations') ?></a>
             <a href="#session"><?= _('Session parameters') ?></a>
             <a href="#danger-zone"><?= _('Danger zone') ?></a>
         </menu>
         <div id="main-object">
             <form class="form-generic" enctype="multipart/form-data" action="#account-info" method="post">
-                <h3 id="account-info"><?php echo _(Localization::ACCOUNT_INFOS->value) ?></h3>
+                <h3 id="account-info"><?php echo _('Account informations') ?></h3>
                 <?php if (isset($updateConfirm))
                     echo '<span class="confirm">' . $updateConfirm . '</span>'; ?>
                 <div class="error-wrapper">
@@ -201,7 +201,7 @@
                             </option>
                             <option value="F" <?= ($gender == Gender::Female && !isset($genderError)) ? ' selected' : '' ?>> <?= _(Gender::Female->name) ?></option>
                         </select>
-                        <label for="gender"><?= _(Localization::GENDER_CIVILITY->value) ?></label>
+                        <label for="gender"><?= _('Gender') ?></label>
                     </div><?php if ($genderError)
                         echo "<span class='error'>$genderError</span>"; ?>
                 </div>
