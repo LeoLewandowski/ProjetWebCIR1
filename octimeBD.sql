@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : dim. 28 avr. 2024 à 11:28
+-- Généré le : dim. 28 avr. 2024 à 17:10
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -110,8 +110,13 @@ CREATE TABLE `watches` (
 --
 
 INSERT INTO `watches` (`name`, `description_fr`, `description_en`, `timeType`, `braceletType`, `price`, `id`) VALUES
-('Spacewalker', 'L\'un de nos premiers modèles, le Spacewalker est indubitablement celui qui représente le mieux Octime. Constitué d\'un alliage d\'acier, de chrome et de régolithe lunaire, ce modèle est extrêmement résistant, étanche et peut supporter une immersion jusqu\'à 100m de profondeur', 'One of our first models, the Spacewalker is undoubtedly the one that represents Octime the best. Forged from an incredible alloy of steel, chrome and lunar regolith, this watch is extremely durable and waterproof, and can even withstand being submerged to 100m depth', 'D', 'M', 149, 1),
-('Eclipse', 'L&#039;Eclipse est notre &quot;montre star&quot; ici, à Octime. Son histoire est unique, car elle est la première montre produite par notre compagnie (et dans le monde entier !) à utiliser le système d&#039;heures octales au lieu du système classique. Elle est forgée à partir de régolithe lunaire, de titane et de chrome.', 'The Eclipse is our &quot;star watch&quot; here at Octime. It&#039;s history is unique, as it is the first ever watch produced in our company (and in the world !) that uses an octal hour system instead of the regular one. It is made out of lunar regolith, titanium and chrome.', 'O', 'M', 199, 2);
+('Octime Spacewalker', 'L\'un de nos premiers modèles, le Spacewalker est indubitablement celui qui représente le mieux Octime. Constitué d\'un alliage d\'acier, de chrome et de régolithe lunaire, ce modèle est extrêmement résistant, étanche et peut supporter une immersion jusqu\'à 100m de profondeur', 'One of our first models, the Spacewalker is undoubtedly the one that represents Octime the best. Forged from an incredible alloy of steel, chrome and lunar regolith, this watch is extremely durable and waterproof, and can even withstand being submerged to 100m depth', 'D', 'M', 149, 1),
+('Octime Eclipse', 'L&#039;Eclipse est notre &quot;montre star&quot; ici, à Octime. Son histoire est unique, car elle est la première montre produite par notre compagnie (et dans le monde entier !) à utiliser le système d&#039;heures octales au lieu du système classique. Elle est forgée à partir de régolithe lunaire, de titane et de chrome.', 'The Eclipse is our &quot;star watch&quot; here at Octime. It&#039;s history is unique, as it is the first ever watch produced in our company (and in the world !) that uses an octal hour system instead of the regular one. It is made out of lunar regolith, titanium and chrome.', 'O', 'M', 199, 2),
+('Octime Swift II', 'Faite pour les coureurs et les pilotes, cette montre vous accompagnera dans chaque voyage que vous ferez, que ce soit sous les mers ou sur la Lune', 'Made for runners and pilots, this watch will follow you on any trip you can make, however it is on the Moon or beyond the seas', 'D', 'L', 1500, 3),
+('Octime DIver Edition', 'Avec son étanchéité de plus de 1500M, cette montre est capable de supporter des conditions extrêmes,', 'With its waterproofness of 1500m, this watch is able to withstand the most extreme conditions', 'O', 'M', 500, 4),
+('Octime Sanguine', 'Avec cette montre, vous serez la personne la plus en vogue de tous les plus grand défilés Parisiens, existe aussi en version Duodécimale pour les moins téméraires\r\nMais si vous voulez l&#039;expérience authentique Octime, prenez la version Octale', 'With this watch, you will be the most fashionable person in every Parisian parade, also exist in duodécimal version for less reckless people, but if you want the most authentic Octime experience, take the Octal Version', 'O', 'L', 10500, 5),
+('Octime Lakamber', 'Après avoir atteint la lune, Octime ne comptait pas s&#039;arrêter là, pour aller toujours plus haut, notre marque a donc créé la Lakamber pour montrer qu&#039;atteindre d&#039;autres astres plus éloignés était tout à fait possible', 'After reaching the Moon, Octime didn&#039;t want to stop there, to go beyond, our brand created the Lakamber;, to show that we could reach even further planets and celestial bodies', 'D', 'S', 538, 6),
+('Octime squared²', 'Chez Octime, le design des montres tournait un peu &quot;en rond&quot;, c&#039;est donc pour cela qu&#039;a été crée la Squared², avec un style beaucoup plus futuristique que ces prédécésseuses, cette montre innove car elle montre que le format Octal peut s&#039;adapter à tout type de montre', 'At Octime, the watch design was going around in circles, the Squared² was created with a much more futuristic style because of this, This watch innovate because it shows how the octal system can adapt to every type of watches', 'O', 'S', 5250, 7);
 
 --
 -- Index pour les tables déchargées
@@ -154,7 +159,7 @@ ALTER TABLE `watches`
 -- AUTO_INCREMENT pour la table `watches`
 --
 ALTER TABLE `watches`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Contraintes pour les tables déchargées

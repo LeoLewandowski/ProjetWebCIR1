@@ -35,6 +35,10 @@
     cursor: pointer;
 }
 
+#watchOverlay > p {
+    color: white;
+}
+
 #watchOverlay:hover {
     opacity: 1;
 }

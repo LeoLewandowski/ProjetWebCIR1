@@ -38,7 +38,7 @@
     une police de caractères ainsi que la couleur de texte associée au thème
  */
 * {
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     margin: 0;
     padding: 0;
     color: var(--text-theme-color);
@@ -93,7 +93,7 @@ h6 {
     text-align: center;
     margin: 1.25rem;
     text-indent: 0;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 /* Grand titre, en petites majuscules */
@@ -121,12 +121,12 @@ p {
 /* ------------------------- HEADER & NAV -------------------------- */
 
 /* Evite d'avoir un grand espace vide après le header */
-header + * {
+header+* {
     margin-top: 0 !important;
 }
 
 header {
-    --height:100vh;
+    --height: 100vh;
     width: 100%;
     height: 100px;
 
@@ -144,7 +144,7 @@ header {
 
 }
 
-header > * {
+header>* {
     z-index: 10;
 }
 
@@ -161,11 +161,11 @@ header::after {
     pointer-events: none;
 
     /* Style et apparence des éléments derrière */
-    backdrop-filter: blur(var(--glasspane-filter-size)) brightness(50%);
+    backdrop-filter: blur(var(--glasspane-filter-size)) contrast(40%);
     box-shadow: var(--theme-box-shadow);
 }
 
-header.nav-opened::after{
+header.nav-opened::after {
     height: calc(var(--height) + 100px);
 }
 
@@ -345,7 +345,8 @@ header.nav-opened #nav-button #nav-btn-bar3 {
 }
 
 
-#login, #cart {
+#login,
+#cart {
     /* Positionnement à droite et centré verticalement */
     position: absolute;
     top: 50%;
@@ -367,13 +368,13 @@ header.nav-opened #nav-button #nav-btn-bar3 {
 }
 
 /* Définit la taille de l'image */
-#login > img {
+#login>img {
     width: 50px;
     height: 50px;
     border-radius: inherit;
 }
 
-#cart > img {
+#cart>img {
     width: 30px;
     height: 30px;
 }
@@ -382,10 +383,6 @@ header.nav-opened #nav-button #nav-btn-bar3 {
 #login:hover {
     color: var(--secondary-theme-color);
     background-color: var(--text-theme-color);
-}
-
-#login:hover>img {
-    filter: invert();
 }
 
 /* Lien de retour en haut de la page */
@@ -490,11 +487,11 @@ textarea:focus {
 .conditions-accept {
     margin: 10px;
     display: flex;
-    flex-direction:row;
+    flex-direction: row;
     align-items: center;
 }
 
-.conditions-accept > p {
+.conditions-accept>p {
     font-size: .6em;
     margin-left: 7px;
 }
@@ -585,7 +582,7 @@ textarea:focus {
     height: 15vh;
 
     /* Définit les effets du background : backdrop-blur en dégradé + dégradé de couleur */
-    mask:linear-gradient(var(--angle), black 60%, transparent);
+    mask: linear-gradient(var(--angle), black 60%, transparent);
     backdrop-filter: blur(var(--filter-size));
     background: linear-gradient(var(--angle), var(--color), #0000);
 
@@ -686,7 +683,9 @@ textarea:focus {
 }
 
 /* Classe pour afficher les messages d'erreur */
-.error, .confirm, .warn {
+.error,
+.confirm,
+.warn {
     border-radius: 15px;
     padding: 10px 15px;
     box-sizing: content-box;
@@ -696,10 +695,11 @@ textarea:focus {
 }
 
 .confirm {
-    background-color: rgba(0, 140, 0,0.5)
+    background-color: rgba(0, 140, 0, 0.5)
 }
 
-.confirm, .confirm * {
+.confirm,
+.confirm * {
     color: limegreen;
     margin: 5px;
 }
@@ -708,16 +708,18 @@ textarea:focus {
     background-color: rgba(183, 110, 1, 0.5)
 }
 
-.warn, .warn * {
+.warn,
+.warn * {
     color: orangered;
     margin: 5px;
 }
 
 .error {
-    background-color: rgba(140, 0,20,0.5)
+    background-color: rgba(140, 0, 20, 0.5)
 }
 
-.error, .error * {
+.error,
+.error * {
     color: rgba(220, 0, 0, 0.9);
     margin: 5px;
 }
@@ -748,14 +750,14 @@ textarea:focus {
     border-radius: 1rem;
     padding: 1rem;
     font-size: 1rem;
-    color: #f5f5f5;
+    color: #5f5f5f;
     transition: border 150ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.input-box > label {
+.input-box>label {
     position: absolute;
     left: -12px;
-    color: gray;
+    color: #5f5f5f;
     pointer-events: none;
     transform: translate(2rem, 1rem);
     transition: 150ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -771,33 +773,34 @@ textarea:focus {
     border: 1.5px solid var(--theme-accent-color);
 }
 
-.input-box > input:focus ~ label,
-.input-box > input:not(:placeholder-shown) ~ label,
-.input-box > select:focus ~ label,
-.input-box > textarea:focus ~ label,
-.input-box > textarea:not(:placeholder-shown) ~ label,
-.input-box.force-anim > label {
+.input-box>input:focus~label,
+.input-box>input:not(:placeholder-shown)~label,
+.input-box>select:focus~label,
+.input-box>textarea:focus~label,
+.input-box>textarea:not(:placeholder-shown)~label,
+.input-box.force-anim>label {
     transform: translate(1rem, -100%) scale(0.8);
-    color: white;
+    color: var(--text-theme-color);
     padding: 0 .2em;
     filter: none;
 }
 
-.input-box > input:focus ~ label,
-.input-box > select:focus ~ label, 
-.input-box > textarea:focus ~ label {
+.input-box>input:focus~label,
+.input-box>select:focus~label,
+.input-box>textarea:focus~label {
     color: var(--theme-accent-color);
 }
 
-input[type="submit"], input[type="button"] {
+input[type="submit"],
+input[type="button"] {
     /*style du bouton*/
-    background-color: black;
-    color: white;
+    background-color: var(--main-theme-color);
+    color: var(--text-theme-color);
     border: 2px solid var(--theme-accent-color);
     padding: 0 2vh;
     cursor: pointer;
     box-sizing: content-box;
-    margin:auto;
+    margin: auto;
     width: max-content;
     border-radius: 5px;
     height: 5vh;
@@ -818,7 +821,9 @@ legend {
     border-radius: 1rem;
 }
 
-.mainTable, .mainTable td, .mainTable th {
+.mainTable,
+.mainTable td,
+.mainTable th {
     border: 1px solid var(--theme-accent-color);
     box-shadow: 0 0 3px .3px var(--theme-accent-color);
     border-collapse: separate;
@@ -826,25 +831,26 @@ legend {
     border-spacing: 0;
 }
 
-.mainTable td, .mainTable th {
+.mainTable td,
+.mainTable th {
     padding: 1vw;
     height: 100%;
     transition: none;
 }
 
-.mainTable thead > tr > th:first-child {
+.mainTable thead>tr>th:first-child {
     border-top-left-radius: 1rem;
 }
 
-.mainTable thead > tr > th:last-child {
+.mainTable thead>tr>th:last-child {
     border-top-right-radius: 1rem;
 }
 
-.mainTable tbody > tr:last-child > td:first-child {
+.mainTable tbody>tr:last-child>td:first-child {
     border-bottom-left-radius: 1rem;
 }
 
-.mainTable tbody > tr:last-child > td:last-child {
+.mainTable tbody>tr:last-child>td:last-child {
     border-bottom-right-radius: 1rem;
 }
 
@@ -888,6 +894,17 @@ legend {
     #login:hover>img,
     #up>img {
         filter: none;
+    }
+
+    header::after {
+        backdrop-filter: blur(var(--glasspane-filter-size)) brightness(50%);
+    }
+
+    .input-box input,
+    .input-box select,
+    .input-box textarea,
+    .input-box label {
+        color: #f5f5f5
     }
 }
 

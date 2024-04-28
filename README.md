@@ -10,7 +10,7 @@ Participants :
 
 ## Informations importantes
 
-Apache est nécessaire afin de faire tourner le site, Nginx ou autre ne supportant pas les fichier `.htaccess`
+Apache est nécessaire afin de faire tourner le site, Nginx ou autres systèmes de serveurs ne supportant pas les fichiers `.htaccess`
 
 2 extensions PHP sont nécessaires afin de faire tourner ce site, elles sont déjà préinstallées dans la plupart des stacks utilisant PHP et Apache, mais généralement non installées. Veuillez donc avant de lancer le site :
 
@@ -53,7 +53,7 @@ Pages :
 Autres :
 
 - Les éléments aparaissant dans toutes les pages web (footear, head, header, nav, etc.) sont stockés dans un fichier PHP à part, requis via PHP dans toutes les pages. Permet d'apporter des modifications plus rapidement à ces éléments
-- URL Rewrite pour embellir l'URL : `<site>/<chemin de page>` va afficher la page située dans `<site>/pages/<chemin de page>`. De plus, si l'extension `.php` n'apparaît pas dans l'URL donné par le client, le serveur le rajoute automatiquement
+- URL Rewrite pour embellir l'URL : `<site>/<chemin de page>` va afficher la page située dans `<site>/pages/<chemin de page>`. De plus, si l'extension `.php` n'apparaît pas dans l'URL donné par le client et que l'URL n'est pas déjà un fichier (par exemple une image) ou un dossier, le serveur le rajoute automatiquement
 
 ## Accès aux comptes
 

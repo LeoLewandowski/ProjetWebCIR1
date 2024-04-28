@@ -24,6 +24,10 @@ if (!$userInfo['admin']) {
     ?>
 
     <main>
+    <div class="input-box">
+            <input type="text" placeholder=" ">
+            <label><?= _('Search for messages') ?></label>
+        </div>
         <?php
         $req = "SELECT messages.subject, messages.content, messages.img_extension, messages.id, accounts.name, accounts.surname, accounts.email
         FROM messages 

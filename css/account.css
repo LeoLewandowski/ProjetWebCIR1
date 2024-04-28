@@ -103,6 +103,10 @@ hr {
     padding: 15px;
 }
 
+#pfp-overlay > p {
+    color: white;
+}
+
 #pfp-overlay * {
     cursor: pointer;
 }
