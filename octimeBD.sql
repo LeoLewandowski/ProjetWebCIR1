@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : sam. 27 avr. 2024 à 19:45
+-- Généré le : dim. 28 avr. 2024 à 11:28
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `octime`
+-- Base de données : `octimebd`
 --
 
 -- --------------------------------------------------------
@@ -44,8 +44,8 @@ CREATE TABLE `accounts` (
 --
 
 INSERT INTO `accounts` (`gender`, `name`, `surname`, `email`, `password`, `birth`, `admin`, `id`, `pfp_extension`) VALUES
-('M', 'Lewandowski', 'Léo', 'leo.lewandowski@student.junia.com', '$argon2i$v=19$m=65536,t=4,p=1$YXZJVkFnanJEL2dvUmxrRA$pc23vI41ZkfShQfpzDDWbKHz5EhwBglD61wJChniy0w', '2024-04-03', 1, '6628fb66c12f15.51178933', 'gif'),
-('N', 'Test', 'Test', 'test@junia.com', '$argon2i$v=19$m=65536,t=4,p=1$dG1mOEpWd1hsMEs2Y25pMQ$m3TFeJ657Aq/9DJYSIsQhWlHZVpjp7e2GpnEjLGPWhA', '2024-04-11', 0, '662a84c3ec5670.78596281', 'png');
+('N', 'Test', 'Test-deux', 'test@junia.com', '$argon2i$v=19$m=65536,t=4,p=1$dG1mOEpWd1hsMEs2Y25pMQ$m3TFeJ657Aq/9DJYSIsQhWlHZVpjp7e2GpnEjLGPWhA', '2024-04-11', 0, '662a84c3ec5670.78596281', 'png'),
+('M', 'Lewandowski', 'Léo', 'admin@junia.com', '$argon2i$v=19$m=65536,t=4,p=1$Ujh3bkQyRlZaYW1hQVBmTQ$m5hWLugNdEs4oeFpN4VeMrPfIqsQppVS8UYzZc+fAuQ', '2024-04-23', 1, '662e13a3e5a5c1.94251494', 'jpeg');
 
 -- --------------------------------------------------------
 
@@ -87,8 +87,7 @@ CREATE TABLE `shopping_carts` (
 --
 
 INSERT INTO `shopping_carts` (`product_id`, `count`, `client_id`) VALUES
-(1, 2, '6628fb66c12f15.51178933'),
-(1, 2, '662a84c3ec5670.78596281');
+(1, 4, '662a84c3ec5670.78596281');
 
 -- --------------------------------------------------------
 

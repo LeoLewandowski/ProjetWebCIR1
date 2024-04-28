@@ -798,7 +798,7 @@ input[type="submit"], input[type="button"] {
     cursor: pointer;
     box-sizing: content-box;
     margin:auto;
-    width: 30%;
+    width: max-content;
     border-radius: 5px;
     height: 5vh;
     text-align: center;
@@ -815,18 +815,37 @@ legend {
 .mainTable {
     max-width: 95vw;
     transition: none;
+    border-radius: 1rem;
 }
 
 .mainTable, .mainTable td, .mainTable th {
     border: 1px solid var(--theme-accent-color);
     box-shadow: 0 0 3px .3px var(--theme-accent-color);
-    border-collapse: collapse;
+    border-collapse: separate;
+    padding: 0;
+    border-spacing: 0;
 }
 
 .mainTable td, .mainTable th {
     padding: 1vw;
     height: 100%;
     transition: none;
+}
+
+.mainTable thead > tr > th:first-child {
+    border-top-left-radius: 1rem;
+}
+
+.mainTable thead > tr > th:last-child {
+    border-top-right-radius: 1rem;
+}
+
+.mainTable tbody > tr:last-child > td:first-child {
+    border-bottom-left-radius: 1rem;
+}
+
+.mainTable tbody > tr:last-child > td:last-child {
+    border-bottom-right-radius: 1rem;
 }
 
 /* -------------------------- ANIMATIONS -------------------------- */

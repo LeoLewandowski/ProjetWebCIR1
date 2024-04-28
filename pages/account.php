@@ -75,7 +75,7 @@
             $email = $_POST['email'];
 
         // Vérifie si la photo de profil a été donnée parmi les infos
-        if (array_key_exists('pfp', $_FILES)) {
+        if (array_key_exists('pfp', $_FILES) && $_FILES['pfp']['error'] != 4) {
             $pfp = $_FILES['pfp'];
             // On vérifie que le fichier soit d'une taille acceptable
             if ($pfp['error'] == 2 || $pfp['error'] == 1 || $pfp['size'] > 30_000_000) {

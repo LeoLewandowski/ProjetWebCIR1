@@ -32,30 +32,29 @@ if (!$userInfo['admin']) {
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        foreach($result as $res){
-            echo "<br>";
-            echo "<div class='message'>";
-            echo "<span>Nom :</span>" . " " . $res['name'];
-            echo "<br>";
-            echo "<span>Prénom :</span>" . " " . $res['surname'];
-            echo "<br>";
-            echo "<span>Email :</span>" . " " . $res['email'];
-            echo "<br><br>";
-            echo "<span>Sujet :</span>" . " " . $res["subject"];
-            echo "<br><br>";
-            echo "<span>Message :</span>";
-            echo "<br>";
-            echo $res["content"];
-            echo "<br>";
+        foreach($result as $res){ ?>
+            <br>
+            <div class='message'>
+            <span><?= _('Name') ?> :</span> <?= $res['name'] ?>
+            <br>
+            <span><?= _('Surname') ?> :</span> <?= $res['surname'] ?>
+            <br>
+            <span><?= _('Email') ?> :</span> <?= $res['email'] ?>
+            <br><br>
+            <span><?= _('Subject') ?> :</span> <?= $res["subject"] ?>
+            <br><br>
+            <span><?= _('Message') ?> :</span>
+            <br> <?= $res["content"] ?>
+            <br>
+            <?php
             if($res["img_extension"] != null){
                 $img = '../../images/messages/'.$res["id"].'.'.$res["img_extension"];
                 echo "<br>";
                 echo "<img src='$img'/>";
-            }
-            echo "</div>";
-            echo "<br><br>";
-        }
-        ?>
+            } ?>
+            </div>
+            <br><br>
+        <?php } ?>
     </main>
 
     <?php
