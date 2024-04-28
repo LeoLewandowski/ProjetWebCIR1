@@ -3,37 +3,41 @@
 
 <head>
     <?php
-    require_once($_SERVER['DOCUMENT_ROOT'] . '/util/common.php');
-    require_once($_SERVER['DOCUMENT_ROOT'] . '/util/connection.php');
+    require_once ($_SERVER['DOCUMENT_ROOT'] . '/util/common.php');
+    require_once ($_SERVER['DOCUMENT_ROOT'] . '/util/connection.php');
     getPageHead(_('Products'), 'products');
 
     $params = [];
 
-    $timeType = $_GET['timeType'] ?? "";
-    $braceletType = $_GET['braceletType'] ?? "";
-    $minPrice = $_GET['minPrice'] ?? "";
-    $maxPrice = $_GET['maxPrice'] ?? "";
+    $timeType = $braceletType = $minPrice = $maxPrice = "";
 
     $req = "SELECT * FROM watches WHERE 1=1";
 
-    if(isset($timeType) && $timeType != '') {
-        $req .= " AND timeType = :timeType";
-        $params['timeType'] = $timeType;
-    }
+    if (isset($_POST['filter'])) {
+        $timeType = $_GET['timeType'] ?? "";
+        $braceletType = $_GET['braceletType'] ?? "";
+        $minPrice = $_GET['minPrice'] ?? "";
+        $maxPrice = $_GET['maxPrice'] ?? "";
 
-    if(isset($braceletType) && $braceletType != '') {
-        $req .= " AND braceletType = :$braceletType";
-        $params['braceletType'] = $braceletType;
-    }
+        if (isset($timeType) && $timeType != '') {
+            $req .= " AND timeType = :timeType";
+            $params['timeType'] = $timeType;
+        }
 
-    if(isset($minPrice) && $minPrice != '') {
-        $req .= " AND price >= :minPrice";
-        $params['minPrice'] = $minPrice;
-    }
-    
-    if(isset($maxPrice) && $maxPrice != '') {
-        $req .= " AND price <= :maxPrice";
-        $params['maxPrice'] = $maxPrice;
+        if (isset($braceletType) && $braceletType != '') {
+            $req .= " AND braceletType = :braceletType";
+            $params['braceletType'] = $braceletType;
+        }
+
+        if (isset($minPrice) && $minPrice != '') {
+            $req .= " AND price >= :minPrice";
+            $params['minPrice'] = $minPrice;
+        }
+
+        if (isset($maxPrice) && $maxPrice != '') {
+            $req .= " AND price <= :maxPrice";
+            $params['maxPrice'] = $maxPrice;
+        }
     }
     ?>
 </head>
@@ -49,28 +53,40 @@
             <div>
                 <label for="timeType"><?= _('Time system') ?></label>
                 <select name="timeType" id="hsystem">
-                    <option value=''  <?= $timeType == "" ? " selected" : ''  ?> ><?= _('All') ?></option>
-                    <option value='O' <?= $timeType == "O" ? " selected" : '' ?> ><?= _('Octal') ?></option>
-                    <option value='D' <?= $timeType == "D" ? " selected" : '' ?> ><?= _('Duodecimal') ?></option>
+                    <option value='' <?= $timeType == "" ? " selected" : '' ?>><?= _('All') ?></option>
+                    <option value='O' <?= $timeType == TimeType::Octal->value ? " selected" : '' ?>><?= _('Octal') ?>
+                    </option>
+                    <option value='D' <?= $timeType == TimeType::Duodecimal->value ? " selected" : '' ?>>
+                        <?= _('Duodecimal') ?>
+                    </option>
                 </select>
             </div>
             <div>
                 <label for="braceletType"><?= _('Bracelet material') ?></label>
                 <select name="braceletType" id="wrist">
-                    <option value=''  <?= $braceletType == "" ? " selected" : ''  ?> ><?= _('All') ?></option>
-                    <option value='L' <?= $braceletType == "L" ? " selected" : '' ?> ><?= _('Leather') ?></option>
-                    <option value='S' <?= $braceletType == "S" ? " selected" : '' ?> ><?= _('Silicone') ?></option>
-                    <option value='M' <?= $braceletType == "M" ? " selected" : '' ?> ><?= _('Metal') ?></option>
+                    <option value='' <?= $braceletType == "" ? " selected" : '' ?>><?= _('All') ?></option>
+                    <option value='L' <?= $braceletType == BraceletMaterial::Leather->value ? " selected" : '' ?>>
+                        <?= _('Leather') ?>
+                    </option>
+                    <option value='S' <?= $braceletType == BraceletMaterial::Silicone->value ? " selected" : '' ?>>
+                        <?= _('Silicone') ?>
+                    </option>
+                    <option value='M' <?= $braceletType == BraceletMaterial::Metal->value ? " selected" : '' ?>>
+                        <?= _('Metal') ?>
+                    </option>
                 </select>
             </div>
             <div>
                 <label><?= _('Price interval') ?></label>
                 <?php
                 echo "<input name='minPrice' type='number' placeholder='50€' value='$minPrice'>"
-                .    "<input name='maxPrice' type='number' placeholder='500€' value='$maxPrice'>";
+                    . "<input name='maxPrice' type='number' placeholder='500€' value='$maxPrice'>";
                 ?>
             </div>
-            <input type="submit" value="<?= _('Apply') ?>">
+            <div class="container-horizontal center">
+                <input type="submit" name="filter" value="<?= _('Apply') ?>">
+                <input type="submit" name="reset" value="<?= _('Reset') ?>">
+            </div>
         </form>
         <section class="products">
             <?php
@@ -80,23 +96,24 @@
             $watches = $connection->prepare($req);
             $watches->execute($params);
 
-            foreach($watches->fetchAll(PDO::FETCH_ASSOC) as $watch){
+            foreach ($watches->fetchAll(PDO::FETCH_ASSOC) as $watch) {
 
                 $wID = $watch['id'];
                 $wName = $watch['name'];
 
                 $empty = false;
 
-                echo
-                "<a href='./products/watch?id=$wID'>
-                     <img src=\"/images/watch/montre_$wID.png\">
-                     <h3>$wName</h3>
-                 </a>";
-            }
+                ?>
+                <a href='/products/watch?id=<?= $wID ?>'>
+                    <img src="/images/watch/montre_<?= $wID ?>.png">
+                    <h4><?= $wName ?></h4>
+                </a>
+            <?php }
 
-            if($empty) echo _("<div><h3>No watch match these filters</h3><h4 style='color:grey'>Please try something else</h4></div>");
+            if ($empty)
+                echo _("<div><h3>No watch match these filters</h3><h4 style='color:grey'>Please try something else</h4></div>");
             ?>
-            
+
         </section>
     </main>
 

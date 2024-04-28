@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2024-04-27 20:01+0200\n"
-"PO-Revision-Date: 2024-04-27 20:01+0200\n"
+"POT-Creation-Date: 2024-04-28 11:25+0200\n"
+"PO-Revision-Date: 2024-04-28 11:26+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -283,17 +283,18 @@ msgstr "Madame"
 msgid "Gender"
 msgstr "Civilité"
 
-#: pages/account.php:240 pages/admin/watches.php:114
-#: pages/admin/watches/add.php:94 pages/admin/watches/edit.php:120
-#: pages/login.php:215
+#: pages/account.php:240 pages/admin/messages.php:38
+#: pages/admin/watches.php:114 pages/admin/watches/add.php:94
+#: pages/admin/watches/edit.php:120 pages/login.php:215
 msgid "Name"
 msgstr "Nom"
 
-#: pages/account.php:249 pages/login.php:224
+#: pages/account.php:249 pages/admin/messages.php:40 pages/login.php:224
 msgid "Surname"
 msgstr "Prénom"
 
-#: pages/account.php:258 pages/login.php:180 pages/login.php:233
+#: pages/account.php:258 pages/admin/messages.php:42 pages/login.php:180
+#: pages/login.php:233
 msgid "Email"
 msgstr ""
 
@@ -353,6 +354,14 @@ msgstr "Accès messages clients"
 msgid "View your account parameters"
 msgstr "Voir vos paramètres de compte"
 
+#: pages/admin/messages.php:44 pages/contact.php:91
+msgid "Subject"
+msgstr "Sujet"
+
+#: pages/admin/messages.php:46
+msgid "Message"
+msgstr "Message"
+
 #: pages/admin/watches.php:53
 msgid "Admin - product management"
 msgstr "Admin - modification des produits"
@@ -387,12 +396,12 @@ msgid "Bracelet"
 msgstr ""
 
 #: pages/admin/watches.php:118 pages/admin/watches/add.php:115
-#: pages/admin/watches/edit.php:143 pages/products.php:50
+#: pages/admin/watches/edit.php:143 pages/products.php:54
 #: pages/products/watch.php:56
 msgid "Time system"
 msgstr "Système temporel"
 
-#: pages/admin/watches.php:125 pages/products.php:97
+#: pages/admin/watches.php:125 pages/products.php:114
 msgid ""
 "<div><h3>No watch match these filters</h3><h4 style='color:grey'>Please try "
 "something else</h4></div>"
@@ -439,32 +448,32 @@ msgid "Characteristics"
 msgstr "Caractéristiques"
 
 #: pages/admin/watches/add.php:118 pages/admin/watches/edit.php:146
-#: pages/concept.php:15 pages/products.php:53
+#: pages/concept.php:15 pages/products.php:57
 msgid "Octal"
 msgstr "Octale"
 
 #: pages/admin/watches/add.php:121 pages/admin/watches/edit.php:149
-#: pages/products.php:54
+#: pages/products.php:60
 msgid "Duodecimal"
 msgstr "Duodécimal"
 
 #: pages/admin/watches/add.php:130 pages/admin/watches/edit.php:158
-#: pages/products.php:58 pages/products/watch.php:58
+#: pages/products.php:65 pages/products/watch.php:58
 msgid "Bracelet material"
 msgstr "Matière du bracelet"
 
 #: pages/admin/watches/add.php:133 pages/admin/watches/edit.php:161
-#: pages/products.php:61
+#: pages/products.php:69
 msgid "Leather"
 msgstr "Cuir"
 
 #: pages/admin/watches/add.php:135 pages/admin/watches/edit.php:163
-#: pages/products.php:62
+#: pages/products.php:72
 msgid "Silicone"
 msgstr ""
 
 #: pages/admin/watches/add.php:137 pages/admin/watches/edit.php:165
-#: pages/products.php:63
+#: pages/products.php:75
 msgid "Metal"
 msgstr "Métal"
 
@@ -483,6 +492,18 @@ msgstr "Essayez avec ne autre ID"
 #: pages/cart.php:9 util/common.php:40
 msgid "Shopping cart"
 msgstr "Panier"
+
+#: pages/cart.php:71
+msgid "Update"
+msgstr ""
+
+#: pages/cart.php:78
+msgid "Remove"
+msgstr ""
+
+#: pages/cart.php:90
+msgid "Payment"
+msgstr ""
 
 #: pages/concept.php:11
 msgid "or"
@@ -602,10 +623,6 @@ msgstr "Laisser un commentaire"
 #: pages/contact.php:83
 msgid "Message sent to the admins !"
 msgstr "Message envoyé aux administrateurs !"
-
-#: pages/contact.php:91
-msgid "Subject"
-msgstr "Sujet"
 
 #: pages/contact.php:101
 msgid "Your message"
@@ -762,21 +779,25 @@ msgid ""
 msgstr ""
 "J'accepte les <a href=\"/conditions\">termes et conditions</a> de ce site web"
 
-#: pages/products.php:48
+#: pages/products.php:52
 msgid "Filters"
 msgstr "Filtres"
 
-#: pages/products.php:52 pages/products.php:60
+#: pages/products.php:56 pages/products.php:67
 msgid "All"
 msgstr "Tout"
 
-#: pages/products.php:67
+#: pages/products.php:80
 msgid "Price interval"
 msgstr "Intervalle de prix"
 
-#: pages/products.php:73
+#: pages/products.php:87
 msgid "Apply"
 msgstr "Appliquer"
+
+#: pages/products.php:88
+msgid "Reset"
+msgstr "Réinitialiser"
 
 #: pages/products/watch.php:45
 msgid ""

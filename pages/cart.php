@@ -6,7 +6,7 @@
     <?php
     require_once ($_SERVER['DOCUMENT_ROOT'] . '/util/common.php');
     require_once ($_SERVER['DOCUMENT_ROOT'] . '/util/connection.php');
-    getPageHead(_('Shopping cart'), 'panier');
+    getPageHead(_('Shopping cart'), 'cart');
     // Si l'utilisateur n'est pas connecté, on le redirge vers la page de connexion
 
     if (empty($userInfo))
@@ -68,14 +68,14 @@
                             <form action="<?= $_SERVER['PHP_SELF'] ?>" method="post">
                                 <input type="hidden" name="product_id" value="<?= $item['product_id'] ?>">
                                 <input type="number" name="quantity" value="<?= $item['count'] ?>" min="1" id="quantity">
-                                <button type="submit" name="update_quantity">Modifier</button>
+                                <input type="submit" name="update_quantity" value="<?= _('Update') ?>" >
                             </form>
                         </td>
                         <td><?= $subtotal ?>€</td>
                         <td>
                             <form action="<?= $_SERVER['PHP_SELF'] ?>" method="post">
                                 <input type="hidden" name="product_id" value="<?= $item['product_id'] ?>">
-                                <button type="submit" name="remove_product">Supprimer</button>
+                                <input type="submit" name="remove_product" value="<?= _('Remove') ?>" >
                             </form>
                         </td>
                     </tr>
@@ -87,7 +87,7 @@
             </tbody>
         </table>
         <form action="TuVaRaquerChef.php" method="post">
-            <button type="submit">Procéder au paiement</button>
+            <input type="submit" value="<?= _('Payment') ?>" >
         </form>
     </main>
 </body>
