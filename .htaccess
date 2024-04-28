@@ -1,6 +1,12 @@
 # Définit la page 404 du site, en cas de mauvaise requête
 ErrorDocument 404 /pages/404.php
 
+# Si l'URL se termine par un /, on enlève le / automatiquement
+# pour rediriger vers la bonne page
+RewriteEngine On
+    RewriteCond %{REQUEST_URI} /$
+    RewriteRule (.+)/ $1 [NC,DPI]
+
 # Va chercher la page correspondant à la requête dans le dossier /pages/
 # Permet de ne pas afficher /pages/ dans l'URL, ce qui le raccourcit
 RewriteEngine On

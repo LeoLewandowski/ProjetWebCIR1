@@ -13,7 +13,7 @@
 
     $req = "SELECT * FROM watches WHERE 1=1";
 
-    if (isset($_POST['filter'])) {
+    if (isset($_GET['filter'])) {
         $timeType = $_GET['timeType'] ?? "";
         $braceletType = $_GET['braceletType'] ?? "";
         $minPrice = $_GET['minPrice'] ?? "";
@@ -80,7 +80,7 @@
                 <label><?= _('Price interval') ?></label>
                 <?php
                 echo "<input name='minPrice' type='number' placeholder='50€' value='$minPrice'>"
-                    . "<input name='maxPrice' type='number' placeholder='500€' value='$maxPrice'>";
+                    . "<input name='maxPrice' type='number' placeholder='50 000€' value='$maxPrice'>";
                 ?>
             </div>
             <div class="container-horizontal center">

@@ -58,7 +58,13 @@
                     <li><?= _('Bracelet material') ?> : <span
                             class='info'><?= _(BraceletMaterial::tryFrom($watch['braceletType'])->name) ?></span></li>
                 </ul>
-                <h3><?= _('Add to cart') ?></h3>
+                <?php if ($userInfo['admin']) { ?>
+                    <form class="generic-form" action="/admin/watches/edit" method="get">
+                        <input type="hidden" name="id" value="<?= $wID ?>">
+                        <input type="submit" value="<?= _('Update watch') ?>">
+                    </form>
+                <?php } else { ?>
+                    <h3><?= _('Add to cart') ?></h3>
                     <form class="form-generic display-box center" action="addcart" method="post">
                         <input type="hidden" name="product_id" value="<?= $wID ?>">
                         <div class="input-box">
@@ -67,7 +73,8 @@
                         </div>
                         <input type="submit" id="addcart" value="<?= _('Add to cart') ?>">
                     </form>
-            <?php } ?>
+                <?php }
+        } ?>
 
     </main>
 

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2024-04-28 11:25+0200\n"
-"PO-Revision-Date: 2024-04-28 11:26+0200\n"
+"POT-Creation-Date: 2024-04-28 18:37+0200\n"
+"PO-Revision-Date: 2024-04-28 18:37+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -283,17 +283,17 @@ msgstr "Madame"
 msgid "Gender"
 msgstr "Civilité"
 
-#: pages/account.php:240 pages/admin/messages.php:38
+#: pages/account.php:240 pages/admin/messages.php:42
 #: pages/admin/watches.php:114 pages/admin/watches/add.php:94
 #: pages/admin/watches/edit.php:120 pages/login.php:215
 msgid "Name"
 msgstr "Nom"
 
-#: pages/account.php:249 pages/admin/messages.php:40 pages/login.php:224
+#: pages/account.php:249 pages/admin/messages.php:44 pages/login.php:224
 msgid "Surname"
 msgstr "Prénom"
 
-#: pages/account.php:258 pages/admin/messages.php:42 pages/login.php:180
+#: pages/account.php:258 pages/admin/messages.php:46 pages/login.php:180
 #: pages/login.php:233
 msgid "Email"
 msgstr ""
@@ -354,11 +354,15 @@ msgstr "Accès messages clients"
 msgid "View your account parameters"
 msgstr "Voir vos paramètres de compte"
 
-#: pages/admin/messages.php:44 pages/contact.php:91
+#: pages/admin/messages.php:29
+msgid "Search for messages"
+msgstr "Recherche de message"
+
+#: pages/admin/messages.php:48 pages/contact.php:91
 msgid "Subject"
 msgstr "Sujet"
 
-#: pages/admin/messages.php:46
+#: pages/admin/messages.php:50
 msgid "Message"
 msgstr "Message"
 
@@ -495,15 +499,15 @@ msgstr "Panier"
 
 #: pages/cart.php:71
 msgid "Update"
-msgstr ""
+msgstr "Changer"
 
 #: pages/cart.php:78
 msgid "Remove"
-msgstr ""
+msgstr "Supprimer"
 
 #: pages/cart.php:90
 msgid "Payment"
-msgstr ""
+msgstr "Paiement"
 
 #: pages/concept.php:11
 msgid "or"
@@ -807,11 +811,15 @@ msgstr ""
 "<h3>Désolé, cette montre est indisponible</h3><br><h4>Veuillez retournez à "
 "<a href=\"/products\">la page des produits</a></h4>"
 
-#: pages/products/watch.php:61 pages/products/watch.php:68
+#: pages/products/watch.php:64
+msgid "Update watch"
+msgstr "Modifier montre"
+
+#: pages/products/watch.php:67 pages/products/watch.php:74
 msgid "Add to cart"
 msgstr "Ajouter au panier"
 
-#: pages/products/watch.php:66
+#: pages/products/watch.php:72
 msgid "Quantity"
 msgstr "Quantité"
 
